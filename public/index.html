@@ -1,69 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-
-    <title>Zewei Chen Home Page</title>
-
-    <style type="text/css">
-        .profile-pic {
-            height: 150px;
-            width: 150px;
-            border: 2px slategray solid;
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-top: -120px;
-            margin-left: -75px;
-        }
-    </style>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="import" href="/bower_components/webcomponentsjs/webcomponents.js">
+        <link rel="import" href="/bower_components/paper-input/paper-input.html">
+        <link rel="import" href="/bower_components/paper-checkbox/paper-checkbox.html">
+        <link rel="import" href="/bower_components/paper-header-panel/paper-header-panel.html">
+        <link rel="import" href="/bower_components/paper-toolbar/paper-toolbar.html">
+        <link rel="import" href="/bower_components/paper-card/paper-card.html">
+        <link rel="import" href="/bower_components/paper-styles/paper-styles.html">
+        <link rel="import" href="/bower_components/polymer/polymer.html">
+        <link rel="import" href="/bower_components/font-roboto/roboto.html">
+        <link rel="import" href="/bower_components/paper-menu-button/paper-menu-button.html">
+        <link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+        <link rel="import" href="/bower_components/paper-item/paper-item.html">
 
 
-</head>
+        <title>Zewei Chen Home Page</title>
+
+
+
+        <style type="text/css">
+
+            .background {
+                font-family: 'Roboto', 'Noto', sans-serif;
+                font-size: 30px;
+            }
+        </style>
+    </head>
 <body>
-<div class="container">
-    <div class="background">
-        <h1>Zewei Chen Home Page</h1>
+    <div class="container">
+        <div class="background">
+            <paper-header-panel class="hompage">
+                <paper-toolbar>
+                    <div>Zewei Chen Home Page</div>
+                </paper-toolbar>
+            </paper-header-panel>
+        </div>
+
+        <style type="text/css">
+            .profile-pic {
+                height: 150px;
+                width: 150px;
+                border-radius: 50%;
+                position: absolute;
+                left: 63%;
+                top: 5%;
+            }
+        </style>
+
+        <div class="profile">
+            <image class="profile-pic" src="images/ProfilePic.jpg"/>
+        </div>
+
+
+        <style is="custom-style">
+            .project {
+                position:absolute;
+                height: 250px;
+                width: 200px;
+                left: 10%;
+                top: 45%;
+
+
+            }
+            .project-pic {
+                height: 200px;
+                width: 198px;
+                border: 1px solid gray;
+
+            }
+
+            .card-content1 {
+                height: 0px;
+                padding-top: 0px;
+            }
+        </style>
+
+        <div class="project">
+            <paper-card class="project">
+                <image class="project-pic" src="images/ProfilePic.jpg"/>
+                <div class="card-content1">
+                    <ul clas="ul">
+                        <li>
+                            <a href="project/index.html">Project</a>
+                        </li>
+                    </ul>
+                </div>
+            </paper-card>
+        </div>
+
+
+        <style is="custom-style">
+            .assignment {
+                position: absolute;
+                height: 250px;
+                width: 200px;
+                left: 38%;
+                top: 45%;
+
+
+            }
+            .assignment-pic {
+                height: 200px;
+                width: 198px;
+                border: 1px solid gray;
+
+            }
+
+            .card-content2 {
+                height: 0px;
+                padding-top: 0px;
+            }
+        </style>
+
+        <div class="assignment">
+            <paper-card class="assignment">
+                <image class="assignment-pic" src="images/ProfilePic.jpg"/>
+                <div class="card-content2">
+                    <ul clas="ul">
+                        <li>
+                            <a href="assignment/index.html">Assignment</a>
+                        </li>
+                    </ul>
+                </div>
+            </paper-card>
+        </div>
+
+        <style is="custom-style">
+            .others {
+                position: absolute;
+                height: 250px;
+                width: 200px;
+                left: 66%;
+                top: 45%;
+
+
+            }
+            .others-pic {
+                height: 200px;
+                width: 198px;
+                border: 1px solid gray;
+
+            }
+
+            .card-content3 {
+                height: 0px;
+                padding-top: 0px;
+            }
+        </style>
+
+        <div class="others">
+            <paper-card class="others">
+                <image class="others-pic" src="images/ProfilePic.jpg"/>
+                <div class="card-content3">
+                    <ul clas="ul">
+                        <li>
+                            <a href="others/index.html">Others</a>
+                        </li>
+                    </ul>
+                </div>
+            </paper-card>
+        </div>
     </div>
-
-    <div class="profile">
-
-        <image class="profile-pic" src="images/ProfilePic.jpg"/>
-
-    </div>
-
-
-
-
-
-
-    <div class="project">
-
-    </div>
-
-    <div class ="assignment">
-
-    </div>
-
-    <div class ="others">
-
-    </div>
-</div>
-
-<ul>
-    <li>
-        <a href="project/index.html">Project</a>
-    </li>
-    <li>
-        <a href="assignment/index.html">Assignment</a>
-    </li>
-    <li>
-        <a href="others/index.html">Others</a>
-    </li>
-
-
-</ul>
 
 
 </body>
