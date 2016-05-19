@@ -2,6 +2,9 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="viewport" content="initial-scale=1, user-scalable = no">
         <link rel="import" href="/bower_components/webcomponentsjs/webcomponents.js">
         <link rel="import" href="/bower_components/paper-input/paper-input.html">
         <link rel="import" href="/bower_components/paper-checkbox/paper-checkbox.html">
@@ -17,153 +20,104 @@
 
 
         <title>Zewei Chen Home Page</title>
-
-
-
-        <style type="text/css">
-
-            .background {
-                font-family: 'Roboto', 'Noto', sans-serif;
-                font-size: 30px;
-            }
-        </style>
     </head>
-<body>
-    <div class="container">
-        <div class="background">
-            <paper-header-panel class="hompage">
-                <paper-toolbar>
-                    <div>Zewei Chen Home Page</div>
-                </paper-toolbar>
-            </paper-header-panel>
-        </div>
-
-        <style type="text/css">
-            .profile-pic {
-                height: 150px;
-                width: 150px;
-                border-radius: 50%;
-                position: absolute;
-                left: 63%;
-                top: 5%;
-            }
-        </style>
-
-        <div class="profile">
-            <image class="profile-pic" src="images/ProfilePic.jpg"/>
-        </div>
 
 
-        <style is="custom-style">
-            .project {
-                position:absolute;
-                height: 250px;
-                width: 200px;
-                left: 10%;
-                top: 45%;
+    <style type="text/css">
+
+        .background {
+            font-family: 'Roboto', 'Noto', sans-serif;
+            font-size: 30px;
+        }
+    </style>
+
+    <style type="text/css">
+        .profile-pic {
+            height: 100px;
+            width: 150px;
+            border-radius: 50%;
+            position: absolute;
+            left: 63%;
+            top: 5%;
+            border: 1px solid gray;
+        }
+    </style>
+
+    <style is="custom-style">
+        .profile {
+            width: 200px;
+            height: 250px;
+            margin: 50px;
+            margin-top: 30px;
+        }
+
+        .row {
+            float: left;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            border: white solid 2px;
 
 
-            }
-            .project-pic {
-                height: 200px;
-                width: 198px;
-                border: 1px solid gray;
+        }
 
-            }
+        .column {
+            width: 200px;
+            height: 250px;
+            margin: 50px;
+            margin-right: 0px;
+            margin-bottom: 35px;
+            background-color: #00b0ff;
+        }
+    </style>
 
-            .card-content1 {
-                height: 0px;
-                padding-top: 0px;
-            }
-        </style>
 
-        <div class="project">
-            <paper-card class="project">
-                <image class="project-pic" src="images/ProfilePic.jpg"/>
-                <div class="card-content1">
-                    <ul clas="ul">
-                        <li>
+
+    <body background="http://demo.geekslabs.com/materialize/v2.3/layout02/images/user-profile-bg.jpg">
+        <div class="container">
+            <div class="background">
+                <paper-header-panel class="homepage">
+                    <paper-toolbar>
+                        <div>Zewei Chen</div>
+                    </paper-toolbar>
+                </paper-header-panel>
+            </div>
+
+
+            <paper-card class="profile">
+                <image height="220px" width="200px" class="project-pic" src="images/ProfilePic.jpg"/>
+                <div class="profile-content">
+                    <a>More Info</a>
+                </div>
+            </paper-card>
+
+            <div class="row">
+                <paper-card class="project column">
+                    <image height="220px" width="200px" class="project-pic" src="images/rocket.jpg"/>
+                        <div class="card-content1">
                             <a href="project/index.html">Project</a>
-                        </li>
-                    </ul>
-                </div>
-            </paper-card>
+                        </div>
+                </paper-card>
+
+                <paper-card class="assignment column">
+                    <image height="220px" width="200px" class="assignment-pic" src="images/book.jpg"/>
+                    <div class="card-content2">
+                        <a href="assignment/index.html">Assignment</a>
+                    </div>
+                </paper-card>
+
+                <paper-card class="others column">
+                    <image height="220px" width="200px" class="others-pic" src="images/MG.jpg"/>
+                    <div class="card-content3">
+                        <a href="others/index.html">Others</a>
+                    </div>
+                </paper-card>
+            </div>
+
+
+
         </div>
 
 
-        <style is="custom-style">
-            .assignment {
-                position: absolute;
-                height: 250px;
-                width: 200px;
-                left: 38%;
-                top: 45%;
-
-
-            }
-            .assignment-pic {
-                height: 200px;
-                width: 198px;
-                border: 1px solid gray;
-
-            }
-
-            .card-content2 {
-                height: 0px;
-                padding-top: 0px;
-            }
-        </style>
-
-        <div class="assignment">
-            <paper-card class="assignment">
-                <image class="assignment-pic" src="images/ProfilePic.jpg"/>
-                <div class="card-content2">
-                    <ul clas="ul">
-                        <li>
-                            <a href="assignment/index.html">Assignment</a>
-                        </li>
-                    </ul>
-                </div>
-            </paper-card>
-        </div>
-
-        <style is="custom-style">
-            .others {
-                position: absolute;
-                height: 250px;
-                width: 200px;
-                left: 66%;
-                top: 45%;
-
-
-            }
-            .others-pic {
-                height: 200px;
-                width: 198px;
-                border: 1px solid gray;
-
-            }
-
-            .card-content3 {
-                height: 0px;
-                padding-top: 0px;
-            }
-        </style>
-
-        <div class="others">
-            <paper-card class="others">
-                <image class="others-pic" src="images/ProfilePic.jpg"/>
-                <div class="card-content3">
-                    <ul clas="ul">
-                        <li>
-                            <a href="others/index.html">Others</a>
-                        </li>
-                    </ul>
-                </div>
-            </paper-card>
-        </div>
-    </div>
-
-
-</body>
+    </body>
 </html>
