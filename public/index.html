@@ -5,6 +5,8 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <meta name="viewport" content="initial-scale=1, user-scalable = no">
+        <link href="../css/style2.css" rel="stylesheet"/>
+        <link rel="import" href="/bower_components/webcomponentsjs/webcomponents.js">
         <link rel="import" href="/bower_components/webcomponentsjs/webcomponents.js">
         <link rel="import" href="/bower_components/paper-input/paper-input.html">
         <link rel="import" href="/bower_components/paper-checkbox/paper-checkbox.html">
@@ -14,79 +16,35 @@
         <link rel="import" href="/bower_components/paper-styles/paper-styles.html">
         <link rel="import" href="/bower_components/polymer/polymer.html">
         <link rel="import" href="/bower_components/font-roboto/roboto.html">
+        <link rel="import" href="/bower_components/paper-menu/paper-menu.html">
         <link rel="import" href="/bower_components/paper-menu-button/paper-menu-button.html">
         <link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+        <link rel="import" href="/bower_components/paper-button/paper-button.html">
         <link rel="import" href="/bower_components/paper-item/paper-item.html">
+        <link rel="import" href="/bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+        <link rel="import" href="/bower_components/paper-listbox/paper-listbox.html">
+        <link rel="import" href="../public/bower_components/iron-form/iron-form.html">
         <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+        <script src="bower_components/web-animations-js/web-animations.min.js"></script>
 
 
 
         <title>Zewei Chen Home Page</title>
+
     </head>
-
-
-    <style type="text/css">
-
-        .background {
-            font-family: 'Roboto', 'Noto', sans-serif;
-            font-size: 30px;
-        }
-    </style>
-
-    <style type="text/css">
-        .profile-pic {
-            height: 100px;
-            width: 150px;
-            border-radius: 50%;
-            position: absolute;
-            left: 63%;
-            top: 5%;
-            border: 1px solid gray;
-        }
-    </style>
-
-    <style is="custom-style">
-        .profile {
-            width: 200px;
-            height: 250px;
-            margin: 50px;
-            margin-top: 30px;
-        }
-
-        .row {
-            float: left;
-            width: 100%;
-            position: absolute;
-            top: 50%;
-            border: white solid 2px;
-
-
-        }
-
-        .column {
-            width: 200px;
-            height: 250px;
-            margin: 50px;
-            margin-right: 0px;
-            margin-bottom: 35px;
-            background-color: #00b0ff;
-        }
-    </style>
-
 
 
     <body background="http://demo.geekslabs.com/materialize/v2.3/layout02/images/user-profile-bg.jpg">
         <div class="container">
-            <div class="background">
-                <paper-header-panel class="homepage">
+            <div class="head">
+                <paper-header-panel class="head-panel">
                     <paper-toolbar>
-                        <div>Zewei Chen</div>
+                        <a>Zewei Chen</a>
                     </paper-toolbar>
                 </paper-header-panel>
             </div>
 
-
-            <paper-card class="profile">
+            <paper-card class="profile" elevation="5">
                 <image height="220px" width="200px" class="project-pic" src="images/ProfilePic.jpg"/>
                 <div class="profile-content">
                     <a>More Info</a>
@@ -94,25 +52,26 @@
             </paper-card>
 
             <div class="row">
-                <paper-card class="project column">
-                    <image height="220px" width="200px" class="project-pic"
+                <paper-card class="project column" elevation="5">
+                    <image height="220px" width="300px" class="project-pic"
                            src="http://www.youtodesign.com/uploads/allimg/1504/3780.jpg"/>
                         <div class="card-content1">
                             <a href="project/index.html">Project</a>
                         </div>
                 </paper-card>
 
-                <paper-card class="assignment column">
-                    <image height="220px" width="200px" class="assignment-pic"
-                           src="http://assets.materialup.com/uploads/a9d0c27a-e40f-46da-87f3-6c2e1b39c01d/fsfs.png">
+                <paper-card class="assignment column" elevation="5">
+                    <image height="220px" width="300px" class="assignment-pic"
+                           src="http://cdn.psfk.com/wp-content/uploads/2014/12/Google_Material-Design_10-1500x1000.jpg"/>
                     <div class="card-content2">
                         <a href="assignment/index.html">Assignment</a>
                     </div>
                 </paper-card>
 
-                <paper-card class="others column">
-                    <image height="220px" width="200px" class="others-pic"
-                           src="https://s-media-cache-ak0.pinimg.com/736x/ec/0a/80/ec0a80af61bcbe980f7904789405e188.jpg"/>
+                <paper-card class="others column" elevation="5">
+                    <image height="220px" width="300px"
+                           class="others-pic"
+                           src="https://d13yacurqjgara.cloudfront.net/users/239075/screenshots/2030765/npad-app-icon-800.png"/>
                     <div class="card-content3">
                         <a href="others/index.html">Others</a>
                     </div>

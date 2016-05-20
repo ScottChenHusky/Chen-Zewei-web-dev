@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="viewport" content="initial-scale=1, user-scalable = no">
+        <link rel="import" href="../bower_components/webcomponentsjs/webcomponents.js">
+        <link rel="import" href="../bower_components/paper-input/paper-input.html">
+        <link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
+        <link rel="import" href="../bower_components/paper-header-panel/paper-header-panel.html">
+        <link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
+        <link rel="import" href="../bower_components/paper-card/paper-card.html">
+        <link rel="import" href="../bower_components/paper-styles/paper-styles.html">
+        <link rel="import" href="../bower_components/polymer/polymer.html">
+        <link rel="import" href="../bower_components/font-roboto/roboto.html">
+        <link rel="import" href="../bower_components/paper-menu/paper-menu.html">
+        <link rel="import" href="../bower_components/paper-menu-button/paper-menu-button.html">
+        <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+        <link rel="import" href="../bower_components/paper-button/paper-button.html">
+        <link rel="import" href="../bower_components/paper-item/paper-item.html">
+        <link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+        <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+        <link rel="import" href="../bower_components/paper-button/paper-button.html">
+        <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
+        <script src="../bower_components/web-animations-js/web-animations.min.js"></script>
+        <link href="../css/style.css" rel="stylesheet"/>
+
+        <title>Login</title>
+    </head>
+
+
+    <body>
+        <div class="container">
+            <div class="head">
+                <paper-header-panel class="head-panel">
+                    <paper-toolbar>
+                        <a>Login</a>
+                    </paper-toolbar>
+                </paper-header-panel>
+            </div>
+
+            <paper-card class="content-card" elevation="5">
+                <input class="form-control"
+                       placeholder="username"
+                       type="text"/>
+                <input class="form-control"
+                       placeholder="password"
+                       type="password">
+
+                <paper-button class="loginButton"
+                              raised="5">Login</paper-button>
+
+                <paper-button class="registerButton"
+                              raised="5">Register</paper-button>
+
+            </paper-card>
+
+
+        </div>
+    </body>
+</html>

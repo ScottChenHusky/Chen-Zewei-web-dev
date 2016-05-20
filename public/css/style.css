@@ -1,0 +1,41 @@
+input {
+    margin-bottom: 5px;
+}
+
+input.form-control {
+    margin-left: 0px;
+    width: 100%;
+}
+.btn-primary {
+    background-color: cornflowerblue;
+
+}
+
+.btn-success {
+
+}
+
+.btn {
+    border-radius: 5px;
+    width: 100%;
+}
+
+body {
+    padding-top: 60px;
+}
+
+p.navbar-text.pull-right {
+    margin-right: 15px;
+}
+
+p.navbar-text.pull-left {
+    margin-left: 15px;
+}
+
+.list-group-item {
+    border: 0px;
+}
+
+a:hover {
+    text-decoration: none;
+}

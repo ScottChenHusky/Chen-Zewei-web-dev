@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Website</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="website-list.html" class="navbar-link">
+                      <span class="glyphicon glyphicon-chevron-left">
+                      </span>
+                </a>
+            </p>
+            <a class="navbar-brand" href="#">
+                Edit Website
+            </a>
+            <p class="navbar-text pull-right">
+                <a href="website-list.html" class="navbar-link">
+                      <span class="glyphicon glyphicon-ok">
+                      </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <form>
+        <div class="form-group">
+            <label for="webName">Website Name</label>
+            <input type="text"
+                   value="EMC"
+                   class="form-control"
+                   id="webName"
+                   placeholder="Google"/>
+        </div>
+        <div class="form-group">
+            <label for="description">Website Description</label>
+            <textarea rows="5" id="description" class="form-control" placeholder="...">EMC Corporation (stylized as EMC²) is an American multinational corporation headquartered in Hopkinton, Massachusetts, United States.[3][4] EMC sells data storage, information security, virtualization, analytics, cloud computing and other products and services that enable businesses to store, manage, protect, and analyze data. EMC's target markets include large companies and small- and medium-sized businesses across various vertical markets.[5][6] The stock was added to the New York Stock Exchange on April 6, 1986,[7] and is also listed on the S&P 500 index.https://en.wikipedia.org/wiki/EMC_Corporation</textarea>
+        </div>
+    </form>
+
+    <a class="btn btn-danger btn-block"
+       href="website-list.html">Delete</a>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-text pull-right">
+                    <a href="../user/profile.html" class="navbar-link">
+                      <span class="glyphicon glyphicon-user">
+                      </span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+
+.head {
+    font-family: 'Roboto', 'Noto', sans-serif;
+    font-size: 30px;
+}
+
+
+
+.profile {
+    left: 2.5%;
+    width: 200px;
+    height: 250px;
+    margin: 50px;
+    margin-top: 30px;
+}
+
+.row {
+    left: 3%;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+
+
+}
+
+.column {
+    width: 300px;
+    height: 250px;
+    margin: 50px;
+    margin-right: 0px;
+    margin-bottom: 35px;
+    background-color: #00b0ff;
+}
+
+.content-card {
+    width: 350px;
+    height: 400px;
+    top: 50px;
+    background: lightcoral;
+}
+
+.form-control {
+    width: 80%;
+    margin: 2%;
+    font-size: 30px;
+    border: solid gray 1px;
+}
+
+.loginButton {
+    background-color: beige;
+}
+
+.registerButton {
+    background-color: bisque;
+}
+
