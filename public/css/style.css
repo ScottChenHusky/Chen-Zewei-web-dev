@@ -39,3 +39,7 @@ p.navbar-text.pull-left {
 a:hover {
     text-decoration: none;
 }
+
+.jga-widget-tool {
+    float: right;
+}
