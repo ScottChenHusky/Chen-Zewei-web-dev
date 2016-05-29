@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../css/style.css" rel="stylesheet">
-
-    <title>Pages</title>
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="../website/website-list.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website" class="navbar-link">
                       <span class="glyphicon glyphicon-chevron-left">
                       </span>
                 </a>
@@ -25,7 +11,7 @@
                 Pages
             </a>
             <p class="navbar-text pull-right">
-                <a href="../page/page-new.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="navbar-link">
                       <span class="glyphicon glyphicon-plus">
                       </span>
                 </a>
@@ -35,34 +21,32 @@
 </nav>
 
 <div class="container">
+
     <ul class="list-group">
-        <li class="list-group-item">
-            <a href="../widget/widget-list.html">Page1</a>
-            <a href="page-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-                <span class="glyphicon glyphicon-play"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../widget/widget-list.html">Page2</a>
-            <a href="page-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-                <span class="glyphicon glyphicon-play"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../widget/widget-list.html">Page3</a>
-            <a href="page-edit.html" class="pull-right">
+        <li ng-repeat="website in model.websites" class="list-group-item">
+            <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
+            <a href="#/user/{{website.developerId}}/website/{{website._id}}" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
                 <span class="glyphicon glyphicon-play"></span>
             </a>
         </li>
     </ul>
+
+    <ul class="list-group">
+        <li ng-repeat="page in model.pages" class="list-group-item">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}" class="pull-right">
+                <span class="glyphicon glyphicon-cog"></span>
+                <span class="glyphicon glyphicon-play"></span>
+            </a>
+        </li>
+    </ul>
+
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text pull-right">
-                    <a href="../user/profile.html" class="navbar-link">
+                    <a href="#/user/{{model.userId}}/" class="navbar-link">
                       <span class="glyphicon glyphicon-user">
                       </span>
                     </a>
@@ -71,5 +55,3 @@
         </div>
     </nav>
 </div>
-</body>
-</html>

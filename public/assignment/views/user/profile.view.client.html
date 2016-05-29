@@ -1,25 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../css/style.css" rel="stylesheet">
-
-    <title>Profile</title>
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="#/user/{{model.user._id}}/">
                 Profile
             </a>
             <p class="navbar-text pull-right">
-                <a href="profile.html" class="navbar-link">
+                <a ng-click="model.updateUser(model.user)" class="navbar-link">
                       <span class="glyphicon glyphicon-ok">
                       </span>
                 </a>
@@ -29,40 +15,43 @@
 </nav>
 
 <div class="container">
-
-    <div class="alert alert-success">
-        Successfully updated your profile
+    <div ng-if="model.success" class="alert alert-success alert-dismissible" role="alert">
+        <strong>Success!</strong> Your profile was saved.
     </div>
 
-    <div class="alert alert-danger">
+    <div ng-if="model.error" class="alert alert-danger">
         Unable to update your profile
     </div>
 
     <form>
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text"
+            <input ng-model="model.user.username"
+                   type="text"
                    class="form-control"
                    id="username"
-                   placeholder="ScottChen"/>
+                   placeholder="Username"/>
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email"
+            <input ng-model="model.user.email"
+                   type="email"
                    class="form-control"
                    id="email"
                    placeholder="scottchen@gmail.com"/>
         </div>
         <div class="form-group">
             <label for="first">First Name</label>
-            <input type="text"
+            <input ng-model="model.user.firstName"
+                   type="text"
                    class="form-control"
                    id="first"
                    placeholder="Scott"/>
         </div>
         <div class="form-group">
             <label for="last">Last Name</label>
-            <input type="text"
+            <input ng-model="model.user.lastName"
+                   type="text"
                    class="form-control"
                    id="last"
                    placeholder="Chen"/>
@@ -70,15 +59,15 @@
     </form>
 
     <a class="btn btn-primary btn-block"
-       href="../website/website-list.html">Websites</a>
+       href="#/user/{{model.user._id}}/website">Websites</a>
     <a class="btn btn-danger btn-block"
-       href="login.html">Logout</a>
+       href="#/login">Logout</a>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text pull-right">
-                    <a href="profile.html" class="navbar-link">
+                    <a href="#/user/{{model.user._id}}/" class="navbar-link">
                       <span class="glyphicon glyphicon-user">
                       </span>
                     </a>
@@ -88,5 +77,3 @@
     </nav>
 
 </div>
-</body>
-</html>

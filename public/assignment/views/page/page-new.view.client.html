@@ -1,21 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>New Page</title>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../css/style.css" rel="stylesheet">
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="page-list.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
                       <span class="glyphicon glyphicon-chevron-left">
                       </span>
                 </a>
@@ -24,7 +11,7 @@
                 New Page
             </a>
             <p class="navbar-text pull-right">
-                <a href="page-list.html" class="navbar-link">
+                <a ng-click="model.createPage(name, title)" class="navbar-link">
                       <span class="glyphicon glyphicon-ok">
                       </span>
                 </a>
@@ -38,14 +25,16 @@
     <form>
         <div class="form-group">
             <label for="pageName">Name</label>
-            <input type="text"
+            <input ng-model="name"
+                   type="text"
                    class="form-control"
                    id="pageName"
                    placeholder="Page Name"/>
         </div>
         <div class="form-group">
             <label for="pageTitle">Title</label>
-            <input type="text"
+            <input ng-model="title"
+                   type="text"
                    class="form-control"
                    id="pageTitle"
                    placeholder="Page Title"/>
@@ -53,13 +42,13 @@
     </form>
 
     <a class="btn btn-danger btn-block"
-       href="page-list.html">Delete</a>
+       href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">Delete</a>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text pull-right">
-                    <a href="../user/profile.html" class="navbar-link">
+                    <a href="#/user/{{model.userId}}/" class="navbar-link">
                       <span class="glyphicon glyphicon-user">
                       </span>
                     </a>
@@ -68,5 +57,3 @@
         </div>
     </nav>
 </div>
-</body>
-</html>

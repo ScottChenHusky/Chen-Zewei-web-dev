@@ -1,0 +1,173 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                      <span class="glyphicon glyphicon-chevron-left">
+                      </span>
+                </a>
+            </p>
+            <a class="navbar-brand" href="#">
+                Widget Edit
+            </a>
+            <p class="navbar-text pull-right">
+                <a ng-click="model.updateWidget()" class="navbar-link">
+                      <span class="glyphicon glyphicon-ok">
+                      </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <div ng-switch="model.widget.widgetType">
+        <div ng-switch-when="HEADER">
+            <form>
+                <div class="form-group">
+                    <label for="widgetName">Name</label>
+                    <input ng-model="model.widget.name"
+                           type="text"
+                           class="form-control"
+                           id="widgetName"
+                           placeholder="Widget Name"/>
+                </div>
+                <div class="form-group">
+                    <label for="text">Text</label>
+                    <textarea ng-model="model.widget.text" rows="3" id="text" class="form-control" placeholder="..."></textarea></div>
+
+                <div class="form-group">
+                    <label for="size">Size</label>
+                    <select ng-model="model.widget.size"
+                            class="form-control"
+                            id="size"
+                            placeholder="Font Size">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </form>
+            <a class="btn btn-danger btn-block"
+               ng-click="model.deleteWidget()">Delete</a>
+        </div>
+
+        <div ng-switch-when="IMAGE">
+            <form>
+                <div class="form-group">
+                    <label for="imageName">Name</label>
+                    <input ng-model="model.widget.name"
+                           type="text"
+                           class="form-control"
+                           id="imageName"
+                           placeholder="Pic Name"/>
+                </div>
+                <div class="form-group">
+                    <label for="text">Text</label>
+                    <textarea ng-model="model.widget.text"
+                              rows="3" id="imageText" class="form-control"></textarea></div>
+
+                <div class="form-group">
+                    <label for="URL">URL</label>
+                    <input ng-model="model.widget.url"
+                           type="url"
+                           placeholder="www.google.com"
+                           class="form-control"
+                           id="imageURL"/>
+                </div>
+                <div class="form-group">
+                    <label for="Width">Width</label>
+                    <select ng-model="model.widget.width"
+                            class="form-control"
+                            id="imageWidth"
+                            placeholder="100%">
+                        <option>10%</option>
+                        <option>20%</option>
+                        <option>30%</option>
+                        <option>40%</option>
+                        <option>50%</option>
+                        <option>60%</option>
+                        <option>70%</option>
+                        <option>80%</option>
+                        <option>90%</option>
+                        <option>100%</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="upload">Upload</label>
+                    <input type="file"
+                           class="form-control"
+                           id="upload"
+                           placeholder="No file chosen"/>
+                </div>
+            </form>
+            <a class="btn btn-primary btn-block"
+               href="widget-list.view.client.html">Upload Image</a>
+            <a class="btn btn-danger btn-block"
+               ng-click="model.deleteWidget()">Delete</a>
+        </div>
+
+        <div ng-switch-when="YOUTUBE">
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input ng-model="model.widget.name"
+                           type="text"
+                           class="form-control"
+                           id="name"
+                           placeholder="Video Name"/>
+                </div>
+                <div class="form-group">
+                    <label for="text">Text</label>
+                    <textarea ng-model="model.widget.text" rows="3" id="youtubeText" class="form-control">...</textarea></div>
+                <div class="form-group">
+                    <label for="URL">URL</label>
+                    <input ng-model="model.widget.url"
+                           type="url"
+                           placeholder="www.youtube.com"
+                           class="form-control"
+                           id="URL"/>
+                </div>
+                <div class="form-group">
+                    <label for="Width">Width</label>
+                    <select ng-model="model.widget.width"
+                            class="form-control"
+                            id="Width"
+                            placeholder="100%">
+                        <option>10%</option>
+                        <option>20%</option>
+                        <option>30%</option>
+                        <option>40%</option>
+                        <option>50%</option>
+                        <option>60%</option>
+                        <option>70%</option>
+                        <option>80%</option>
+                        <option>90%</option>
+                        <option>100%</option>
+
+                    </select>
+                </div>
+            </form>
+
+            <a class="btn btn-danger btn-block"
+               ng-click="model.deleteWidget()">Delete</a>
+        </div>
+    </div>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}/" class="navbar-link">
+                      <span class="glyphicon glyphicon-user">
+                      </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>

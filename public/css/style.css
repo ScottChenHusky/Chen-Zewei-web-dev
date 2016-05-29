@@ -43,3 +43,14 @@ a:hover {
 .jga-widget-tool {
     float: right;
 }
+
+.widget-content {
+    padding-bottom: 50px;
+}
+
+.jga-widget-tool {
+    position: absolute;
+    z-index: 1;
+    right: 15px;
+    background-color: white;
+}
