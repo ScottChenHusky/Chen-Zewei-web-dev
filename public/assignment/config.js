@@ -8,9 +8,6 @@
 
     function Config($routeProvider) {
         $routeProvider
-            .when("/", {
-                templateUrl: "views/home.html"
-            })
             //user routes
             .when("/login", {
                 templateUrl: "views/user/login.view.client.html",
@@ -78,12 +75,9 @@
                 controller: "EditWidgetController",
                 controllerAs: "model"
             })
-
-
-           //
-           // .otherwise({
-           //     redirectTo: "/login"
-           // });
+           .otherwise({
+               redirectTo: "/login"
+           });
             
     }
 })();
