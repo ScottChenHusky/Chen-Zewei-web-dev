@@ -14,7 +14,16 @@
         vm.getSafeUrl = getSafeUrl;
 
         function init() {
-            vm.widgets = WidgetService.findWidgetsForPageId(vm.pageId);
+            WidgetService
+                .findWidgetsForPageId(vm.pageId)
+                .then(
+                    function(response) {
+                        vm.widgets = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
         }
         init();
 
@@ -43,7 +52,7 @@
             if(widgetType === "HEADER") {
                 var widget = {
                     _id: (new Date()).getTime()+"",
-                    widgetType: widgetType,
+                    widgetType: "HEADER",
                     pageId: "",
                     name: "",
                     text: "",
@@ -52,7 +61,7 @@
             } else if (widgetType === "IMAGE") {
                 var widget = {
                     _id: (new Date()).getTime()+"",
-                    widgetType: widgetType,
+                    widgetType: "IMAGE",
                     pageId: "",
                     name: "",
                     text: "",
@@ -63,7 +72,7 @@
             } else if (widgetType === "YOUTUBE") {
                 var widget = {
                     _id: (new Date()).getTime()+"",
-                    widgetType: widgetType,
+                    widgetType: "YOUTUBE",
                     pageId: "",
                     name: "",
                     text: "",
@@ -71,13 +80,16 @@
                     width: "100%"
                 }
             }
-
-            var newWidget = WidgetService.createWidget(vm.pageId, widget);
-            if (newWidget) {
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+widget._id);
-            } else {
-                vm.error = "Unable to create widget";
-            }
+            WidgetService
+                .createWidget(vm.pageId, widget)
+                .then(
+                    function(response) {
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+widget._id);
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
         }
 
     }
@@ -92,28 +104,43 @@
         vm.updateWidget = updateWidget;
 
         function init() {
-            vm.widget = angular.copy(WidgetService.findWidgetById(vm.widgetId));
+            WidgetService
+                .findWidgetById(vm.widgetId)
+                .then(
+                    function(response) {
+                        vm.widget = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
         }
         init();
 
         function deleteWidget() {
-            var result = WidgetService.deleteWidget(vm.widgetId);
-            if(result) {
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
-            } else {
-                vm.error = "Unable to delete widget";
-            }
+            WidgetService
+                .deleteWidget(vm.widgetId)
+                .then(
+                    function(response) {
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
         }
 
         function updateWidget() {
-            var result = WidgetService.updateWidget(vm.widgetId, vm.widget);
-            console.log(result.name);
-            if (result) {
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
-                vm.success = "Successfully updated the page"
-            } else {
-                vm.error = "Unable to update page";
-            }
+            WidgetService
+                .updateWidget(vm.widgetId, vm.widget)
+                .then(
+                    function(response) {
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
         }
     }
-})()
+})();

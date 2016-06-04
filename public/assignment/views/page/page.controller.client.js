@@ -11,9 +11,17 @@
         vm.websiteId = $routeParams.websiteId;
 
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            PageService
+                .findPageByWebsiteId(vm.websiteId)
+                .then(
+                    function(response) {
+                        vm.pages = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
         }
-
         init();
     }
 
@@ -30,12 +38,16 @@
                 title: title,
                 websiteId: "" + vm.websiteId
             };
-            var newPage = PageService.createPage(vm.websiteId, page);
-            if(newPage) {
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-            } else {
-                vm.error = "Unable to create website";
-            }
+            PageService
+                .createPage(vm.websiteId, page)
+                .then(
+                    function(response) {
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                    }, 
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
         }
     }
 
@@ -48,29 +60,43 @@
         vm.updatePage = updatePage;
 
         function init() {
-            vm.page = angular.copy(PageService.findPageById(vm.pageId));
-            console.log(vm.page.name);
-            console.log(vm.page.title);
+            PageService
+                .findPageById(vm.pageId)
+                .then(
+                    function(response) {
+                        vm.page = response.data;
+                    },
+                    function(error) {
+                        vm.error = erro.data;
+                    }
+                );
         }
         init();
 
         function deletePage() {
-            var result = PageService.deletePage(vm.pageId);
-            if(result) {
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-            } else {
-                vm.error = "Unable to delete page";
-            }
+            PageService
+                .deletePage(vm.pageId)
+                .then(
+                    function(response) {
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
         }
 
         function updatePage(page) {
-            var result = PageService.updatePage(vm.pageId, page);
-            if (result) {
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-                vm.success = "Successfully updated the page"
-            } else {
-                vm.error = "Unable to update page";
-            }
+            PageService
+                .updatePage(vm.pageId, page)
+                .then(
+                    function(response) {
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
         }
     }
 })();

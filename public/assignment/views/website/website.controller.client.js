@@ -11,7 +11,13 @@
         vm.websiteId = $routeParams.websiteId;
 
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            WebsiteService
+                .findWebsitesByUser(vm.userId)
+                .then(
+                    function(response) {
+                        vm.websites = response.data;
+                    }
+            );
         }
         init();
 
@@ -29,12 +35,17 @@
                 description: description,
                 developerId: "" + vm.userId
             };
-            var newWebsite = WebsiteService.createWebsite(vm.userId, website);
-            if(newWebsite) {
-                $location.url("/user/"+vm.userId+"/website");
-            } else {
-                vm.error = "Unable to create website";
-            }
+
+            WebsiteService
+                .createWebsite(vm.userId, website)
+                .then(
+                    function(response) {
+                        $location.url("/user/"+vm.userId+"/website");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
         }
     }
 
@@ -46,27 +57,34 @@
         vm.updateWebsite = updateWebsite;
 
         function init() {
-            vm.website = angular.copy(WebsiteService.findWebsiteById(vm.websiteId));
+            WebsiteService
+                .findWebsiteById(vm.websiteId)
+                .then(
+                    function(response) {
+                        vm.website = response.data;
+                    }
+                );
         }
         init();
 
         function deleteWebsite(websiteId) {
-            var result = WebsiteService.deleteWebsite(websiteId);
-            if(result) {
-                $location.url("/user/"+vm.userId+"/website");
-            } else {
-                vm.error = "Unable to delete website";
-            }
+            WebsiteService
+                .deleteWebsite(websiteId)
+                .then(
+                    function(response) {
+                        $location.url("/user/"+vm.userId+"/website");
+                    }
+                );
         }
 
         function updateWebsite(websiteId, website) {
-            var result = WebsiteService.updateWebsite(websiteId, website);
-            if (result) {
-                $location.url("/user/"+vm.userId+"/website");
-                vm.success = "Successfully updated the website"
-            } else {
-                vm.error = "Unable to update website";
-            }
+            WebsiteService
+                .updateWebsite(websiteId, website)
+                .then(
+                    function(response) {
+                        $location.url("/user/"+vm.userId+"/website");
+                    }
+                );
         }
     }
 })();

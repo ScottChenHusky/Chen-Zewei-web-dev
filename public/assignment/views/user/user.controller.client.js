@@ -5,19 +5,47 @@
         .controller("ProfileController", ProfileController)
         .controller("RegisterController", RegisterController);
 
-    function ProfileController($routeParams, UserService) {
+    function ProfileController($routeParams, $location, UserService) {
         var vm = this;
         vm.updateUser = updateUser;
+        vm.unregister = unregister;
         var id = $routeParams.id;
 
         function init() {
-            vm.user = angular.copy(UserService.findUserById(id));
+            UserService
+                .findUserById(id)
+                .then(
+                    function(response) {
+                        vm.user = response.data;
+                    }
+                );
         }
         init();
 
         function updateUser(newUser) {
-            vm.success = "Success";
-            UserService.updateUser(id, newUser);
+            UserService
+                .updateUser(id, newUser)
+                .then(
+                    function(response) {
+                        vm.success = "Success";
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+            );
+        }
+
+        function unregister() {
+            UserService
+                .deleteUser(id)
+                .then(
+                    function(response) {
+                        $location.url("/login");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
         }
     }
 
@@ -25,13 +53,21 @@
         var vm = this;
         vm.login = login;
         function login (username, password) {
-            var user = UserService.findUserByCredentials(username, password);
-            if(user) {
-                var id = user._id;
-                $location.url("/user/" + id);
-            } else {
-                vm.error = "User not found";
-            }
+            UserService
+                .findUserByCredentials(username, password)
+                .then(
+                    function(response) {
+                        console.log(response);
+                        var user = response.data;
+                        if(user) {
+                            var id = user._id;
+                            $location.url("/user/" + id);
+                        }
+                    },
+                    function (error) {
+                        vm.error = "User not found";
+                    }
+                );
         }
     }
 
@@ -41,18 +77,24 @@
 
         function register (username, password1, password2) {
             if (password1 === password2) {
-                if(!UserService.findUserByUsername(username)) {
-                    var id = (new Date).getTime();
-                    var user = {_id: "" + id,
-                        username: username,
-                        password: password1,
-                        firstName: "",
-                        lastName: ""};
-                    UserService.createUser(user);
-                    $location.url("/user/" + id);
-                } else {
-                    vm.error = "This name has been used"
-                }
+                var user = {
+                    _id: "" + (new Date).getTime(),
+                    username: username,
+                    password: password1,
+                    firstName: "",
+                    lastName: ""
+                };
+                UserService
+                    .createUser(user)
+                    .then(
+                        function(response){
+                            var user = response.data;
+                            $location.url("/user/"+user._id);
+                        },
+                        function(error){
+                            vm.error = error.data;
+                        }
+                    );
             } else {
                 vm.error = "Passwords don't match"
             }
