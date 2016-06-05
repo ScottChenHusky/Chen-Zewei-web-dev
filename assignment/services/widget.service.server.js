@@ -1,4 +1,6 @@
 module.exports = function(app) {
+    var multer = require('multer'); // npm install multer --save
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
     var widgets = [
         { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -17,6 +19,7 @@ module.exports = function(app) {
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
+    app.post("/api/upload", upload.single('myFile'), uploadImage);
 
     function createWidget(req, res) {
         console.log("here");
@@ -71,5 +74,35 @@ module.exports = function(app) {
             }
         }
         res.status(404).send("Unable to find the Widget");
+    }
+
+    function uploadImage(req, res) {
+
+        var uid = req.body.userId;
+        var webId = req.body.websiteId;
+        var pid = req.body.pageId;
+
+        var widgetId      = req.body.widgetId;
+        var width         = req.body.width;
+        var myFile        = req.file;
+
+        if(myFile == null) {
+            res.redirect("/assignment/index.html#/user/"+uid+"/website/"+webId+"/page/"+pid+"/widget/"+widgetId);
+            return;
+        } else {
+            var originalname  = myFile.originalname; // file name on user's computer
+            var filename      = myFile.filename;     // new file name in upload folder
+            var path          = myFile.path;         // full path of uploaded file
+            var destination   = myFile.destination;  // folder where file is saved to
+            var size          = myFile.size;
+            var mimetype      = myFile.mimetype;
+
+            for(var i in widgets) {
+                if(widgets[i]._id === widgetId) {
+                    widgets[i].url = "/uploads/"+filename;
+                }
+            }
+        }
+        res.redirect("/assignment/index.html#/user/"+uid+"/website/"+webId+"/page/"+pid+"/widget/"+widgetId);
     }
 };

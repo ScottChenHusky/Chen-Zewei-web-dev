@@ -1,54 +1,56 @@
 <div class="container-fluid">
-    <form>
-        <div class="form-group">
-            <label for="imageName">Name</label>
-            <input ng-model="model.widget.name"
-                   type="text"
-                   class="form-control"
-                   id="imageName"
-                   placeholder="Pic Name"/>
-        </div>
-        <div class="form-group">
-            <label for="imageText">Text</label>
+    <div class="form-group">
+        <label for="imageName">Name</label>
+        <input ng-model="model.widget.name"
+               type="text"
+               class="form-control"
+               id="imageName"
+               placeholder="Pic Name"/>
+    </div>
+    <div class="form-group">
+        <label for="imageText">Text</label>
                     <textarea ng-model="model.widget.text"
                               rows="3" id="imageText" class="form-control"></textarea></div>
-
-        <div class="form-group">
-            <label for="imageURL">URL</label>
-            <input ng-model="model.widget.url"
-                   type="url"
-                   placeholder="www.google.com"
-                   class="form-control"
-                   id="imageURL"/>
-        </div>
-        <div class="form-group">
-            <label for="imageWidth">Width</label>
-            <select ng-model="model.widget.width"
-                    class="form-control"
-                    id="imageWidth"
-                    placeholder="100%">
-                <option>10%</option>
-                <option>20%</option>
-                <option>30%</option>
-                <option>40%</option>
-                <option>50%</option>
-                <option>60%</option>
-                <option>70%</option>
-                <option>80%</option>
-                <option>90%</option>
-                <option>100%</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="upload">Upload</label>
-            <input type="file"
-                   class="form-control"
-                   id="upload"
-                   placeholder="No file chosen"/>
-        </div>
-    </form>
+    <div class="form-group">
+        <label for="imageURL">URL</label>
+        <input ng-model="model.widget.url"
+               type="url"
+               placeholder="www.google.com"
+               class="form-control"
+               id="imageURL"/>
+    </div>
+    <div class="form-group">
+        <label for="imageWidth">Width</label>
+        <select ng-model="model.widget.width"
+                class="form-control"
+                id="imageWidth"
+                placeholder="100%">
+            <option>10%</option>
+            <option>20%</option>
+            <option>30%</option>
+            <option>40%</option>
+            <option>50%</option>
+            <option>60%</option>
+            <option>70%</option>
+            <option>80%</option>
+            <option>90%</option>
+            <option>100%</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Upload</label>
+        <form action="/api/upload"  method="post" enctype="multipart/form-data">
+            <input  name="myFile"   type="file" class="form-control"/>
+            <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
+            <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
+            <input  name="userId" value="{{model.userId}}"   style="display: none"/>
+            <input  name="websiteId" value="{{model.websiteId}}"   style="display: none"/>
+            <input  name="pageId" value="{{model.pageId}}"   style="display: none"/>
+            <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
+        </form>
+    </div>
     <a class="btn btn-primary btn-block"
-       ng-click="model.updateWidget()">Upload Image</a>
+       href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/flickr">Search</a>
     <a class="btn btn-danger btn-block"
        ng-click="model.deleteWidget()">Delete</a>
 </div>

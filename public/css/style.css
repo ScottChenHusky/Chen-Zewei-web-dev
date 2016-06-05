@@ -58,3 +58,17 @@ a:hover {
 .jga-widget {
     padding-bottom: 10px;
 }
+
+.col-xs-4 {
+    padding: 1px;
+}
+
+.row {
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container-fluid {
+    padding-bottom: 50px;
+}
