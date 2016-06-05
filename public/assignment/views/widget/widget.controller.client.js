@@ -39,6 +39,11 @@
 
         }
 
+        $(".widget-container")
+            .sortable({axis: "y"});
+
+
+
     }
 
     function NewWidgetController($location, $routeParams, WidgetService) {
