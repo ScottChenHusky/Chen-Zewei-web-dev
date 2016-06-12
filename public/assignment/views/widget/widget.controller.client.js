@@ -55,42 +55,18 @@
         vm.createWidget = createWidget;
 
         function createWidget(widgetType) {
-            if(widgetType === "HEADER") {
-                var widget = {
-                    _id: (new Date()).getTime()+"",
-                    widgetType: "HEADER",
-                    pageId: "",
-                    name: "",
-                    text: "",
-                    size: "1"
-                };
-            } else if (widgetType === "IMAGE") {
-                var widget = {
-                    _id: (new Date()).getTime()+"",
-                    widgetType: "IMAGE",
-                    pageId: "",
-                    name: "",
-                    text: "",
-                    url: "",
-                    width: "100%",
-                    upload: ""
-                }
-            } else if (widgetType === "YOUTUBE") {
-                var widget = {
-                    _id: (new Date()).getTime()+"",
-                    widgetType: "YOUTUBE",
-                    pageId: "",
-                    name: "",
-                    text: "",
-                    url: "",
-                    width: "100%"
-                }
-            }
+            var widget = {
+                type: widgetType,
+                rows: 1,
+                size: 1,
+                width: "100%",
+                height: "100%",
+            };
             WidgetService
                 .createWidget(vm.pageId, widget)
                 .then(
                     function(response) {
-                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+widget._id);
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+ response.data._id);
                     },
                     function(error) {
                         vm.error = error.data;
@@ -115,6 +91,7 @@
                 .then(
                     function(response) {
                         vm.widget = response.data;
+                        vm.widget.size = vm.widget.size + "";
                     },
                     function(error) {
                         vm.error = error.data;

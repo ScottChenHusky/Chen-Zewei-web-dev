@@ -2,22 +2,13 @@ input {
     margin-bottom: 5px;
 }
 
-input.form-control {
-    margin-left: 0px;
-    width: 100%;
-}
 .btn-primary {
     background-color: cornflowerblue;
 
 }
 
-.btn-success {
-
-}
-
 .btn {
     border-radius: 5px;
-    width: 100%;
 }
 
 body {
@@ -30,6 +21,11 @@ p.navbar-text.pull-right {
 
 p.navbar-text.pull-left {
     margin-left: 15px;
+}
+
+input.form-control {
+    margin-left: 0px;
+    width: 100%;
 }
 
 .list-group-item {
@@ -70,5 +66,5 @@ a:hover {
 }
 
 .container-fluid {
-    padding-bottom: 50px;
+    padding-bottom: 55px;
 }

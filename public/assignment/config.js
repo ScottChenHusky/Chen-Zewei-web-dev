@@ -81,9 +81,9 @@
                 controllerAs: "model"
 
             })
-           .otherwise({
-               redirectTo: "/login"
-           });
-            
+            .otherwise({
+                redirectTo: "/login"
+            });
+
     }
 })();

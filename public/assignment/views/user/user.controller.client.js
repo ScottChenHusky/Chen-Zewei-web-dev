@@ -57,7 +57,6 @@
                 .findUserByCredentials(username, password)
                 .then(
                     function(response) {
-                        console.log(response);
                         var user = response.data;
                         if(user) {
                             var id = user._id;
@@ -65,7 +64,7 @@
                         }
                     },
                     function (error) {
-                        vm.error = "User not found";
+                        vm.error = error.data;
                     }
                 );
         }
@@ -78,7 +77,6 @@
         function register (username, password1, password2) {
             if (password1 === password2) {
                 var user = {
-                    _id: "" + (new Date).getTime(),
                     username: username,
                     password: password1,
                     firstName: "",
@@ -96,7 +94,7 @@
                         }
                     );
             } else {
-                vm.error = "Passwords don't match"
+                vm.error = "Passwords don't match";
             }
         }
     }

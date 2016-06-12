@@ -31,12 +31,12 @@
         vm.websiteId = $routeParams.websiteId;
         vm.createPage = createPage;
 
-        function createPage(name, title) {
+        function createPage(name, title, description) {
             var page = {
-                _id: (new Date()).getTime()+"",
                 name: name,
                 title: title,
-                websiteId: "" + vm.websiteId
+                description: description
+                //websiteId: "" + vm.websiteId
             };
             PageService
                 .createPage(vm.websiteId, page)

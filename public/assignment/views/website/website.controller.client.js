@@ -16,6 +16,9 @@
                 .then(
                     function(response) {
                         vm.websites = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
                     }
             );
         }
@@ -30,10 +33,9 @@
 
         function createWebsite(name, description) {
             var website = {
-                _id: (new Date()).getTime()+"",
                 name: name,
                 description: description,
-                developerId: "" + vm.userId
+                //developerId: "" + vm.userId
             };
 
             WebsiteService

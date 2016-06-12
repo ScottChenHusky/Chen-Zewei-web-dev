@@ -1,0 +1,33 @@
+<form>
+    <div class="form-group">
+        <label for="widgetName">Name</label>
+        <input ng-model="model.widget.name"
+               type="text"
+               class="form-control"
+               id="widgetName"
+               placeholder="Widget Name"/>
+    </div>
+
+    <div class="form-group">
+        <label for="class">Bootstrap Class</label>
+        <select ng-model="model.widget.class"
+                class="form-control"
+                id="class"
+                value="col-xs-12">
+            <option>col-xs-1</option>
+            <option>col-xs-4</option>
+            <option>col-xs-6</option>
+            <option>col-xs-8</option>
+            <option>col-xs-12</option>
+        </select>
+    </div>
+
+    <div ng-model="model.widget.text"
+         text-angular
+         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
+    </div>
+</form>
+<a class="btn btn-danger btn-block"
+   ng-click="model.deleteWidget()">Delete</a>
