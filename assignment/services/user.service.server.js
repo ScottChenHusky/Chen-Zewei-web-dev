@@ -11,13 +11,26 @@ module.exports = function(app, models) {
     function createUser(req, res) {
         var newUser = req.body;
         userModel
-            .createUser(newUser)
+            .findUserByUsername(newUser.username)
             .then(
                 function(user) {
-                    res.json(user);
+                    if(user === null) {
+                        userModel
+                            .createUser(newUser)
+                            .then(
+                                function(user) {
+                                    res.json(user);
+                                },
+                                function(error) {
+                                    res.status(400).send("Username has been used");
+                                }
+                            );
+                    } else {
+                        res.json(null);
+                    }
                 },
                 function(error) {
-                    res.status(400).send("Username " + newUser.username + " is already in use");
+                    res.status(400).send(error);
                 }
             );
     }
@@ -84,7 +97,7 @@ module.exports = function(app, models) {
             .then(
                 function(user) {
                     if (user === null) {
-                        res.status(404).send("Please check your Username or Password");
+                        res.json(null);
                     } else {
                         res.json(user);
                     }

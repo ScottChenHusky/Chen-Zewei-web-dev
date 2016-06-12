@@ -10,6 +10,7 @@ module.exports = function(app, models) {
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
     app.post("/api/upload", upload.single('myFile'), uploadImage);
+    app.put("/api/page/:pageId/widget", reorderWidget);
 
     function createWidget(req, res) {
         var newWidget = req.body;
@@ -122,5 +123,22 @@ module.exports = function(app, models) {
             // }
         }
         res.redirect("/assignment/index.html#/user/"+uid+"/website/"+webId+"/page/"+pid+"/widget/"+widgetId);
+    }
+
+    function reorderWidget(req, res) {
+        var startIndex = req.query['start'];
+        var endIndex = req.query['end'];
+        var pageId = req.params.pageId;
+
+        widgetModel
+            .reorderWidget(pageId, startIndex, endIndex)
+            .then(
+                function(widget) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(400).send("Unable to reorder");
+                }
+            )
     }
 };

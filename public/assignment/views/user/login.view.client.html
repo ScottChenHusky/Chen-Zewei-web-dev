@@ -4,20 +4,25 @@
     </div>
 
     <h1>Login</h1>
+    <form>
+        <div class="form-group">
+            <input ng-model="username"
+                   class="form-control"
+                   placeholder="username"
+                   required
+                   type="text"/>
+        </div>
 
-    <div class="form-group">
-        <input ng-model="username"
-               class="form-control"
-               placeholder="username"
-               type="text"/>
-    </div>
+        <div class="form-group">
+            <input ng-model="password"
+                   class="form-control"
+                   placeholder="password"
+                   required
+                   type="password"/>
+        </div>
 
-    <div class="form-group">
-        <input ng-model="password"
-               class="form-control"
-               placeholder="password"
-               type="password"/>
-    </div>
+        <input type="submit" value="go">
+    </form>
     <a ng-click="model.login(username, password)"
        class="btn btn-primary btn-block">Login</a>
     <a class="btn btn-success btn-block"

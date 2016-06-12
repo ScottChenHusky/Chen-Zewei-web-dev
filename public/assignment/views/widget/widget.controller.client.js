@@ -13,6 +13,7 @@
         vm.pageId = $routeParams.pageId;
         vm.getSafeHtml = getSafeHtml;
         vm.getSafeUrl = getSafeUrl;
+        vm.sorted = sorted;
 
         function init() {
             WidgetService
@@ -40,10 +41,19 @@
 
         }
 
-        $(".widget-container")
-            .sortable({axis: "y"});
+        function sorted(startIndex, endIndex) {
+            WidgetService
+                .reorderWidget(vm.pageId, startIndex, endIndex)
+                .then(
+                    function(response) {
+                        vm.success = "Reordering successful";
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
 
-
+        }
 
     }
 
@@ -54,6 +64,20 @@
         vm.pageId = $routeParams.pageId;
         vm.createWidget = createWidget;
 
+        function init() {
+            WidgetService
+                .findWidgetsForPageId(vm.pageId)
+                .then(
+                    function(response) {
+                        vm.widgets = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
+        }
+        init();
+
         function createWidget(widgetType) {
             var widget = {
                 type: widgetType,
@@ -61,6 +85,7 @@
                 size: 1,
                 width: "100%",
                 height: "100%",
+                order: vm.widgets.length
             };
             WidgetService
                 .createWidget(vm.pageId, widget)

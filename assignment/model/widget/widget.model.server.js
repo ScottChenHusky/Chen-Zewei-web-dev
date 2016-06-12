@@ -59,8 +59,32 @@ module.exports = function() {
         return Widget.remove({_id: widgetId});
     }
 
-    function reorderWidget(pageId, start, end) {
-
+    function reorderWidget(pageId, startOrder, endOrder) {
+        var start = parseInt(startOrder);
+        var end = parseInt(endOrder);
+        return Widget
+            .find({_page: pageId}, function(err, widgets) {
+                widgets.forEach(function(widget) {
+                    if(start < end) {
+                        if(widget.order > start && widget.order <= end) {
+                            widget.order-=1;
+                            widget.save();
+                        } else if(widget.order === start) {
+                            widget.order = end;
+                            widget.save();
+                        }
+                    } else if (start > end) {
+                        if(widget.order >= end && widget.order < start) {
+                            widget.order+=1;
+                            widget.save();
+                        }
+                        else if(widget.order === start) {
+                            widget.order = end;
+                            widget.save();
+                        }
+                    }
+                })
+            });
     }
     
     function updateWidgetUrl(widgetId, url) {

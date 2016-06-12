@@ -58,9 +58,11 @@
                 .then(
                     function(response) {
                         var user = response.data;
-                        if(user) {
+                        if(user !== null) {
                             var id = user._id;
                             $location.url("/user/" + id);
+                        } else {
+                            vm.error = "Please check your Username or Password";
                         }
                     },
                     function (error) {
@@ -86,8 +88,12 @@
                     .createUser(user)
                     .then(
                         function(response){
-                            var user = response.data;
-                            $location.url("/user/"+user._id);
+                            var newUser = response.data;
+                            if (newUser !== null) {
+                                $location.url("/user/"+newUser._id);
+                            } else {
+                                vm.error = "This username has been used";
+                            }
                         },
                         function(error){
                             vm.error = error.data;

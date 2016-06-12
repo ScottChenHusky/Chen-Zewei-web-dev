@@ -9,7 +9,8 @@
             findWidgetsForPageId: findWidgetsForPageId,
             findWidgetById: findWidgetById,
             updateWidget: updateWidget,
-            deleteWidget: deleteWidget
+            deleteWidget: deleteWidget,
+            reorderWidget: reorderWidget
         };
         return api;
 
@@ -36,6 +37,10 @@
         function deleteWidget(widgetId) {
             var url = "/api/widget/" + widgetId;
             return $http.delete(url);
+        }
+
+        function reorderWidget(pageId, startIndex, endIndex) {
+            return $http.put("/api/page/"+pageId+"/widget?start="+startIndex+"&end="+endIndex);
         }
     }
 })();

@@ -3,18 +3,29 @@
         {{model.error}}
     </div>
     <h1>Register</h1>
-    <input ng-model="username"
-           class="form-control"
-           placeholder="username"
-           type="text"/>
-    <input ng-model="password1"
-           class="form-control"
-           placeholder="password"
-           type="password">
-    <input ng-model="password2"
-           class="form-control"
-           placeholder="verify password"
-           type="password">
+
+    <form>
+
+        <input ng-model="username"
+               class="form-control"
+               placeholder="username"
+               type="text" required />
+        <span ng-show="form.username.$error.required"
+              class="help-block">
+              Username is required
+        </span>
+
+
+
+        <input ng-model="password1"
+               class="form-control"
+               placeholder="password"
+               type="password" required />
+        <input ng-model="password2"
+               class="form-control"
+               placeholder="verify password"
+               type="password" required />
+    </form>
     <a ng-click="model.register(username, password1, password2)"
        class="btn btn-primary btn-block">Register</a>
     <a class="btn btn-danger btn-block"
