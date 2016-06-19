@@ -10,7 +10,7 @@
         vm.updateUser = updateUser;
         vm.unregister = unregister;
         vm.logout = logout;
-        var id = $routeParams.id;
+        var id = $rootScope.currentUser._id;
 
         function init() {
             UserService
@@ -18,6 +18,9 @@
                 .then(
                     function(response) {
                         vm.user = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
                     }
                 );
         }

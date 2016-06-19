@@ -6,7 +6,7 @@
     function UserService($http) {
         var api = {
             createUser: createUser,
-            checkLoggedin: checkLoggedin,
+            loggedIn: loggedIn,
             register: register,
             login: login,
             logout: logout,
@@ -24,8 +24,8 @@
             return $http.post(url, newUser);
         }
 
-        function checkLoggedin() {
-            return $http.get("/api/loggedin");
+        function loggedIn() {
+            return $http.get("/api/loggedIn");
         }
         
         function register(username, password) {

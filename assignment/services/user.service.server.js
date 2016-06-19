@@ -9,13 +9,13 @@ module.exports = function(app, models) {
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect: '/#/user',
-            failureRedirect: '/#/login'
+            successRedirect: '/assignment/#/user',
+            failureRedirect: '/assignment/#/login'
         }));
     app.get ("/auth/facebook", passport.authenticate('facebook', { scope : 'email' }));
     app.post("/api/user", createUser);
     app.post("/api/logout", logout);
-    app.get("/api/loggedin", loggedin);
+    app.get("/api/loggedIn", loggedIn);
     app.post("/api/login", passport.authenticate('wam'), login);
     app.post("/api/register", register);
     app.get("/api/user", getUsers);
@@ -33,32 +33,33 @@ module.exports = function(app, models) {
         callbackURL  : process.env.FACEBOOK_CALLBACK_URL
     };
 
-    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+    passport.use('facebook', new FacebookStrategy(facebookConfig, facebookStrategy));
 
     function facebookStrategy(token, refreshToken, profile, done) {
         var id = profile.id;
         userModel
             .findUserByFacebookId(id)
             .then(
-                function(user) {
-                    if(user) {
-                        return done(nul, user);
+                function(facebookUser) {
+                    if(facebookUser) {
+                        return done(null, facebookUser);
                     } else {
-                        var user = {
+                        facebookUser = {
                             username: profile.displayName.replace(/ /g, ''),
                             facebook: {
                                 id: profile.id,
+                                token: token,
                                 displayName: profile.displayName
                             }
                         };
                         return userModel
-                            .createUser(user)
+                            .createUser(facebookUser)
+                            .then(
+                                function(user) {
+                                    done(null, user);
+                                }
+                            );
                     }
-                }
-            )
-            .then(
-                function(user) {
-                    return done(null, user);
                 }
             );
     }
@@ -107,14 +108,14 @@ module.exports = function(app, models) {
 
     function logout(req, res) {
         req.logout();
-        res.send(200);
+        res.sendStatus(200);
     }
 
-    function loggedin(req, res) {
+    function loggedIn(req, res) {
         if(req.isAuthenticated()) {
             res.json(req.user);
         } else {
-            res.send("0");
+            res.send('0');
         }
     }
 
@@ -197,7 +198,7 @@ module.exports = function(app, models) {
             .deleteUser(id)
             .then(
                 function(status) {
-                    res.send(200);
+                    res.sendStatus(200);
                 },
                 function(error) {
                     res.status(404).send("Unable to remove with ID: " + id);

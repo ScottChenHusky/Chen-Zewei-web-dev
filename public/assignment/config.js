@@ -24,7 +24,7 @@
                 controller: "ProfileController",
                 controllerAs: "model",
                 resolve: {
-                    loggedin: checkLoggedin
+                    loggedIn: checkLoggedIn
                 }
             })
             .when("/user/:id", {
@@ -32,7 +32,7 @@
                 controller: "ProfileController",
                 controllerAs: "model",
                 resolve: {
-                    loggedin: checkLoggedin
+                    loggedIn: checkLoggedIn
                 }
             })
 
@@ -95,32 +95,33 @@
             .otherwise({
                 redirectTo: "/login"
             });
-        
-            function checkLoggedin(UserService, $q, $location, $rootScope) {
-                var deferred = $q.defer();
 
-                UserService
-                    .checkLoggedin()
-                    .then(
-                        function(response) {
-                            var user = response.data;
-                            if(user == "0") {
-                                deferred.reject();
-                                $rootScope.currentUser = null;
-                                $location.url("/login");
-                            } else {
-                                $rootScope.currentUser = user;
-                                deferred.resolve();
-                            }
-                        },
-                        function(err) {
-                            deferred.reject();
+        function checkLoggedIn(UserService, $location, $q, $rootScope) {
+
+            var deferred = $q.defer();
+
+            UserService
+                .loggedIn()
+                .then(
+                    function(response) {
+                        var user = response.data;
+                        console.log(user);
+                        if(user == '0') {
                             $rootScope.currentUser = null;
+                            deferred.reject();
                             $location.url("/login");
+                        } else {
+                            $rootScope.currentUser = user;
+                            deferred.resolve();
                         }
-                    );
-                return deferred.promise;
-            }
+                    },
+                    function(err) {
+                        $location.url("/login");
+                    }
+                );
+
+            return deferred.promise;
+        }
 
     }
 })();
