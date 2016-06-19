@@ -32,6 +32,14 @@
         vm.createPage = createPage;
 
         function createPage(name, title, description) {
+            if (!name) {
+                vm.error = "Please Provide Page Name";
+                return;
+            } else if (!title) {
+                vm.error = "Please Provide Page Title";
+                return;
+            }
+            
             var page = {
                 name: name,
                 title: title,
@@ -87,6 +95,14 @@
         }
 
         function updatePage(page) {
+            if (!page.name) {
+                vm.error = "Please Provide Page Name";
+                return;
+            } else if (!page.title) {
+                vm.error = "Please Provide Page Title";
+                return;
+            }
+
             PageService
                 .updatePage(vm.pageId, page)
                 .then(

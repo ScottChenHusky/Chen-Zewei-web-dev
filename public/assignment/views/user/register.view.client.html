@@ -4,30 +4,30 @@
     </div>
     <h1>Register</h1>
 
-    <form>
+    <form name="registerForm" id="registerForm" novalidate>
 
         <input ng-model="username"
                class="form-control"
                placeholder="username"
-               type="text" required />
-        <span ng-show="form.username.$error.required"
-              class="help-block">
-              Username is required
-        </span>
-
-
+               type="text"
+               required/>
 
         <input ng-model="password1"
                class="form-control"
                placeholder="password"
-               type="password" required />
+               type="password"
+               required/>
+
         <input ng-model="password2"
                class="form-control"
                placeholder="verify password"
-               type="password" required />
+               type="password"
+               required/>
+
+        <button ng-click="model.register(username, password1, password2)"
+                type="submit"
+                class="btn btn-primary btn-block">Register</button>
     </form>
-    <a ng-click="model.register(username, password1, password2)"
-       class="btn btn-primary btn-block">Register</a>
     <a class="btn btn-danger btn-block"
        href="#/login">Cancel</a>
 </div>

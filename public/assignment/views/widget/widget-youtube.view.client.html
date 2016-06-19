@@ -1,12 +1,16 @@
 <div class="container-fluid">
-    <form>
+    <form name="youtubeForm" id="youtubeForm" novalidate>
+        <div ng-if="model.error" class="alert alert-danger">
+            {{model.error}}
+        </div>
         <div class="form-group">
             <label for="name">Name</label>
             <input ng-model="model.widget.name"
                    type="text"
                    class="form-control"
                    id="name"
-                   placeholder="Video Name"/>
+                   placeholder="Video Name"
+                   required/>
         </div>
         <div class="form-group">
             <label for="youtubeText">Text</label>
@@ -17,7 +21,8 @@
                    type="url"
                    placeholder="www.youtube.com"
                    class="form-control"
-                   id="URL"/>
+                   id="URL"
+                   required/>
         </div>
         <div class="form-group">
             <label for="Width">Width</label>
@@ -38,6 +43,10 @@
 
             </select>
         </div>
+
+        <button ng-click="model.updateWidget()"
+                class="btn btn-primary btn-block"
+                type="submit">Create</button>
     </form>
 
     <a class="btn btn-danger btn-block"

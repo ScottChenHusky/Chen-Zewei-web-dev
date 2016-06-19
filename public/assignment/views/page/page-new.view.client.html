@@ -9,25 +9,24 @@
         <a class="navbar-brand" href="#">
             New Page
         </a>
-        <p class="navbar-text pull-right">
-            <a ng-click="model.createPage(name, title, description)" class="navbar-link">
-                      <span class="glyphicon glyphicon-ok">
-                      </span>
-            </a>
-        </p>
     </div>
 </nav>
 
 <div class="container">
 
-    <form>
+    <div ng-if="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <form name="newPage" id="newPage" novalidate>
         <div class="form-group">
             <label for="pageName">Name</label>
             <input ng-model="name"
                    type="text"
                    class="form-control"
                    id="pageName"
-                   placeholder="Page Name"/>
+                   placeholder="Page Name"
+                   required/>
         </div>
         <div class="form-group">
             <label for="pageTitle">Title</label>
@@ -35,7 +34,8 @@
                    type="text"
                    class="form-control"
                    id="pageTitle"
-                   placeholder="Page Title"/>
+                   placeholder="Page Title"
+                   required/>
         </div>
         <div class="form-group">
             <label for="description">Page Description</label>
@@ -45,6 +45,10 @@
                       class="form-control"
                       placeholder="..."></textarea>
         </div>
+
+        <button ng-click="model.createPage(name, title, description)"
+                class="btn btn-primary btn-block"
+                type="submit">Create</button>
     </form>
 
     <a class="btn btn-danger btn-block"

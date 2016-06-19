@@ -34,10 +34,12 @@
         }
 
         function getSafeUrl(widget) {
-            var urlParts = widget.url.split("/");
-            var id = urlParts[urlParts.length - 1];
-            var url = "https://www.youtube.com/embed/" + id;
-            return $sce.trustAsResourceUrl(url);
+            if(widget.url) {
+                var urlParts = widget.url.split("/");
+                var id = urlParts[urlParts.length - 1];
+                var url = "https://www.youtube.com/embed/" + id;
+                return $sce.trustAsResourceUrl(url);
+            }
 
         }
 
@@ -139,6 +141,11 @@
         }
 
         function updateWidget() {
+            if(!vm.widget.name) {
+                vm.error = "Please Provide Widget Name";
+                return;
+            }
+
             WidgetService
                 .updateWidget(vm.widgetId, vm.widget)
                 .then(

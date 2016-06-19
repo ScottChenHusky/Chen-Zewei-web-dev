@@ -1,11 +1,17 @@
-<form>
+<form name="inputForm" id="inputForm" novalidate>
+
+    <div ng-if="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
     <div class="form-group">
         <label for="widgetName">Name</label>
         <input ng-model="model.widget.name"
                type="text"
                class="form-control"
                id="widgetName"
-               placeholder="Widget Name"/>
+               placeholder="Widget Name"
+               required/>
     </div>
 
     <div class="form-group">
@@ -51,6 +57,10 @@
         ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
         ['indent','outdent'],['html']]">
     </div>
+
+    <button ng-click="model.updateWidget()"
+            class="btn btn-primary btn-block"
+            type="submit">Create</button>
 </form>
 <a class="btn btn-danger btn-block"
    ng-click="model.deleteWidget()">Delete</a>

@@ -9,25 +9,23 @@
         <a class="navbar-brand" href="#">
             Edit Page
         </a>
-        <p class="navbar-text pull-right">
-            <a ng-click="model.updatePage(model.page)" class="navbar-link">
-                      <span class="glyphicon glyphicon-ok">
-                      </span>
-            </a>
-        </p>
     </div>
 </nav>
 
 <div class="container">
+    <div ng-if="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
 
-    <form>
+    <form name="editPage" id="editPage" novalidate>
         <div class="form-group">
             <label for="pageName">Name</label>
             <input ng-model="model.page.name"
                    type="text"
                    class="form-control"
                    id="pageName"
-                   placeholder="Page Name"/>
+                   placeholder="Page Name"
+                   required/>
         </div>
         <div class="form-group">
             <label for="pageTitle">Title</label>
@@ -35,7 +33,8 @@
                    type="text"
                    class="form-control"
                    id="pageTitle"
-                   placeholder="Page Title"/>
+                   placeholder="Page Title"
+                   required/>
         </div>
         <div class="form-group">
             <label for="description">Page Description</label>
@@ -45,6 +44,10 @@
                       class="form-control"
                       placeholder="..."></textarea>
         </div>
+
+        <button ng-click="model.updatePage(model.page)"
+                class="btn btn-primary btn-block"
+                type="submit">Update</button>
 
     </form>
 

@@ -5,10 +5,11 @@
         .controller("ProfileController", ProfileController)
         .controller("RegisterController", RegisterController);
 
-    function ProfileController($routeParams, $location, UserService) {
+    function ProfileController($routeParams, $rootScope, $location, UserService) {
         var vm = this;
         vm.updateUser = updateUser;
         vm.unregister = unregister;
+        vm.logout = logout;
         var id = $routeParams.id;
 
         function init() {
@@ -47,61 +48,94 @@
                     }
                 );
         }
-    }
-
-    function LoginController($location, UserService) {
-        var vm = this;
-        vm.login = login;
-        function login (username, password) {
+        
+        function logout() {
             UserService
-                .findUserByCredentials(username, password)
+                .logout()
                 .then(
                     function(response) {
-                        var user = response.data;
-                        if(user !== null) {
-                            var id = user._id;
-                            $location.url("/user/" + id);
-                        } else {
-                            vm.error = "Please check your Username or Password";
-                        }
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
                     },
-                    function (error) {
-                        vm.error = error.data;
+                    function(error) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
                     }
                 );
         }
     }
 
-    function RegisterController($location, UserService) {
+    function LoginController($location, $rootScope, UserService) {
+        var vm = this;
+        vm.login = login;
+        
+        function login (username, password) {
+            if (!username || !password) {
+                vm.error = "Please Enter Username & Password";
+                return;
+            }
+            UserService
+                .login(username, password)
+                .then(
+                    function(response) {
+                        var user = response.data;
+                        if(user) {
+                            $rootScope.currentUser = user;
+                            var id = user._id;
+                            $location.url("/user/" + id);
+                        } else {
+                            vm.error = "Please check your Username or Password";
+                        }
+                        // if(user !== null) {
+                        //     var id = user._id;
+                        //     $location.url("/user/" + id);
+                        // } else {
+                        //     vm.error = "Please check your Username or Password";
+                        // }
+                    },
+                    function (error) {
+                        vm.error = "User not found";
+                    }
+                );
+        }
+    }
+
+    function RegisterController($location, $rootScope, UserService) {
         var vm = this;
         vm.register = register;
 
         function register (username, password1, password2) {
-            if (password1 === password2) {
-                var user = {
-                    username: username,
-                    password: password1,
-                    firstName: "",
-                    lastName: ""
-                };
-                UserService
-                    .createUser(user)
-                    .then(
-                        function(response){
-                            var newUser = response.data;
-                            if (newUser !== null) {
-                                $location.url("/user/"+newUser._id);
-                            } else {
-                                vm.error = "This username has been used";
-                            }
-                        },
-                        function(error){
-                            vm.error = error.data;
-                        }
-                    );
-            } else {
+            if (!username) {
+                vm.error = "Please Enter Username";
+                return;
+            } else if (!password1) {
+                vm.error = "Please Enter Password";
+                return;
+            } else if (!password2) {
+                vm.error = "Please Enter Verified Password";
+                return;
+            } else if (password1 !== password2) {
                 vm.error = "Passwords don't match";
+                return;
             }
+            UserService
+            //.createUser(user)
+                .register(username, password1)
+                .then(
+                    function(response){
+                        var user = response.data;
+                        $rootScope.currentUser = user;
+                        $location.url("/user/"+user._id);
+                        // if (newUser !== null) {
+                        //     $location.url("/user/"+newUser._id);
+                        // } else {
+                        //     vm.error = "This username has been used";
+                        // }
+                    },
+                    function(error){
+                        vm.error = error.data;
+                    }
+                );
         }
     }
 })();

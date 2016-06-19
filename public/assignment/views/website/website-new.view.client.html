@@ -9,25 +9,23 @@
         <a class="navbar-brand">
             New Website
         </a>
-        <p class="navbar-text pull-right">
-            <a ng-click="model.createWebsite(name, description)" class="navbar-link">
-                      <span class="glyphicon glyphicon-ok">
-                      </span>
-            </a>
-        </p>
     </div>
 </nav>
 
 <div class="container">
+    <div ng-if="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
 
-    <form>
+    <form name="newWeb" id="newWeb" novalidate>
         <div class="form-group">
             <label for="webName">Website Name</label>
             <input ng-model="name"
                    type="text"
                    class="form-control"
                    id="webName"
-                   placeholder="Google"/>
+                   placeholder="Google"
+                   required/>
         </div>
         <div class="form-group">
             <label for="description">Website Description</label>
@@ -37,6 +35,10 @@
                       class="form-control"
                       placeholder="..."></textarea>
         </div>
+
+        <button ng-click="model.createWebsite(name, description)"
+                class="btn btn-primary btn-block"
+                type="submit">Create</button>
     </form>
 
     <a class="btn btn-danger btn-block"
@@ -53,5 +55,3 @@
         </div>
     </nav>
 </div>
-</body>
-</html>

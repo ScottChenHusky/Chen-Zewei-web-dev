@@ -32,6 +32,11 @@
         vm.createWebsite = createWebsite;
 
         function createWebsite(name, description) {
+            if(!name) {
+                vm.error = "Please Provide Website Name";
+                return;
+            }
+
             var website = {
                 name: name,
                 description: description,
@@ -80,6 +85,11 @@
         }
 
         function updateWebsite(websiteId, website) {
+            if(!website.name) {
+                vm.error = "Please Provide Website Name"
+                return;
+            }
+
             WebsiteService
                 .updateWebsite(websiteId, website)
                 .then(
