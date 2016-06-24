@@ -25,6 +25,12 @@
         <li><a href="#/user/{{model.userId}}/search/album/{{model.keyword}}">Album</a></li>
         <li><a href="#/user/{{model.userId}}/search/song/{{model.keyword}}">Song</a></li>
     </ul>
+
+    <div class="tab-content">
+        <div ng-repeat="user in model.result">
+            {{user.username}}
+        </div>
+    </div>
 </div>
 
 <nav class="navbar navbar-inverse navbar-fixed-bottom">

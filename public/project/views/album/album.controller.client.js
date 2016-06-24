@@ -1,14 +1,15 @@
 (function(){
     angular
         .module("WeMusicians")
-        .controller("AlbumListController", AlbumListController);
-        // .controller("NewAlbumController", NewAlbumController)
+        .controller("AlbumListController", AlbumListController)
+        .controller("NewAlbumController", NewAlbumController);
         // .controller("EditAlbumController", EditAlbumController);
 
     function AlbumListController($location, $rootScope, $routeParams, AlbumService) {
         var vm = this;
         vm.userId = $routeParams.userId;
         vm.logout = logout;
+        vm.search = search;
 
         function init() {
             AlbumService
@@ -49,41 +50,17 @@
                 );
         }
 
-        function createUser(req, res) {
-            var newUser = req.body;
-            userModel
-                .findUserByUsername(newUser.username)
-                .then(
-                    function(user) {
-                        if(user === null) {
-                            userModel
-                                .createUser(newUser)
-                                .then(
-                                    function(user) {
-                                        res.json(user);
-                                    },
-                                    function(error) {
-                                        res.status(400).send("Username has been used");
-                                    }
-                                );
-                        } else {
-                            res.json(null);
-                        }
-                    },
-                    function(error) {
-                        res.status(400).send(error);
-                    }
-                );
+        function search(keyword) {
+            $location.url("/user/"+vm.userId+"/search/user/" + keyword);
         }
-
     }
 
-    function NewAlbumController($location, $routeParams, WebsiteService) {
+    function NewAlbumController($location, $routeParams, AlbumService) {
         var vm = this;
         vm.userId = $routeParams.userId;
-        vm.createWebsite = createWebsite;
+        vm.createAlbum = createAlbum;
 
-        function createWebsite(name, description) {
+        function createAlbum(name, description) {
             if(!name) {
                 vm.error = "Please Provide Website Name";
                 return;
@@ -91,15 +68,14 @@
 
             var website = {
                 name: name,
-                description: description,
-                //developerId: "" + vm.userId
+                description: description
             };
 
-            WebsiteService
-                .createWebsite(vm.userId, website)
+            AlbumService
+                .createAlbum(vm.userId, website)
                 .then(
                     function(response) {
-                        $location.url("/user/"+vm.userId+"/website");
+                        $location.url("/user/"+vm.userId+"/album");
                     },
                     function(error) {
                         vm.error = error.data;

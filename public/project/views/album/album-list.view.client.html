@@ -48,6 +48,13 @@
 
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="navbar-inner">
+        <p class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/album/new" class="navbar-link">
+                      <span class="glyphicon glyphicon-plus">
+                      </span>
+            </a>
+        </p>
+
         <p class="navbar-text pull-right">
             <a ng-click="model.logout()" class="navbar-link">
                       <span class="glyphicon glyphicon-log-out">

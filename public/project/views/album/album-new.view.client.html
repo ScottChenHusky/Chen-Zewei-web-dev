@@ -1,7 +1,7 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-header">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
         <p class="navbar-text pull-left">
-            <a href="#/user/{{model.userId}}/website" class="navbar-link">
+            <a href="#/user/{{model.userId}}/album/" class="navbar-link">
                       <span class="glyphicon glyphicon-chevron-left">
                       </span>
             </a>
@@ -12,7 +12,7 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container-fluid">
     <div ng-if="model.error" class="alert alert-danger">
         {{model.error}}
     </div>
@@ -37,10 +37,10 @@
         </div>
 
         <div class="form-group">
-            <label>Genre</label>
-            <label><input type="checkbox" value="">Rock</label>
-            <label><input type="checkbox" value="">Jazz</label>
-            <label><input type="checkbox" value="">Pop</label>
+            <label>Genre: </label>
+            <label><input ng-model="RockBox" type="checkbox" value="">Rock</label>
+            <label><input ng-model="JazzBox" type="checkbox" value="">Jazz</label>
+            <label><input ng-model="PopBox" type="checkbox" value="">Pop</label>
         </div>
 
         <div class="form-group">
@@ -49,22 +49,23 @@
 
 
 
-        <button ng-click="model.createWebsite(name, description)"
+        <button ng-click="model.createAlbum(name, description)"
                 class="btn btn-primary btn-block"
                 type="submit">Create</button>
+        <a class="btn btn-danger btn-block"
+           href="#/user/{{model.userId}}/website">Delete</a>
     </form>
 
-    <a class="btn btn-danger btn-block"
-       href="#/user/{{model.userId}}/website">Delete</a>
-
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="navbar-header">
-            <p class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}/" class="navbar-link">
-                      <span class="glyphicon glyphicon-user">
-                      </span>
-                </a>
-            </p>
-        </div>
-    </nav>
 </div>
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="navbar-inner">
+        <p class="navbar-text pull-right">
+            <a ng-click="model.logout()" class="navbar-link">
+                      <span class="glyphicon glyphicon-log-out">
+                      </span>
+            </a>
+        </p>
+    </div>
+</nav>
+
