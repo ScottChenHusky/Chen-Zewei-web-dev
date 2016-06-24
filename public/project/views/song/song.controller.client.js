@@ -8,9 +8,10 @@
     function SongListController($routeParams,
                                 SongService, MusicianService, AlbumService,$location) {
         var vm = this;
-        vm.userId = $routeParams.userId;
+        vm.userId = $routeParams.id;
         vm.albumId = $routeParams.albumId;
         vm.logout = logout;
+        vm.search = search;
         function logout() {
             MusicianService.logout()
                 .then(
@@ -22,7 +23,9 @@
                     }
                 )
         }
-
+        function search(keyword) {
+            $location.url("/user/"+vm.userId+"/search/song/" + keyword);
+        }
         function init() {
             SongService
                 .findSongByAlbumId(vm.albumId)
@@ -65,7 +68,7 @@
                 )
         }
 
-        function createSong(name, url) {
+        function createSong(name, url, RockBox, JazzBox, PopBox) {
             if (!name) {
                 vm.error = "Please provide a song name";
                 return;
@@ -76,9 +79,10 @@
             
             var song = {
                 name: name,
-                url: url
-                //description: description
-                //websiteId: "" + vm.websiteId
+                url: url,
+                rock: RockBox,
+                jazz: JazzBox,
+                pop: PopBox
             };
             SongService
                 .createSong(vm.userId, vm.albumId, song)
@@ -118,7 +122,7 @@
                 .findSongById(vm.songId)
                 .then(
                     function(response) {
-                        vm.page = response.data;
+                        vm.song = response.data;
                     },
                     function(error) {
                         vm.error = error.data;

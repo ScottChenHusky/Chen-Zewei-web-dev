@@ -37,13 +37,18 @@
                    placeholder="Song URL"
                    required/>
         </div>
+        <div class="form-group">
+            <label>Genre: </label>
+            <label><input ng-model="RockBox" type="checkbox" value="">Rock</label>
+            <label><input ng-model="JazzBox" type="checkbox" value="">Jazz</label>
+            <label><input ng-model="PopBox" type="checkbox" value="">Pop</label>
+        </div>
 
-
-        <button ng-click="model.createSong(name, url)"
+        <button ng-click="model.createSong(name, url, RockBox, JazzBox, PopBox)"
                 class="btn btn-primary btn-block"
                 type="submit">Create</button>
         <a class="btn btn-danger btn-block"
-           href="#/user/{{model.userId}}/album/{{model.albumId}}/song">Delete</a>
+           href="#/user/{{model.userId}}/album/{{model.albumId}}/song">Cancel</a>
 
     </form>
 

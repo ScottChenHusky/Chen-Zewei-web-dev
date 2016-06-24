@@ -3,7 +3,7 @@
         <a class="navbar-brand">
             We Musicians
         </a>
-        <form class="navbar-form pull-right" role="search">
+        <form class="navbar-form navbar-right" role="search">
             <div class="input-group">
                 <input ng-model="keyword" type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
                 <div class="input-group-btn">
@@ -16,10 +16,25 @@
 
 <div class="container-fluid">
     <ul class="nav nav-tabs">
+        <li>
+            <a href="#/user/{{model.userId}}/search/user/{{model.keyword}}">User</a>
+        </li>
+        <li><a href="#/user/{{model.userId}}/search/album/{{model.keyword}}">Album</a></li>
         <li class="active"><a href="#/user/{{model.userId}}/search/song/{{model.keyword}}">Song</a></li>
-        <li><a href="#">Menu 1</a></li>
-        <li><a href="#">Menu 2</a></li>
-        <li><a href="#">Menu 3</a></li>
+    </ul>
+    <p>We found {{model.result.length}} songs for you.</p>
+    <ul class="list-group">
+        <li ng-repeat="song in model.result" class="list-group-item">
+            <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}/play">
+                {{song.name}}
+            </a>
+            <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}" class="pull-right">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+            <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}/play" class="pull-right">
+                <span class="glyphicon glyphicon-play"></span>
+            </a>
+        </li>
     </ul>
 </div>
 

@@ -29,10 +29,6 @@
 </nav>
 
 <div class="container-fluid">
-
-    {{model.albums}}
-    {{model.album}}
-
     <div class="jumbotron">
         <div class="row">
             <div class="col-xs-4">
@@ -40,10 +36,8 @@
                     <img ng-src={{model.album.url}} width="80px" height="80px"/>
                 </a>
             </div>
-            <div class="col-xs-4">
-                <p><strong>{{model.album.name}}</strong></p>
-            </div>
             <div class="col-xs-8">
+                <h2>{{model.album.name}}</h2>
                 <p>
                     {{model.album.description}}
                 </p>
@@ -51,18 +45,18 @@
         </div>
     </div>
     <ul class="list-group">
-        <li ng-repeat="song in model.songs" class="list-group-item">
-            <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}/play">
-                {{song.name}}
-            </a>
-            <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}/play" class="pull-right">
-                <span class="glyphicon glyphicon-play"></span>
-            </a>
-        </li>
-    </ul>
+    <li ng-repeat="song in model.songs" class="list-group-item">
+        <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}/play">
+            {{song.name}}
+        </a>
+        <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+        </a>
+        <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}/play" class="pull-right">
+            <span class="glyphicon glyphicon-play"></span>
+        </a>
+    </li>
+</ul>
 </div>
 
 <nav class="navbar navbar-inverse navbar-fixed-bottom">

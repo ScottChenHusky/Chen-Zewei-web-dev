@@ -6,6 +6,9 @@ module.exports = function() {
         _musician: {type: mongoose.Schema.Types.ObjectId, ref: 'Musician'},
         name: String,
         url: String,
+        rock: Boolean,
+        jazz: Boolean,
+        pop: Boolean,
         comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
         dateCreated: {type: Date, default: Date.now}
     }, {collection: "project.song"});

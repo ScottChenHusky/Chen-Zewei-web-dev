@@ -10,10 +10,14 @@
             findSongById: findSongById,
             updateSong: updateSong,
             deleteSong: deleteSong,
-            findAlbumById: findAlbumById
+            findAlbumById: findAlbumById,
+            searchByName: searchByName
         };
         return api;
-
+        function searchByName(keyword) {
+            var url = "/papi/search/song/" + keyword;
+            return $http.get(url);
+        }
         function createSong(userId, albumId, song) {
             var url = "/papi/user/"+userId+"/album/"+albumId+"/song";
             //var url = "/papi/album/" + albumId + "/song";

@@ -36,7 +36,12 @@
                    placeholder="Song URL"
                    required/>
         </div>
-
+        <div class="form-group">
+            <label>Genre: </label>
+            <label><input ng-model="model.song.rock" type="checkbox" value="">Rock</label>
+            <label><input ng-model="model.song.jazz" type="checkbox" value="">Jazz</label>
+            <label><input ng-model="model.song.pop" type="checkbox" value="">Pop</label>
+        </div>
 
         <button ng-click="model.updateSong(model.song)"
                 class="btn btn-primary btn-block"

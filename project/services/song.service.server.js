@@ -10,7 +10,25 @@ module.exports = function(app, models) {
     app.get("/papi/song/:songId", findSongById);
     app.put("/papi/song/:songId", updateSong);
     app.delete("/papi/song/:songId", deleteSong);
+    app.get('/papi/search/song/:keyword', searchByName);
+    function searchByName(req,res) {
+        var keyword = req.params.keyword;
+        songModel
+            .searchByName(keyword)
+            .then(
+                function(result) {
+                    if (result) {
+                        res.json(result);
+                    } else {
+                        res.status(404).send("No matched result in songs.");
+                    }
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
 
+            )
+    }
     function createSong(req, res) {
         var newSong = req.body;
         var userId = req.params.userId;
