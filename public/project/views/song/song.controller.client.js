@@ -5,7 +5,8 @@
         .controller("NewSongController", NewSongController)
         .controller("EditSongController", EditSongController);
 
-    function SongListController($routeParams, SongService, MusicianService, $location) {
+    function SongListController($routeParams,
+                                SongService, MusicianService, AlbumService,$location) {
         var vm = this;
         vm.userId = $routeParams.userId;
         vm.albumId = $routeParams.albumId;
@@ -28,6 +29,15 @@
                 .then(
                     function(response) {
                         vm.songs = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
+            AlbumService.findAlbumById(vm.albumId)
+                .then(
+                    function(response) {
+                        vm.album = response.data;
                     },
                     function(error) {
                         vm.error = error.data;
