@@ -92,6 +92,7 @@
                 controllerAs: "model"
 
             })
+            
             .otherwise({
                 redirectTo: "/login"
             });

@@ -1,0 +1,64 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <a class="navbar-brand">
+            We Musicians
+        </a>
+        <p class="navbar-text pull-right">
+            <a href="#/login" class="navbar-link">
+                      <span class="glyphicon glyphicon-user" style="color:white">
+                      </span>
+            </a>
+        </p>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div ng-if="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+    <h1>Register</h1>
+
+    <form name="registerForm" id="registerForm" novalidate>
+
+        <div class="form-group">
+            <input ng-model="username"
+                   class="form-control"
+                   placeholder="username"
+                   type="text"
+                   required/>
+        </div>
+
+        <div class="form-group">
+            <input ng-model="password1"
+                   class="form-control"
+                   placeholder="password"
+                   type="password"
+                   required/>
+        </div>
+
+        <div class="form-group">
+            <input ng-model="password2"
+                   class="form-control"
+                   placeholder="verify password"
+                   type="password"
+                   required/>
+        </div>
+
+        <button ng-click="model.register(username, password1, password2)"
+                type="submit"
+                class="btn btn-primary btn-block">Register</button>
+
+        <a class="btn btn-danger btn-block"
+           href="#/login">Cancel</a>
+    </form>
+</div>
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="navbar-header">
+        <a class="navbar-brand">
+            <i><strong>We</strong> all love music,
+                and that gives us the same rights to become <strong>Musicians</strong>.
+            </i>
+        </a>
+    </div>
+</nav>
