@@ -71,7 +71,7 @@
         init();
 
         function search(keyword) {
-            $location.url("/user/"+id+"/search/song/" + keyword);
+            $location.url("/user/"+vm.userId+"/search/song/" + keyword);
         }
 
 

@@ -25,15 +25,13 @@
     <p>We found {{model.result.length}} songs for you.</p>
     <ul class="list-group">
         <li ng-repeat="song in model.result" class="list-group-item">
-            <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}/play">
+            <a href="#/user/{{song._musician}}/album/{{song._album}}/song/{{song._id}}/play">
                 {{song.name}}
             </a>
-            <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}" class="pull-right">
+            <a href="#/user/{{song._musician}}/album/{{song._album}}/song/{{song._id}}" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
-            <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}/play" class="pull-right">
-                <span class="glyphicon glyphicon-play"></span>
-            </a>
+
         </li>
     </ul>
 </div>

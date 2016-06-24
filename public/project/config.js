@@ -16,19 +16,19 @@
                 controllerAs: "model"
             })
 
-            .when("/user/:id/search/song/:keyword", {
+            .when("/user/:userId/search/song/:keyword", {
                 templateUrl: "views/search/searchSong.view.client.html",
                 controller: "SearchSongController",
                 controllerAs: "model"
             })
 
-            .when("/user/:id/search/album/:keyword", {
+            .when("/user/:userId/search/album/:keyword", {
                 templateUrl: "views/search/searchAlbum.view.client.html",
                 controller: "SearchAlbumController",
                 controllerAs: "model"
             })
 
-            .when("/user/:id/search/user/:keyword", {
+            .when("/user/:userId/search/user/:keyword", {
                 templateUrl: "views/search/searchUser.view.client.html",
                 controller: "SearchUserController",
                 controllerAs: "model"
