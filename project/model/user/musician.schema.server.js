@@ -14,7 +14,7 @@ module.exports = function() {
         },
         email: String,
         phone: String,
-        url: {type: String, default: "http://static.independent.co.uk/s3fs-public/thumbnails/image/2016/01/29/11/Taylor-Swift-revenge-nerds.jpg"},
+        url: {type: String, default: "http://www.hsyearbook.org/static/images/unknown_user_large.png"},
         dateCreated: {type: Date, default: Date.now},
         albums: [{type: mongoose.Schema.Types.ObjectId, ref: 'Album'}],
         followings: [{type: mongoose.Schema.Types.ObjectId, ref: 'Musician'}],

@@ -18,3 +18,7 @@ p.navbar-text.pull-left {
     padding-bottom: 65px;
     padding-top: 65px;
 }
+
+.navbar-right {
+    margin-right: 5px;
+}
