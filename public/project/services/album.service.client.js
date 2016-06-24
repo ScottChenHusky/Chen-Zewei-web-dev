@@ -11,10 +11,14 @@
             updateAlbum: updateAlbum,
             deleteAlbum: deleteAlbum,
             findUserById: findUserById,
-            logout: logout
+            logout: logout,
+            searchByName: searchByName
         };
         return api;
-
+        function searchByName(keyword) {
+            var url = "/papi/search/album/" + keyword;
+            return $http.get(url);
+        }
         function logout() {
             return $http.post("/papi/logout");
         }

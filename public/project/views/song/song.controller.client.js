@@ -8,7 +8,7 @@
     function SongListController($routeParams,
                                 SongService, MusicianService, AlbumService,$location) {
         var vm = this;
-        vm.userId = $routeParams.id;
+        vm.userId = $routeParams.userId;
         vm.albumId = $routeParams.albumId;
         vm.logout = logout;
         vm.search = search;

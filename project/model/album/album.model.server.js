@@ -9,11 +9,14 @@ module.exports = function() {
         findAllAlbumsForUser: findAllAlbumsForUser,
         findAlbumById: findAlbumById,
         updateAlbum: updateAlbum,
-        deleteAlbum: deleteAlbum
+        deleteAlbum: deleteAlbum,
+        searchByName: searchByName
     };
     return api;
 
-
+    function searchByName(keyword) {
+        return Album.find({"name": new RegExp(keyword, 'i')});
+    }
     function createAlbumForUser(userId, album) {
         album._musician = userId;
         return Album.create(album);

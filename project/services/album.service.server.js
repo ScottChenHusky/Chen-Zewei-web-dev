@@ -7,7 +7,25 @@ module.exports = function(app, models) {
     app.get("/papi/album/:albumId", findAlbumById);
     app.put("/papi/album/:albumId", updateAlbum);
     app.delete("/papi/album/:albumId", deleteAlbum);
+    app.get('/papi/search/album/:keyword', searchByName);
+    function searchByName(req,res) {
+        var keyword = req.params.keyword;
+        albumModel
+            .searchByName(keyword)
+            .then(
+                function(result) {
+                    if (result) {
+                        res.json(result);
+                    } else {
+                        res.status(404).send("No matched result in songs.");
+                    }
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
 
+            )
+    }
     function createAlbum(req, res) {
         var newAlbum = req.body;
         var userId = req.params.userId;

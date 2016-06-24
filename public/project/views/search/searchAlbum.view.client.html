@@ -1,0 +1,57 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <a class="navbar-brand">
+            We Musicians
+        </a>
+        <form class="navbar-form navbar-right" role="search">
+            <div class="input-group">
+                <input ng-model="model.keyword"
+                       type="text"
+                       value="{{model.keyword}}"
+                       class="form-control"
+                       placeholder="Search"
+                       name="srch-term"
+                       id="srch-term" />
+                <div class="input-group-btn">
+                    <button ng-click="model.search(keyword)" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <ul class="nav nav-tabs">
+        <li>
+            <a href="#/user/{{model.userId}}/search/user/{{model.keyword}}">User</a>
+        </li>
+        <li class="active"><a href="#/user/{{model.userId}}/search/album/{{model.keyword}}">Album</a></li>
+        <li><a href="#/user/{{model.userId}}/search/song/{{model.keyword}}">Song</a></li>
+    </ul>
+    <p>We found {{model.result.length}} albums for you.</p>
+    <div ng-repeat="album in model.result">
+        <div class="row">
+            <div class="span4"></div>
+            <div class="span4">
+                <a href="#/user/{{model.userId}}/album/{{album._id}}">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <a href="#/user/{{model.userId}}/album/{{album._id}}/song">
+                    <img class="center-block" ng-src={{album.url}} width="280px" height="280px"/>
+                </a>
+            </div>
+            <div class="span4"></div>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="navbar-inner">
+        <p class="navbar-text pull-right">
+            <a ng-click="model.logout()" class="navbar-link">
+                      <span class="glyphicon glyphicon-log-out" style="color:white">
+                      </span>
+            </a>
+        </p>
+    </div>
+</nav>
