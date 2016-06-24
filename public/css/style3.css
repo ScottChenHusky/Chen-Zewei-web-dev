@@ -31,3 +31,19 @@ p.navbar-text.pull-left {
     float: right;
     left: -15px;
 }
+
+.glyphicon-user {
+    color: white;
+}
+
+.glyphicon-log-out {
+    color: white;
+}
+
+.glyphicon-plus {
+    color: white;
+}
+
+.glyphicon-chevron-left {
+    color: white;
+}
