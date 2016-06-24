@@ -1,61 +1,45 @@
 module.exports = function() {
 
     var mongoose = require("mongoose");
-    var AlbumSchema = require("./album.schema.server.js")();
+    var AlbumSchema = require("./album.schema.server")();
     var Album = mongoose.model("Album", AlbumSchema);
 
     var api = {
-        findUserByFacebookId: findUserByFacebookId,
-        createUser: createUser,
-        findUserById: findUserById,
-        findUserByUsername: findUserByUsername,
-        findUserByCredentials: findUserByCredentials,
-        updateUser: updateUser,
-        deleteUser: deleteUser,
-        searchByUsername: searchByUsername
+        createAlbumForUser: createAlbumForUser,
+        findAllAlbumsForUser: findAllAlbumsForUser,
+        findAlbumById: findAlbumById,
+        updateAlbum: updateAlbum,
+        deleteAlbum: deleteAlbum
     };
     return api;
-    function searchByUsername(keyword) {
-        return Musician.find({"username": new RegExp(keyword, 'i')});
-    }
-    function findUserByFacebookId(facebookId) {
-        return Musician.findOne({'facebook.id': facebookId});
+
+
+    function createAlbumForUser(userId, album) {
+        album._musician = userId;
+        return Album.create(album);
     }
 
-    function createUser(user) {
-        return Musician.create(user);
+    function findAllAlbumsForUser(userId) {
+        return Album.find({_musician: userId});
     }
 
-    function findUserById(userId) {
-        return Musician.findById(userId);
+    function findAlbumById(albumId) {
+        return Album.findById(albumId);
     }
 
-    function findUserByUsername(username) {
-        return Musician.findOne({username: username});
-    }
-
-    function findUserByCredentials(username, password) {
-        return Musician.findOne({username: username, password: password});
-    }
-
-    function updateUser(id, newUser) {
-        return Musician.update(
-            {_id: id},
+    function updateAlbum(albumId, album) {
+        return Album.update(
+            {_id: albumId},
             {$set :
             {
-                firstName: newUser.firstName,
-                lastName: newUser.lastName,
-                email: newUser.email,
-                phone: newUser.phone
+                name: website.name,
+                description: website.description
             }
-
             }
         );
     }
 
-    function deleteUser(userId) {
-        return Musician.remove({_id: userId});
+    function deleteAlbum(albumId) {
+        return Album.remove({_id: albumId});
     }
-
-    
 };
