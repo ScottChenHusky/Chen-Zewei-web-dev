@@ -90,7 +90,7 @@
                         if(user) {
                             $rootScope.currentUser = user;
                             var id = user._id;
-                            $location.url("/user/" + id);
+                            $location.url("/user/" + id+"/album");
                         } else {
                             vm.error = "Please check your Username or Password";
                         }

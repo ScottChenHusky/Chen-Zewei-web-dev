@@ -1,21 +1,30 @@
 (function(){
     angular
-        .module("WebAppMaker")
-        .controller("WebsiteListController", WebsiteListController)
-        .controller("NewWebsiteController", NewWebsiteController)
-        .controller("EditWebsiteController", EditWebsiteController);
+        .module("WeMusicians")
+        .controller("AlbumListController", AlbumListController);
+        // .controller("NewAlbumController", NewAlbumController)
+        // .controller("EditAlbumController", EditAlbumController);
 
-    function WebsiteListController($routeParams, WebsiteService) {
+    function AlbumListController($routeParams, AlbumService) {
         var vm = this;
         vm.userId = $routeParams.userId;
-        vm.websiteId = $routeParams.websiteId;
 
         function init() {
-            WebsiteService
-                .findWebsitesByUser(vm.userId)
+            AlbumService
+                .findAlbumsByUser(vm.userId)
                 .then(
                     function(response) {
-                        vm.websites = response.data;
+                        vm.albums = response.data;
+                        AlbumService
+                            .findUserById(vm.userId)
+                            .then(
+                                function(response) {
+                                    vm.user = response.data;
+                                },
+                                function(error) {
+                                    vm.error = error.data;
+                                }
+                            )
                     },
                     function(error) {
                         vm.error = error.data;
@@ -24,9 +33,36 @@
         }
         init();
 
+        function createUser(req, res) {
+            var newUser = req.body;
+            userModel
+                .findUserByUsername(newUser.username)
+                .then(
+                    function(user) {
+                        if(user === null) {
+                            userModel
+                                .createUser(newUser)
+                                .then(
+                                    function(user) {
+                                        res.json(user);
+                                    },
+                                    function(error) {
+                                        res.status(400).send("Username has been used");
+                                    }
+                                );
+                        } else {
+                            res.json(null);
+                        }
+                    },
+                    function(error) {
+                        res.status(400).send(error);
+                    }
+                );
+        }
+
     }
 
-    function NewWebsiteController($location, $routeParams, WebsiteService) {
+    function NewAlbumController($location, $routeParams, WebsiteService) {
         var vm = this;
         vm.userId = $routeParams.userId;
         vm.createWebsite = createWebsite;
@@ -56,7 +92,7 @@
         }
     }
 
-    function EditWebsiteController($location, $routeParams, WebsiteService) {
+    function EditAlbumController($location, $routeParams, WebsiteService) {
         var vm = this;
         vm.userId = $routeParams.userId;
         vm.websiteId = $routeParams.websiteId;

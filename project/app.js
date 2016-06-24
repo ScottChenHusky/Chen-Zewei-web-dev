@@ -3,5 +3,5 @@ module.exports = function(app) {
 
     var musicianService = require("./services/musician.service.server.js")(app, models);
     var albumService = require("./services/album.service.server")(app, models);
-    var songService = require("./services/song.service.server")(app, models);
+//    var songService = require("./services/song.service.server")(app, models);
 };

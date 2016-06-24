@@ -9,32 +9,38 @@
             findAlbumsByUser: findAlbumsByUser,
             findAlbumById: findAlbumById,
             updateAlbum: updateAlbum,
-            deleteAlbum: deleteAlbum
+            deleteAlbum: deleteAlbum,
+            findUserById: findUserById
         };
         return api;
+        
+        function findUserById(userId) {
+            var url = "/papi/user/" + userId;
+            return $http.get(url);
+        }
 
         function createAlbum(userId, album) {
-            var url = "/api/user/" + userId + "/album";
+            var url = "/papi/user/" + userId + "/album";
             return $http.post(url, album);
         }
 
         function findAlbumsByUser(userId) {
-            var url = "/api/user/" + userId + "/album";
+            var url = "/papi/user/" + userId + "/album";
             return $http.get(url);
         }
 
         function findAlbumById(albumId) {
-            var url = "/api/album/" + albumId;
+            var url = "/papi/album/" + albumId;
             return $http.get(url);
         }
 
         function updateAlbum(albumId, album) {
-            var url = "/api/album/" + albumId;
+            var url = "/papi/album/" + albumId;
             return $http.put(url, album);
         }
 
         function deleteAlbum(albumId) {
-            var url = "/api/album/" + albumId;
+            var url = "/papi/album/" + albumId;
             return $http.delete(url);
         }
     }
