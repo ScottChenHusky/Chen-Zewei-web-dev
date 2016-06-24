@@ -38,7 +38,7 @@ module.exports = function(app, models) {
     }
 
     function findAlbumById(req, res) {
-        var id = req.params.websiteId;
+        var id = req.params.albumId;
         albumModel
             .findAlbumById(id)
             .then(

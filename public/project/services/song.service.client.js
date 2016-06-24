@@ -9,7 +9,8 @@
             findSongByAlbumId: findSongByAlbumId,
             findSongById: findSongById,
             updateSong: updateSong,
-            deleteSong: deleteSong
+            deleteSong: deleteSong,
+            findAlbumById: findAlbumById
         };
         return api;
 
@@ -23,7 +24,10 @@
             var url = "/papi/album/" + albumId + "/song";
             return $http.get(url);
         }
-
+        function findAlbumById(albumId) {
+            var url = "/papi/album/" + albumId;
+            return $http.get(url);
+        }
         function findSongById(songId) {
             var url = "/papi/song/" + songId;
             return $http.get(url);

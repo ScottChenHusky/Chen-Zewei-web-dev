@@ -29,7 +29,7 @@
                 .then(
                     function(response) {
                         vm.songs = response.data;
-                        AlbumService.findAlbumById(vm.albumId)
+                        SongService.findAlbumById(vm.albumId)
                             .then(
                                 function(response) {
                                     vm.album = response.data;
