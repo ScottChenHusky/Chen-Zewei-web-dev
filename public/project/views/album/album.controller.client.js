@@ -5,9 +5,10 @@
         // .controller("NewAlbumController", NewAlbumController)
         // .controller("EditAlbumController", EditAlbumController);
 
-    function AlbumListController($routeParams, AlbumService) {
+    function AlbumListController($location, $rootScope, $routeParams, AlbumService) {
         var vm = this;
         vm.userId = $routeParams.userId;
+        vm.logout = logout;
 
         function init() {
             AlbumService
@@ -32,6 +33,21 @@
             );
         }
         init();
+        
+        function logout(req, res) {
+            AlbumService
+                .logout()
+                .then(
+                    function(response) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function(error) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    }
+                );
+        }
 
         function createUser(req, res) {
             var newUser = req.body;

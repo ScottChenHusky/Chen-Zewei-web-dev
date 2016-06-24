@@ -10,9 +10,14 @@
             findAlbumById: findAlbumById,
             updateAlbum: updateAlbum,
             deleteAlbum: deleteAlbum,
-            findUserById: findUserById
+            findUserById: findUserById,
+            logout: logout
         };
         return api;
+
+        function logout() {
+            return $http.post("/papi/logout");
+        }
         
         function findUserById(userId) {
             var url = "/papi/user/" + userId;
