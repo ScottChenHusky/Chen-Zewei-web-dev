@@ -29,15 +29,15 @@
                 .then(
                     function(response) {
                         vm.songs = response.data;
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                );
-            AlbumService.findAlbumById(vm.albumId)
-                .then(
-                    function(response) {
-                        vm.album = response.data;
+                        AlbumService.findAlbumById(vm.albumId)
+                            .then(
+                                function(response) {
+                                    vm.album = response.data;
+                                },
+                                function(error) {
+                                    vm.error = error.data;
+                                }
+                            );
                     },
                     function(error) {
                         vm.error = error.data;

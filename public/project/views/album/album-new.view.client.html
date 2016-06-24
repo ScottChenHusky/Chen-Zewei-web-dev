@@ -47,13 +47,11 @@
             <label>Image.......</label>
         </div>
 
-
-
-        <button ng-click="model.createAlbum(name, description)"
+        <button ng-click="model.createAlbum(name, description, RockBox, JazzBox, PopBox)"
                 class="btn btn-primary btn-block"
                 type="submit">Create</button>
         <a class="btn btn-danger btn-block"
-           href="#/user/{{model.userId}}/website">Delete</a>
+           href="#/user/{{model.userId}}/album">Delete</a>
     </form>
 
 </div>

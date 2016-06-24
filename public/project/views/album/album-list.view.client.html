@@ -43,6 +43,20 @@
             </div>
         </div>
     </div>
+
+    <div ng-repeat="album in model.albums">
+        <div class="row">
+            <div class="span4"></div>
+            <div class="span4">
+                <a href="#/user/{{model.userId}}/album/{{album._id}}/song">
+                    <img class="center-block" ng-src={{album.url}} width="280px" height="280px"/>
+                </a>
+            </div>
+            <div class="span4"></div>
+        </div>
+    </div>
+
+
 </div>
 
 

@@ -60,19 +60,22 @@
         vm.userId = $routeParams.userId;
         vm.createAlbum = createAlbum;
 
-        function createAlbum(name, description) {
+        function createAlbum(name, description, RockBox, JazzBox, PopBox) {
             if(!name) {
-                vm.error = "Please Provide Website Name";
+                vm.error = "Please Provide Album Name";
                 return;
             }
 
-            var website = {
+            var album = {
                 name: name,
-                description: description
+                description: description,
+                rock: RockBox,
+                jazz: JazzBox,
+                pop: PopBox
             };
 
             AlbumService
-                .createAlbum(vm.userId, website)
+                .createAlbum(vm.userId, album)
                 .then(
                     function(response) {
                         $location.url("/user/"+vm.userId+"/album");
