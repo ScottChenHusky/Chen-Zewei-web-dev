@@ -3,7 +3,8 @@
         .module("WeMusicians")
         .controller("LoginController", LoginController)
         .controller("ProfileController", ProfileController)
-        .controller("RegisterController", RegisterController);
+        .controller("RegisterController", RegisterController)
+        .controller("HomeController", HomeController);
 
     function ProfileController($routeParams, $rootScope, $location, MusicianService) {
         var vm = this;
@@ -139,5 +140,9 @@
                     }
                 );
         }
+    }
+
+    function HomeController(){
+        
     }
 })();

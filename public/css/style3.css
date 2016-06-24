@@ -22,3 +22,12 @@ p.navbar-text.pull-left {
 .navbar-right {
     margin-right: 5px;
 }
+
+.row {
+    padding-bottom: 55px;
+}
+
+.glyphicon-cog {
+    float: right;
+    left: -15px;
+}

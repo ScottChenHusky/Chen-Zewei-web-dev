@@ -7,7 +7,7 @@
             </a>
         </p>
         <a class="navbar-brand">
-            New Album
+            Edit Album
         </a>
     </div>
 </nav>
@@ -20,7 +20,7 @@
     <form name="newAlbum" id="newAlbum" novalidate>
         <div class="form-group">
             <label for="albumName">Album Name</label>
-            <input ng-model="name"
+            <input ng-model="model.album.name"
                    type="text"
                    class="form-control"
                    id="albumName"
@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
             <label for="description">Album Description</label>
-            <textarea ng-model="description"
+            <textarea ng-model="model.album.description"
                       rows="5"
                       id="description"
                       class="form-control"
@@ -40,13 +40,12 @@
             <label>Image.......</label>
         </div>
 
-        <button ng-click="model.createAlbum(name, description, RockBox, JazzBox, PopBox)"
+        <button ng-click="model.updateAlbum(model.albumId, model.album)"
                 class="btn btn-primary btn-block"
-                type="submit">Create</button>
+                type="submit">Update</button>
         <a class="btn btn-danger btn-block"
-           href="#/user/{{model.userId}}/album">Delete</a>
+           ng-click="model.deleteAlbum(model.albumId)">Delete</a>
     </form>
-
 </div>
 
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
@@ -59,4 +58,3 @@
         </p>
     </div>
 </nav>
-

@@ -54,7 +54,7 @@ module.exports = function(app, models) {
 
     function updateAlbum(req, res) {
         var album = req.body;
-        var id = req.params.websiteId;
+        var id = req.params.albumId;
         albumModel
             .updateAlbum(id, album)
             .then(
@@ -68,7 +68,7 @@ module.exports = function(app, models) {
     }
 
     function deleteAlbum(req, res) {
-        var id = req.params.websiteId;
+        var id = req.params.albumId;
         albumModel
             .deleteAlbum(id)
             .then(

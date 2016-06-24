@@ -32,8 +32,8 @@ module.exports = function() {
             {_id: albumId},
             {$set :
             {
-                name: website.name,
-                description: website.description
+                name: album.name,
+                description: album.description
             }
             }
         );

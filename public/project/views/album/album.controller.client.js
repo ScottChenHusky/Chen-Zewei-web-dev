@@ -2,8 +2,8 @@
     angular
         .module("WeMusicians")
         .controller("AlbumListController", AlbumListController)
-        .controller("NewAlbumController", NewAlbumController);
-        // .controller("EditAlbumController", EditAlbumController);
+        .controller("NewAlbumController", NewAlbumController)
+        .controller("EditAlbumController", EditAlbumController);
 
     function AlbumListController($location, $rootScope, $routeParams, AlbumService) {
         var vm = this;
@@ -55,10 +55,26 @@
         }
     }
 
-    function NewAlbumController($location, $routeParams, AlbumService) {
+    function NewAlbumController($location, $rootScope, $routeParams, AlbumService) {
         var vm = this;
         vm.userId = $routeParams.userId;
         vm.createAlbum = createAlbum;
+        vm.logout = logout;
+
+        function logout(req, res) {
+            AlbumService
+                .logout()
+                .then(
+                    function(response) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function(error) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    }
+                );
+        }
 
         function createAlbum(name, description, RockBox, JazzBox, PopBox) {
             if(!name) {
@@ -87,45 +103,61 @@
         }
     }
 
-    function EditAlbumController($location, $routeParams, WebsiteService) {
+    function EditAlbumController($location, $rootScope, $routeParams, AlbumService) {
         var vm = this;
         vm.userId = $routeParams.userId;
-        vm.websiteId = $routeParams.websiteId;
-        vm.deleteWebsite = deleteWebsite;
-        vm.updateWebsite = updateWebsite;
+        vm.albumId = $routeParams.albumId;
+        vm.deleteAlbum = deleteAlbum;
+        vm.updateAlbum = updateAlbum;
+        vm.logout = logout;
 
         function init() {
-            WebsiteService
-                .findWebsiteById(vm.websiteId)
+            AlbumService
+                .findAlbumById(vm.albumId)
                 .then(
                     function(response) {
-                        vm.website = response.data;
+                        vm.album = response.data;
                     }
                 );
         }
         init();
 
-        function deleteWebsite(websiteId) {
-            WebsiteService
-                .deleteWebsite(websiteId)
+        function deleteAlbum(albumId) {
+            AlbumService
+                .deleteAlbum(albumId)
                 .then(
                     function(response) {
-                        $location.url("/user/"+vm.userId+"/website");
+                        $location.url("/user/"+vm.userId+"/album");
                     }
                 );
         }
 
-        function updateWebsite(websiteId, website) {
-            if(!website.name) {
-                vm.error = "Please Provide Website Name"
+        function updateAlbum(albumId, album) {
+            if(!album.name) {
+                vm.error = "Please Provide Album Name";
                 return;
             }
 
-            WebsiteService
-                .updateWebsite(websiteId, website)
+            AlbumService
+                .updateAlbum(albumId, album)
                 .then(
                     function(response) {
-                        $location.url("/user/"+vm.userId+"/website");
+                        $location.url("/user/"+vm.userId+"/album");
+                    }
+                );
+        }
+
+        function logout(req, res) {
+            AlbumService
+                .logout()
+                .then(
+                    function(response) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function(error) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
                     }
                 );
         }
