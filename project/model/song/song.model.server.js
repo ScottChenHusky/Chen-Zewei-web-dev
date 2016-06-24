@@ -5,7 +5,7 @@ module.exports = function() {
     var Song = mongoose.model("Song", SongSchema);
 
     var api = {
-        createSongForAlbum: createSongForAlbum,
+        createSong: createSong,
         findAllSongsForAlbum: findAllSongsForAlbum,
         findSongById: findSongById,
         updateSong: updateSong,
@@ -14,8 +14,9 @@ module.exports = function() {
     return api;
 
 
-    function createSongForAlbum(albumId, song) {
+    function createSong(userId, albumId, song) {
         song._album = albumId;
+        song._musician = userId;
         return Song.create(song);
     }
 

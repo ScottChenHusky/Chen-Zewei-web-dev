@@ -5,17 +5,18 @@ module.exports = function(app, models) {
 
     var songModel = models.songModel;
 
-    app.post("/papi/album/:albumId/song", createSong);
-    app.get("/papi/album/:albumId/song", findAllSongsForAlbum);
+    app.post("/papi/user/:userId/album/:albumId/song", createSong);
+    app.get("/papi/user/:userId/album/:albumId/song", findAllSongsForAlbum);
     app.get("/papi/song/:songId", findSongById);
     app.put("/papi/song/:songId", updateSong);
     app.delete("/papi/song/:songId", deleteSong);
 
     function createSong(req, res) {
         var newSong = req.body;
+        var userId = req.params.userId;
         var albumId = req.params.songId;
         songModel
-            .createSongForAlbum(albumId, newSong)
+            .createSong(userId, albumId, newSong)
             .then(
                 function(song) {
                     res.json(song);
