@@ -13,8 +13,9 @@
         };
         return api;
 
-        function createSong(albumId, song) {
-            var url = "/papi/album/" + albumId + "/song";
+        function createSong(userId, albumId, song) {
+            var url = "/papi/user/"+userId+"/album/"+albumId+"/song";
+            //var url = "/papi/album/" + albumId + "/song";
             return $http.post(url, song);
         }
 

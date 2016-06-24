@@ -5,7 +5,7 @@
         .controller("NewSongController", NewSongController)
         .controller("EditSongController", EditSongController);
 
-    function SongListController($routeParams, SongService, MusicianService) {
+    function SongListController($routeParams, SongService, MusicianService, $location) {
         var vm = this;
         vm.userId = $routeParams.userId;
         vm.albumId = $routeParams.albumId;
@@ -55,7 +55,7 @@
                 )
         }
 
-        function createSong(name, url, description) {
+        function createSong(name, url) {
             if (!name) {
                 vm.error = "Please provide a song name";
                 return;
@@ -66,7 +66,7 @@
             
             var song = {
                 name: name,
-                url: title
+                url: url
                 //description: description
                 //websiteId: "" + vm.websiteId
             };
