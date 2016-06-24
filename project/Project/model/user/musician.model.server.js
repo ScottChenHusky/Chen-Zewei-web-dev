@@ -56,5 +56,4 @@ module.exports = function() {
     function deleteUser(userId) {
         return Musician.remove({_id: userId});
     }
-
 };

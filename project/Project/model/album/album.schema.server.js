@@ -10,4 +10,5 @@ module.exports = function() {
     }, {collection: "project.album"});
 
     return AlbumSchema;
+    
 };

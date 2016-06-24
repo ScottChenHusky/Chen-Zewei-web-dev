@@ -57,4 +57,5 @@ module.exports = function() {
         return Musician.remove({_id: userId});
     }
 
+    
 };

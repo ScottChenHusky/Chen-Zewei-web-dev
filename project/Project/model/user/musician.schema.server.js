@@ -22,4 +22,5 @@ module.exports = function() {
     }, {collection: "project.user"});
 
     return MusicianSchema;
+    
 };

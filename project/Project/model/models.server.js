@@ -6,4 +6,5 @@ module.exports = function() {
         musicianModel: musicianModel
     };
     return models;
+    
 };
