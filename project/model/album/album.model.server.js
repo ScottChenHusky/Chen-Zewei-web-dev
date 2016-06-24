@@ -1,8 +1,8 @@
 module.exports = function() {
 
     var mongoose = require("mongoose");
-    var MusicianSchema = require("./musician.schema.server")();
-    var Musician = mongoose.model("Musician", MusicianSchema);
+    var AlbumSchema = require("./album.schema.server.js")();
+    var Album = mongoose.model("Album", AlbumSchema);
 
     var api = {
         findUserByFacebookId: findUserByFacebookId,
@@ -56,4 +56,6 @@ module.exports = function() {
     function deleteUser(userId) {
         return Musician.remove({_id: userId});
     }
+
+    
 };
