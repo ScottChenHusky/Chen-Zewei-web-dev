@@ -63,39 +63,39 @@
                 }
             })
 
-            // //website routes
-            .when("/user/:userId/website", {
+            // //album routes
+            .when("/user/:userId/album", {
                 templateUrl: "views/album/album-list.view.client.html",
-                //controller: "WebsiteListController",
-                //controllerAs: "model"
+                controller: "AlbumListController",
+                controllerAs: "model"
             })
-            // .when("/user/:userId/website/new", {
-            //     templateUrl: "views/website/album-new.view.client.html",
-            //     controller: "NewWebsiteController",
-            //     controllerAs: "model"
-            // })
-            // .when("/user/:userId/website/:websiteId", {
-            //     templateUrl: "views/website/website-edit.view.client.html",
-            //     controller: "EditWebsiteController",
-            //     controllerAs: "model"
-            // })
-            //
-            // // page routes
-            // .when("/user/:userId/website/:websiteId/page", {
-            //     templateUrl: "views/page/page-list.view.client.html",
-            //     controller: "PageListController",
-            //     controllerAs: "model"
-            // })
-            // .when("/user/:userId/website/:websiteId/page/new", {
-            //     templateUrl: "views/page/page-new.view.client.html",
-            //     controller: "NewPageController",
-            //     controllerAs: "model"
-            // })
-            // .when("/user/:userId/website/:websiteId/page/:pageId", {
-            //     templateUrl: "views/page/page-edit.view.client.html",
-            //     controller: "EditPageController",
-            //     controllerAs: "model"
-            // })
+            .when("/user/:userId/album/new", {
+                templateUrl: "views/album/album-new.view.client.html",
+                controller: "NewAlbumController",
+                controllerAs: "model"
+            })
+            .when("/user/:userId/album/:albumId", {
+                templateUrl: "views/album/album-edit.view.client.html",
+                controller: "EditAlbumController",
+                controllerAs: "model"
+            })
+
+            // song routes
+            .when("/user/:userId/album/:albumId/song", {
+                templateUrl: "views/song/song-list.view.client.html",
+                controller: "SongListController",
+                controllerAs: "model"
+            })
+            .when("/user/:userId/album/:albumId/song/new", {
+                templateUrl: "views/song/song-new.view.client.html",
+                controller: "NewSongController",
+                controllerAs: "model"
+            })
+            .when("/user/:userId/album/:albumId/song/:songId", {
+                templateUrl: "views/song/song-edit.view.client.html",
+                controller: "EditSongController",
+                controllerAs: "model"
+            })
             //
             // // widget routes
             // .when("/user/:userId/website/:websiteId/page/:pageId/widget", {
