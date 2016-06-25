@@ -67,7 +67,10 @@
             .when("/user/:userId/album", {
                 templateUrl: "views/album/album-list.view.client.html",
                 controller: "AlbumListController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
             .when("/user/:userId/album/new", {
                 templateUrl: "views/album/album-new.view.client.html",
@@ -149,6 +152,7 @@
                 .loggedIn()
                 .then(
                     function(response) {
+                        console.log(response);
                         var user = response.data;
                         if(user == '0') {
                             $rootScope.currentUser = null;

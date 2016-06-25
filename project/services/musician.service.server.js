@@ -65,7 +65,7 @@ module.exports = function(app, models) {
                 }
             );
     }
-    
+
     function updateFollowUnfollow(req, res) {
         var id = req.params.userId;
         var newUser = req.body;
@@ -140,11 +140,13 @@ module.exports = function(app, models) {
 
     function logout(req, res) {
         req.logout();
+        req.session.currentUser = null;
         res.sendStatus(200);
     }
 
     function loggedIn(req, res) {
         if(req.isAuthenticated()) {
+            //res.json(req.session.currentUser);
             res.json(req.user);
         } else {
             res.send('0');
