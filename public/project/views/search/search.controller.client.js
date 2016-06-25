@@ -29,7 +29,7 @@
 
         function search() {
             if (vm.keyword.length > 0) {
-                $location.url("/user/" + vm.userId + "/search/album/" + vm.keyword);
+                $location.url("/user/" + vm.userId + "/search/user/" + vm.keyword);
             }
         }
 
@@ -116,7 +116,7 @@
 
         function search() {
             if (vm.keyword.length > 0) {
-                $location.url("/user/" + vm.userId + "/search/album/" + vm.keyword);
+                $location.url("/user/" + vm.userId + "/search/song/" + vm.keyword);
             } else {
                 return;
             }

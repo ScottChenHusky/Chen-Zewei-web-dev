@@ -96,6 +96,24 @@
                 controller: "EditSongController",
                 controllerAs: "model"
             })
+/*
+            // player and comment routes
+            .when("/user/:userId/album/:albumId/song/:songId/play", {
+                templateUrl: "views/player/player-comment-list.view.client.html",
+                controller: "PlayerCommentListController",
+                controllerAs: "model"
+            })
+            .when("/user/:userId/album/:albumId/song/:songId/play/new", {
+                templateUrl: "views/player/player-comment-new.view.client.html",
+                controller: "PlayerNewCommentController",
+                controllerAs: "model"
+            })
+            .when("/user/:userId/album/:albumId/song/:songId/play/:commentId", {
+                templateUrl: "views/player/player-comment-edit.view.client.html",
+                controller: "PlayerEditCommentController",
+                controllerAs: "model"
+            })
+*/
             //
             // // widget routes
             // .when("/user/:userId/website/:websiteId/page/:pageId/widget", {
