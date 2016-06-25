@@ -72,7 +72,7 @@ module.exports = function(app, models) {
             newAlbum = {
                 name: albumName,
                 description: albumDescription,
-                ur: albumUrl
+                url: albumUrl
             };
         } else {
             var originalname  = myFile.originalname; // file name on user's computer

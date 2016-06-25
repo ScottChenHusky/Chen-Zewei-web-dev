@@ -5,6 +5,9 @@ var bcrypt = require('bcrypt-nodejs');
 
 module.exports = function(app, models) {
 
+    var multer = require('multer'); // npm install multer --save
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+
     var musicianModel = models.musicianModel;
 
     app.get('/pauth/facebook/callback',
@@ -24,6 +27,7 @@ module.exports = function(app, models) {
     app.delete("/papi/user/:userId", authenticate, deleteUser);
     app.get('/papi/search/user/:keyword', searchByUsername);
     app.put("/papi/follow/:userId", updateFollowUnfollow);
+    app.post("/papi/upload/profile", upload.single('myFile'), uploadImage);
 
     passport.use('wam', new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
@@ -62,6 +66,44 @@ module.exports = function(app, models) {
                                 }
                             );
                     }
+                }
+            );
+    }
+
+    function uploadImage(req, res) {
+
+        var user = req.body.user;
+        var userId = req.body.userId;
+        var myFile = req.file;
+
+        var newUser;
+
+
+        if(myFile == null) {
+
+        } else {
+            var originalname  = myFile.originalname; // file name on user's computer
+            var filename      = myFile.filename;     // new file name in upload folder
+            var path          = myFile.path;         // full path of uploaded file
+            var destination   = myFile.destination;  // folder where file is saved to
+            var size          = myFile.size;
+            var mimetype      = myFile.mimetype;
+
+
+            newUser = {
+                url: "/uploads/"+filename
+            }
+
+        }
+        //res.redirect("/project/index.html#/user/"+uid+"/album/"+albumId);
+        musicianModel
+            .updateMucisianUrl(userId, newUser)
+            .then(
+                function(user) {
+                    res.redirect("/project/index.html#/user/"+userId);
+                },
+                function(error) {
+                    res.status(404).send(error);
                 }
             );
     }

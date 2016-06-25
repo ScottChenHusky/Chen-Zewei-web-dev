@@ -13,7 +13,8 @@ module.exports = function() {
         updateUser: updateUser,
         deleteUser: deleteUser,
         searchByUsername: searchByUsername,
-        updateFollowUnfollow: updateFollowUnfollow
+        updateFollowUnfollow: updateFollowUnfollow,
+        updateMucisianUrl: updateMucisianUrl
     };
     return api;
 
@@ -62,6 +63,18 @@ module.exports = function() {
                 lastName: newUser.lastName,
                 email: newUser.email,
                 phone: newUser.phone
+            }
+
+            }
+        );
+    }
+
+    function updateMucisianUrl(id, newUser) {
+        return Musician.update(
+            {_id: id},
+            {$set :
+            {
+                url: newUser.url
             }
 
             }

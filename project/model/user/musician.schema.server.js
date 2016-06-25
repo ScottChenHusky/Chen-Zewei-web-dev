@@ -17,8 +17,6 @@ module.exports = function() {
         url: {type: String, default: "http://www.hsyearbook.org/static/images/unknown_user_large.png"},
         dateCreated: {type: Date, default: Date.now},
         albums: [{type: mongoose.Schema.Types.ObjectId, ref: 'Album'}],
-        // followings: [{type: mongoose.Schema.Types.ObjectId, ref: 'Musician'}],
-        // followers: [{type: mongoose.Schema.Types.ObjectId, ref: 'Musician'}],
         followings: {type: [String]},
         followers: {type: [String]},
         favorite: [{type: mongoose.Schema.Types.ObjectId, ref: 'Song'}]

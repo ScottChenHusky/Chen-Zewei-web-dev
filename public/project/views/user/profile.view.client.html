@@ -29,14 +29,32 @@
         Unable to update your profile
     </div>
 
-    <form>
+    <form action="/papi/upload/profile"  method="post" enctype="multipart/form-data" name="profileForm" id="profileForm" novalidate>
         <div class="form-group">
             <label for="username">Username</label>
             <input ng-model="model.user.username"
                    type="text"
                    class="form-control"
                    id="username"
-                   placeholder="Username"/>
+                   placeholder="Username"
+                   required/>
+        </div>
+
+        <div class="form-group">
+            <label for="first">First Name</label>
+            <input ng-model="model.user.firstName"
+                   type="text"
+                   class="form-control"
+                   id="first"
+                   placeholder="Scott"/>
+        </div>
+        <div class="form-group">
+            <label for="last">Last Name</label>
+            <input ng-model="model.user.lastName"
+                   type="text"
+                   class="form-control"
+                   id="last"
+                   placeholder="Chen"/>
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
@@ -54,22 +72,24 @@
                    id="phone"
                    placeholder="111-111-1111"/>
         </div>
+
         <div class="form-group">
-            <label for="first">First Name</label>
-            <input ng-model="model.user.firstName"
+            <label for="url">Cover Image URL</label>
+            <input ng-model="model.user.url"
                    type="text"
                    class="form-control"
-                   id="first"
-                   placeholder="Scott"/>
+                   id="url"
+                   placeholder="www.music.com"/>
         </div>
+
         <div class="form-group">
-            <label for="last">Last Name</label>
-            <input ng-model="model.user.lastName"
-                   type="text"
-                   class="form-control"
-                   id="last"
-                   placeholder="Chen"/>
+            <label>Upload Profile</label>
+            <input  name="myFile"   type="file" class="form-control"/>
+            <input  name="user"   value="{{model.user}}"   style="display: none"/>
+            <input  name="userId"   value="{{model.user._id}}"   style="display: none"/>
         </div>
+
+        <button class="btn btn-block btn-primary">Upload Image</button>
 
         <a class="btn btn-primary btn-block"
            href="#/user/{{model.user._id}}/album">My Home</a>
