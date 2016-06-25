@@ -11,9 +11,15 @@
             updateSong: updateSong,
             deleteSong: deleteSong,
             findAlbumById: findAlbumById,
-            searchByName: searchByName
+            searchByName: searchByName,
+            logout: logout
         };
         return api;
+
+        function logout() {
+            return $http.post("/papi/logout");
+        }
+
         function searchByName(keyword) {
             var url = "/papi/search/song/" + keyword;
             return $http.get(url);

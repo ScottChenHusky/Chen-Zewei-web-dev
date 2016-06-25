@@ -12,29 +12,34 @@
         vm.unregister = unregister;
         vm.logout = logout;
         vm.search = search;
-        var id = $rootScope.currentUser._id;
+        var currentId = $rootScope.currentUser._id;
+        var userId = $routeParams.id;
 
         function init() {
-            MusicianService
-                .findUserById(id)
-                .then(
-                    function(response) {
-                        vm.user = response.data;
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                );
+            if (currentId === userId || $rootScope.currentUser.isAdmin) {
+                MusicianService
+                    .findUserById(userId)
+                    .then(
+                        function(response) {
+                            vm.user = response.data;
+                        },
+                        function(error) {
+                            vm.error = error.data;
+                        }
+                    );
+            } else {
+                $location.url("/user/"+userId+"/album")
+            }
         }
         init();
 
         function search(keyword) {
-            $location.url("/user/"+id+"/search/user/" + keyword);
+            $location.url("/user/"+userId+"/search/user/" + keyword);
         }
 
         function updateUser(newUser) {
             MusicianService
-                .updateUser(id, newUser)
+                .updateUser(userId, newUser)
                 .then(
                     function(response) {
                         vm.success = "Success";
@@ -47,7 +52,7 @@
 
         function unregister() {
             MusicianService
-                .deleteUser(id)
+                .deleteUser(userId)
                 .then(
                     function(response) {
                         $location.url("/login");
@@ -107,7 +112,7 @@
         var vm = this;
         vm.register = register;
 
-        function register (username, password1, password2) {
+        function register (username, password1, password2, admin) {
             if (!username) {
                 vm.error = "Please Enter Username";
                 return;
@@ -123,7 +128,7 @@
             }
             MusicianService
             //.createUser(user)
-                .register(username, password1)
+                .register(username, password1, admin)
                 .then(
                     function(response){
                         var user = response.data;

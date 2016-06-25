@@ -32,11 +32,12 @@
             return $http.get("/papi/loggedIn");
         }
 
-        function register(username, password) {
+        function register(username, password, admin) {
             var url = "/papi/register";
             var user = {
                 username: username,
-                password: password
+                password: password,
+                isAdmin: admin
             };
             return $http.post(url, user);
         }

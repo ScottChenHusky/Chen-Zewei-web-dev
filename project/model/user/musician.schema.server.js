@@ -2,7 +2,7 @@ module.exports = function() {
     var mongoose = require("mongoose");
 
     var MusicianSchema = mongoose.Schema({
-        isAdmin: Boolean,
+        isAdmin: {type: Boolean, default: false},
         username: String,
         password: String,
         firstName: String,

@@ -37,7 +37,7 @@
                 <a href="#/user/{{user._id}}/album">
                     {{user.username}}
                 </a>
-                <a href="#/user/{{song._musician}}" class="pull-right">
+                <a ng-if="model.currentUser.isAdmin" href="#/user/{{user._id}}" class="pull-right">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
 
