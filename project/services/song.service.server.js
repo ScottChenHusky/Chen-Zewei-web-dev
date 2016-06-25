@@ -3,7 +3,7 @@
  */
 module.exports = function(app, models) {
     var multer = require('multer'); // npm install multer --save
-    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+    var upload = multer({ dest: __dirname+'/../../public/uploads/song' });
 
     var songModel = models.songModel;
 
@@ -71,20 +71,28 @@ module.exports = function(app, models) {
     function editMusicUpload(req, res) {
 
         var myFile = req.file;
-        var uid = req.body.userId;
-        var albumName = req.body.name;
-        var albumDescription = req.body.description;
-        var albumUrl = req.body.url;
-        var albumId = req.body.albumId;
 
-        var newAlbum;
+        var userId = req.body.userId;
+        var albumId = req.body.albumId;
+        var url = req.body.url;
+        var rock = req.body.rock;
+        var pop = req.body.pop;
+        var jazz = req.body.jazz;
+
+        var name = req.body.name;
+        var url = req.body.url;
+        var songId = req.body.songId;
+
+        var newSong;
 
 
         if(myFile == null) {
-            newAlbum = {
-                name: albumName,
-                description: albumDescription,
-                url: albumUrl
+            newSong = {
+                name: name,
+                url: url,
+                rock: rock,
+                jazz: jazz,
+                pop: pop
             };
         } else {
             var originalname  = myFile.originalname; // file name on user's computer
@@ -95,19 +103,22 @@ module.exports = function(app, models) {
             var mimetype      = myFile.mimetype;
 
 
-            newAlbum = {
-                name: albumName,
-                description: albumDescription,
-                url: "/uploads/"+filename
+            newSong = {
+                name: name,
+                url: "/uploads/song/"+filename,
+                rock: rock,
+                jazz: jazz,
+                pop: pop
             };
 
         }
         //res.redirect("/project/index.html#/user/"+uid+"/album/"+albumId);
-        albumModel
-            .updateAlbum(albumId, newAlbum)
+        songModel
+            .updateSong(songId, newSong)
             .then(
-                function(album) {
-                    res.redirect("/project/index.html#/user/"+uid+"/album/"+albumId);
+                function(song) {
+                    res.redirect("/project/index.html#/user/"
+                        +userId+"/album/"+albumId+"/song/"+song._id);
                 },
                 function(error) {
                     res.status(404).send(error);

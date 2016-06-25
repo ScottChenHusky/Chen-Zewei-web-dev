@@ -22,6 +22,7 @@
         <div class="form-group">
             <label for="songName">Name</label>
             <input ng-model="model.song.name"
+                   name="name"
                    type="text"
                    class="form-control"
                    id="songName"
@@ -30,13 +31,22 @@
         </div>
         <div class="form-group">
             <label>Genre: </label>
-            <label><input ng-model="model.song.rock" type="checkbox" value="">Rock</label>
-            <label><input ng-model="model.song.jazz" type="checkbox" value="">Jazz</label>
-            <label><input ng-model="model.song.pop" type="checkbox" value="">Pop</label>
+            <label><input name="rock"
+                          ng-model="model.song.rock"
+                          type="checkbox" value="true">Rock</label>
+            <label><input name="jazz"
+                          ng-model="model.song.jazz"
+                          type="checkbox"
+                          value="true">Jazz</label>
+            <label><input name="pop"
+                          ng-model="model.song.pop"
+                          type="checkbox"
+                          value="true">Pop</label>
         </div>
         <div class="form-group">
             <label for="songUrl">URL</label> (only supports HTML video or audio)
             <input ng-model="model.song.url"
+                   name="url"
                    type="text"
                    class="form-control"
                    id="songUrl"
@@ -44,12 +54,14 @@
                    required/>
         </div>
         <div class="form-group">
-            <label>Upload Cover</label>
+            <label>Upload music</label>
             <input name="myFile" type="file" class="form-control"/>
             <input name="userId" value="{{model.userId}}" style="display: none"/>
             <input name="albumId" value="{{model.albumId}}" style="display: none"/>
             <input name="songId" value="{{model.song._id}}" style="display: none"/>
         </div>
+        <button class="btn btn-block btn-primary">Upload music</button>
+
         <button ng-click="model.updateSong(model.song)"
                 class="btn btn-primary btn-block"
                 type="submit">Update</button>

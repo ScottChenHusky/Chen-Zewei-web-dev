@@ -49,14 +49,14 @@
                    required/>
         </div>
         <div class="form-group">
-            <label>Upload music</label>
+            <label>Upload Music</label>
             <input  name="myFile"   type="file" class="form-control"/>
             <input  name="userId" value="{{model.userId}}"   style="display: none"/>
             <input  name="albumId" value="{{model.albumId}}"   style="display: none"/>
 
 
         </div>
-        <button class="btn btn-block btn-primary">Upload</button>
+        <button class="btn btn-block btn-primary">Upload music</button>
         <button ng-click="model.createSong(name, url, RockBox, JazzBox, PopBox)"
                 class="btn btn-primary btn-block"
                 type="submit">Create</button>
