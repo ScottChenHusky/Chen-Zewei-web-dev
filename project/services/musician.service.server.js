@@ -73,7 +73,7 @@ module.exports = function(app, models) {
             .updateFollowUnfollow(id, newUser)
             .then(
                 function(user) {
-                    res.json(user);
+                    res.send(200);
                 },
                 function(error) {
                     res.status(400).send("Unable to change the relationship");

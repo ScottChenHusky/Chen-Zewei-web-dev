@@ -14,5 +14,5 @@ module.exports = function() {
         dateCreated: {type: Date, default: Date.now}
     }, {collection: "project.comment"});
 
-    return SongSchema;
+    return CommentSchema;
 };

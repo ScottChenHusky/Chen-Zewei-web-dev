@@ -1,6 +1,6 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
-        <a class="navbar-brand">
+        <a href=#/user/{{model.currentUser._id}}/album" class="navbar-brand">
             We Musicians
         </a>
         <form class="navbar-form navbar-right" role="search">
@@ -16,7 +16,6 @@
 
 
 <div class="container-fluid">
-    {{model.user}}
 
     <div class="jumbotron">
         <div class="row">
@@ -43,6 +42,7 @@
             </div>
         </div>
     </div>
+
 
     <div ng-repeat="album in model.albums">
         <div class="row">

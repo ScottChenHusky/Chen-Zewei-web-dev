@@ -9,7 +9,7 @@
         var vm = this;
         vm.userId = $routeParams.userId;
         vm.currentUser = $rootScope.currentUser;
-        vm.theOwner = false;
+        //vm.theOwner = false;
         //vm.isFollowed = false;
         vm.theUser = null;
 
@@ -29,6 +29,7 @@
                                 function(response) {
                                     vm.user = response.data;
                                     vm.theUser = response.data;
+                                    vm.theOwner = false;
                                     if (vm.currentUser._id === vm.userId) {
                                         vm.theOwner = true;
                                     }
@@ -80,26 +81,22 @@
                     .updateFollowUnfollow(vm.user._id, vm.user)
                     .then(
                         function (response) {
-                            vm.user = response.data;
                             AlbumService
                                 .updateFollowUnfollow(vm.currentUser._id, vm.currentUser)
                                 .then(
                                     function (response) {
-                                        $rootScope.currentUser = response.data;
-                                        vm.currentUser = response.data;
                                     },
                                     function (error) {
                                         vm.error = error;
-                                        $rootScope.currentUser = null;
                                     }
                                 )
                         },
                         function (error) {
                             vm.error = error.data;
-                            vm.user = null;
                         }
-                    )
+                    );
             }
+            init();
         }   
             
             
