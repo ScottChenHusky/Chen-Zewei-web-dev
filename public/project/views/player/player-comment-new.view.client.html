@@ -1,13 +1,13 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <p class="navbar-text pull-left">
-            <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song" class="navbar-link">
+            <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{model.songId}}/play" class="navbar-link">
                       <span class="glyphicon glyphicon-chevron-left">
                       </span>
             </a>
         </p>
         <a class="navbar-brand" href="#">
-            New Song
+            New Comment
         </a>
     </div>
 </nav>
@@ -18,37 +18,31 @@
         {{model.error}}
     </div>
 
-    <form name="newSong" id="newSong" novalidate>
+    <form name="newComment" id="newComment" novalidate>
         <div class="form-group">
-            <label for="songName">Name</label>
-            <input ng-model="name"
+            <label for="commentTitle">Title</label>
+            <input ng-model="title"
                    type="text"
                    class="form-control"
-                   id="songName"
-                   placeholder="Song Name"
+                   id="commentTitle"
+                   placeholder="Comment title"
                    required/>
         </div>
         <div class="form-group">
-            <label for="songUrl">URL</label>
-            <input ng-model="url"
-                   type="text"
-                   class="form-control"
-                   id="songUrl"
-                   placeholder="Song URL"
-                   required/>
-        </div>
-        <div class="form-group">
-            <label>Genre: </label>
-            <label><input ng-model="RockBox" type="checkbox" value="">Rock</label>
-            <label><input ng-model="JazzBox" type="checkbox" value="">Jazz</label>
-            <label><input ng-model="PopBox" type="checkbox" value="">Pop</label>
+            <label for="commentBody">Body</label>
+            <textarea
+                    id="commentBody"
+                    class="form-control"
+                    ng-model="body"
+                    placeholder="Your comment"
+                    rows="5"></textarea>
         </div>
 
-        <button ng-click="model.createSong(name, url, RockBox, JazzBox, PopBox)"
+        <button ng-click="model.createComment(title, body)"
                 class="btn btn-primary btn-block"
                 type="submit">Create</button>
         <a class="btn btn-danger btn-block"
-           href="#/user/{{model.userId}}/album/{{model.albumId}}/song">Cancel</a>
+           href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{model.songId}}/play">Cancel</a>
 
     </form>
 

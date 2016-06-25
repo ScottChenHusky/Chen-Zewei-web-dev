@@ -5,13 +5,15 @@
         .controller("PlayerNewCommentController", PlayerNewCommentController)
         .controller("PlayerEditCommentController", PlayerEditCommentController);
 
-    function PlayerCommentListController($routeParams,
-                                SongService, MusicianService, AlbumService,$location) {
+    function PlayerCommentListController($sce, $routeParams,
+                                MusicianService, CommentService, $location) {
         var vm = this;
         vm.userId = $routeParams.userId;
         vm.albumId = $routeParams.albumId;
+        vm.songId = $routeParams.songId;
         vm.logout = logout;
         vm.search = search;
+
         function logout() {
             MusicianService.logout()
                 .then(
@@ -23,19 +25,23 @@
                     }
                 )
         }
+
         function search(keyword) {
-            $location.url("/user/"+vm.userId+"/search/song/" + keyword);
+            if (keyword.length > 0) {
+                $location.url("/user/"+vm.userId+"/search/song/" + keyword);                
+            }
         }
         function init() {
-            SongService
-                .findSongByAlbumId(vm.albumId)
+            CommentService
+                .findCommentBySongId(vm.songId)
                 .then(
                     function(response) {
-                        vm.songs = response.data;
-                        SongService.findAlbumById(vm.albumId)
+                        vm.comments = response.data;
+                        CommentService.findSongById(vm.songId)
                             .then(
                                 function(response) {
-                                    vm.album = response.data;
+                                    vm.song = response.data;
+                                    vm.songUrl = getTrustedUrl(vm.song.url);
                                 },
                                 function(error) {
                                     vm.error = error.data;
@@ -48,13 +54,23 @@
                 );
         }
         init();
+        function getSongUrl(song) {
+            var url = song.url;
+            return $sce.trustAsResourceUrl(url);
+
+        }
+        function getTrustedUrl(url) {;
+            return $sce.trustAsResourceUrl(url);
+
+        }
     }
 
-    function PlayerNewCommentController($location, $routeParams, SongService, MusicianService) {
+    function PlayerNewCommentController($location, $routeParams, CommentService, MusicianService) {
         var vm = this;
         vm.userId = $routeParams.userId;
         vm.albumId = $routeParams.albumId;
-        vm.createSong = createSong;
+        vm.songId = $routeParams.songId;
+        vm.createComment = createComment;
         vm.logout = logout;
         function logout() {
             MusicianService.logout()
@@ -68,27 +84,25 @@
                 )
         }
 
-        function createSong(name, url, RockBox, JazzBox, PopBox) {
-            if (!name) {
-                vm.error = "Please provide a song name";
+        function createComment(title, body) {
+            if (!title) {
+                vm.error = "Please provide a comment title.";
                 return;
-            } else if (!url) {
-                vm.error = "Please provide a song URL.";
+            } else if (!body) {
+                vm.error = "Please provide a comment detail.";
                 return;
             }
             
-            var song = {
-                name: name,
-                url: url,
-                rock: RockBox,
-                jazz: JazzBox,
-                pop: PopBox
+            var comment = {
+                title: title,
+                body: body
             };
-            SongService
-                .createSong(vm.userId, vm.albumId, song)
+            CommentService
+                .createComment(vm.userId, vm.albumId, vm.songId, comment)
                 .then(
                     function(response) {
-                        $location.url("/user/"+vm.userId+"/album/"+vm.albumId+"/song");
+                        $location.url("/user/"+vm.userId+"/album/"
+                            +vm.albumId+"/song/"+vm.songId+"/play");
                     }, 
                     function(error) {
                         vm.error = error.data;
@@ -97,16 +111,17 @@
         }
     }
 
-    function PlayerEditCommentController($location, $routeParams, SongService, MusicianService) {
+    function PlayerEditCommentController($location, $routeParams, CommentService, MusicianService) {
         var vm = this;
         vm.userId = $routeParams.userId;
         vm.albumId = $routeParams.albumId;
         vm.songId = $routeParams.songId;
-        vm.deleteSong = deleteSong;
-        vm.updateSong = updateSong;
+        vm.commentId = $routeParams.commentId;
+        vm.deleteComment = deleteComment;
+        vm.updateComment = updateComment;
         vm.logout = logout;
         function logout() {
-            MusicianService.logout()
+            CommentService.logout()
                 .then(
                     function(response) {
                         $location.url("/login");
@@ -118,11 +133,11 @@
         }
 
         function init() {
-            SongService
-                .findSongById(vm.songId)
+            CommentService
+                .findCommentById(vm.commentId)
                 .then(
                     function(response) {
-                        vm.song = response.data;
+                        vm.comment = response.data;
                     },
                     function(error) {
                         vm.error = error.data;
@@ -131,12 +146,13 @@
         }
         init();
 
-        function deleteSong() {
-            SongService
-                .deleteSong(vm.songId)
+        function deleteComment() {
+            CommentService
+                .deleteComment(vm.commentId)
                 .then(
                     function(response) {
-                        $location.url("/user/"+vm.userId+"/album/"+vm.albumId+"/song");
+                        $location.url("/user/"+vm.userId+"/album/"
+                            +vm.albumId+"/song/"+vm.songId+"/play");
                     },
                     function(error) {
                         vm.error = error.data;
@@ -144,20 +160,21 @@
                 );
         }
 
-        function updateSong(song) {
-            if (!song.name) {
-                vm.error = "Please provide a song name.";
+        function updateComment(comment) {
+            if (!comment.title) {
+                vm.error = "Please provide a comment title.";
                 return;
-            } else if (!song.url) {
-                vm.error = "Please provide a song URL.";
+            } else if (!comment.body) {
+                vm.error = "Please provide a comment detail.";
                 return;
             }
 
-            SongService
-                .updateSong(vm.songId, song)
+            CommentService
+                .updateComment(vm.commentId, comment)
                 .then(
                     function(response) {
-                        $location.url("/user/"+vm.userId+"/album/"+vm.albumId+"/song");
+                        $location.url("/user/"+vm.userId+"/album/"
+                            +vm.albumId+"/song/"+vm.songId+"/play");
                     },
                     function(error) {
                         vm.error = error.data;

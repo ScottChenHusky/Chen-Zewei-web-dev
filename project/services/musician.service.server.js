@@ -153,6 +153,7 @@ module.exports = function(app, models) {
 
     function login(req, res) {
         var user = req.user;
+        req.session.currentUser = user;
         res.json(user);
     }
     function searchByUsername(req,res) {
@@ -305,6 +306,7 @@ module.exports = function(app, models) {
                         res.json(null);
                     } else {
                         req.user = user;
+                        req.session.currentUser = user;
                         res.json(user);
                     }
                 },

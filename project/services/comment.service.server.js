@@ -3,7 +3,7 @@ module.exports = function(app, models) {
     var commentModel = models.commentModel;
 
     app.post("/papi/user/:userId/album/:albumId/song/:songId/comment", createComment);
-    app.get("/papi/album/:albumId/song/:songId/comment", findAllCommentsForSong);
+    app.get("/papi/song/:songId/comment", findAllCommentsForSong);
     app.get("/papi/comment/:commentId", findCommentById);
     app.put("/papi/comment/:commentId", updateComment);
     app.delete("/papi/comment/:commentId", deleteComment);

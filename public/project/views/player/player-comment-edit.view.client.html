@@ -1,13 +1,13 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <p class="navbar-text pull-left">
-            <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song" class="navbar-link">
+            <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{model.songId}}/play" class="navbar-link">
                       <span class="glyphicon glyphicon-chevron-left">
                       </span>
             </a>
         </p>
         <a class="navbar-brand" href="#">
-            Edit Song
+            Edit Comment
         </a>
     </div>
 </nav>
@@ -17,37 +17,31 @@
         {{model.error}}
     </div>
 
-    <form name="editSong" id="editSong" novalidate>
+    <form name="editComment" id="editComment" novalidate>
         <div class="form-group">
-            <label for="songName">Name</label>
-            <input ng-model="model.song.name"
+            <label for="songName">Title</label>
+            <input ng-model="model.comment.title"
                    type="text"
                    class="form-control"
                    id="songName"
-                   placeholder="Song Name"
+                   placeholder="Comment title"
                    required/>
         </div>
         <div class="form-group">
-            <label for="songUrl">URL</label>
-            <input ng-model="model.song.url"
-                   type="text"
-                   class="form-control"
-                   id="songUrl"
-                   placeholder="Song URL"
-                   required/>
-        </div>
-        <div class="form-group">
-            <label>Genre: </label>
-            <label><input ng-model="model.song.rock" type="checkbox" value="">Rock</label>
-            <label><input ng-model="model.song.jazz" type="checkbox" value="">Jazz</label>
-            <label><input ng-model="model.song.pop" type="checkbox" value="">Pop</label>
+            <label for="commentBody">Body</label>
+            <textarea
+                    id="commentBody"
+                    class="form-control"
+                    ng-model="model.comment.body"
+                    placeholder="Your comment"
+                    rows="5"></textarea>
         </div>
 
-        <button ng-click="model.updateSong(model.song)"
+        <button ng-click="model.updateComment(model.comment)"
                 class="btn btn-primary btn-block"
                 type="submit">Update</button>
         <a class="btn btn-danger btn-block"
-           ng-click="model.deleteSong()">Delete</a>
+           ng-click="model.deleteComment()">Delete</a>
 
     </form>
     <nav class="navbar navbar-inverse navbar-fixed-bottom">

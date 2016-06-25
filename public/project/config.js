@@ -96,7 +96,7 @@
                 controller: "EditSongController",
                 controllerAs: "model"
             })
-/*
+
             // player and comment routes
             .when("/user/:userId/album/:albumId/song/:songId/play", {
                 templateUrl: "views/player/player-comment-list.view.client.html",
@@ -113,7 +113,7 @@
                 controller: "PlayerEditCommentController",
                 controllerAs: "model"
             })
-*/
+
             //
             // // widget routes
             // .when("/user/:userId/website/:websiteId/page/:pageId/widget", {

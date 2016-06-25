@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <p class="navbar-text pull-left">
-            <a href="#/user/{{model.userId}}/album" class="navbar-link">
+            <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song" class="navbar-link">
                       <span class="glyphicon glyphicon-chevron-left">
                       </span>
             </a>
@@ -30,28 +30,26 @@
 
 <div class="container-fluid">
     <div class="jumbotron">
-        <div class="row">
-            <div class="col-xs-4">
-                <a href="#/user/{{model.userId}}/album">
-                    <img ng-src={{model.album.url}} width="80px" height="80px"/>
-                </a>
-            </div>
-            <div class="col-xs-8">
-                <h2>{{model.album.name}}</h2>
-                <p>
-                    {{model.album.description}}
-                </p>
-            </div>
-        </div>
+        <h1><span class="glyphicon glyphicon-play-circle"></span>
+            {{model.song.name}}</h1>
+        <audio ng-src="{{model.songUrl}}" autoplay controls>
+            Your browser does not support the <code>audio</code> element.
+        </audio>
+
     </div>
     <ul class="list-group">
-    <li ng-repeat="song in model.songs" class="list-group-item">
-        <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}/play">
-            {{song.name}}
+    <li ng-repeat="comment in model.comments" class="list-group-item">
+
+        <a href="#/user/{{comment._author}}/album">
+            <span class="glyphicon glyphicon-home"></span>
+            <strong>
+                {{comment.title}}
+            </strong>
         </a>
-        <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}" class="pull-right">
+        <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{model.songId}}/play/{{comment._id}}" class="pull-right">
             <span class="glyphicon glyphicon-cog"></span>
         </a>
+        <p>{{comment.body}}</p>
     </li>
 </ul>
 </div>
@@ -59,7 +57,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="navbar-inner">
         <p class="navbar-text pull-left">
-            <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/new" class="navbar-link">
+            <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{model.songId}}/play/new" class="navbar-link">
                       <span class="glyphicon glyphicon-plus">
                       </span>
             </a>
