@@ -18,41 +18,45 @@
         {{model.error}}
     </div>
 
-    <form name="newSong" id="newSong" novalidate>
+    <form action="/papi/upload/song"
+          method="post"
+          enctype="multipart/form-data"
+          name="newSong" id="newSong" novalidate>
         <div class="form-group">
             <label for="songName">Name</label>
             <input ng-model="name"
                    type="text"
                    class="form-control"
                    id="songName"
+                   name="name"
                    placeholder="Song Name"
                    required/>
         </div>
         <div class="form-group">
-            <label for="songUrl">URL</label>
+            <label>Genre: </label>
+            <label><input name="rock" ng-model="RockBox" type="checkbox" value="true">Rock</label>
+            <label><input name="jazz" ng-model="JazzBox" type="checkbox" value="true">Jazz</label>
+            <label><input name="pop" ng-model="PopBox" type="checkbox" value="true">Pop</label>
+        </div>
+        <div class="form-group">
+            <label for="songUrl">URL</label> (only supports HTML5 video or audio)
             <input ng-model="url"
+                   name="url"
                    type="text"
                    class="form-control"
                    id="songUrl"
-                   placeholder="Song URL"
+                   placeholder="Or you may chooose to upload..."
                    required/>
         </div>
         <div class="form-group">
-            <label>Upload song</label>
+            <label>Upload music</label>
             <input  name="myFile"   type="file" class="form-control"/>
-            <input  name="userId"   value="{{model.userId}}"   style="display: none"/>
-            <input  name="name"     ng-model="name"  style="display: none"/>
-            <input  name="description" ng-model="description"  style="display: none"/>
+            <input  name="userId" value="{{model.userId}}"   style="display: none"/>
+            <input  name="albumId" value="{{model.albumId}}"   style="display: none"/>
 
 
         </div>
-        <div class="form-group">
-            <label>Genre: </label>
-            <label><input ng-model="RockBox" type="checkbox" value="">Rock</label>
-            <label><input ng-model="JazzBox" type="checkbox" value="">Jazz</label>
-            <label><input ng-model="PopBox" type="checkbox" value="">Pop</label>
-        </div>
-
+        <button class="btn btn-block btn-primary">Upload</button>
         <button ng-click="model.createSong(name, url, RockBox, JazzBox, PopBox)"
                 class="btn btn-primary btn-block"
                 type="submit">Create</button>

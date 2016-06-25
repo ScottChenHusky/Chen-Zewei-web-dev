@@ -189,6 +189,7 @@ module.exports = function(app, models) {
     function loggedIn(req, res) {
         if(req.isAuthenticated()) {
             //res.json(req.session.currentUser);
+            req.session.currentUser = req.user;
             res.json(req.user);
         } else {
             res.send('0');

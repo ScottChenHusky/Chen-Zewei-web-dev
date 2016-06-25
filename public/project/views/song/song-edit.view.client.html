@@ -17,7 +17,8 @@
         {{model.error}}
     </div>
 
-    <form name="editSong" id="editSong" novalidate>
+    <form action="/papi/upload/song/edit"  method="post" enctype="multipart/form-data"
+          name="editSong" id="editSong" novalidate>
         <div class="form-group">
             <label for="songName">Name</label>
             <input ng-model="model.song.name"
@@ -28,21 +29,27 @@
                    required/>
         </div>
         <div class="form-group">
-            <label for="songUrl">URL</label>
-            <input ng-model="model.song.url"
-                   type="text"
-                   class="form-control"
-                   id="songUrl"
-                   placeholder="Song URL"
-                   required/>
-        </div>
-        <div class="form-group">
             <label>Genre: </label>
             <label><input ng-model="model.song.rock" type="checkbox" value="">Rock</label>
             <label><input ng-model="model.song.jazz" type="checkbox" value="">Jazz</label>
             <label><input ng-model="model.song.pop" type="checkbox" value="">Pop</label>
         </div>
-
+        <div class="form-group">
+            <label for="songUrl">URL</label> (only supports HTML video or audio)
+            <input ng-model="model.song.url"
+                   type="text"
+                   class="form-control"
+                   id="songUrl"
+                   placeholder="Or you may choose to upload..."
+                   required/>
+        </div>
+        <div class="form-group">
+            <label>Upload Cover</label>
+            <input name="myFile" type="file" class="form-control"/>
+            <input name="userId" value="{{model.userId}}" style="display: none"/>
+            <input name="albumId" value="{{model.albumId}}" style="display: none"/>
+            <input name="songId" value="{{model.song._id}}" style="display: none"/>
+        </div>
         <button ng-click="model.updateSong(model.song)"
                 class="btn btn-primary btn-block"
                 type="submit">Update</button>
