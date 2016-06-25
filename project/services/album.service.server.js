@@ -8,6 +8,8 @@ module.exports = function(app, models) {
     app.put("/papi/album/:albumId", updateAlbum);
     app.delete("/papi/album/:albumId", deleteAlbum);
     app.get('/papi/search/album/:keyword', searchByName);
+    
+    
     function searchByName(req,res) {
         var keyword = req.params.keyword;
         albumModel

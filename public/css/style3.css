@@ -47,3 +47,8 @@ p.navbar-text.pull-left {
 .glyphicon-chevron-left {
     color: white;
 }
+
+.like {
+    position: fixed;
+    left: 48%;
+}

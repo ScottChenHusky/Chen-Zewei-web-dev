@@ -23,6 +23,7 @@ module.exports = function(app, models) {
     app.put("/papi/user/:userId", updateUser);
     app.delete("/papi/user/:userId", authenticate, deleteUser);
     app.get('/papi/search/user/:keyword', searchByUsername);
+    app.put("/papi/follow/:userId", updateFollowUnfollow);
 
     passport.use('wam', new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
@@ -61,6 +62,36 @@ module.exports = function(app, models) {
                                 }
                             );
                     }
+                }
+            );
+    }
+    
+    function updateFollowUnfollow(req, res) {
+        var id = req.params.userId;
+        var newUser = req.body;
+        musicianModel
+            .updateFollowUnfollow(id, newUser)
+            .then(
+                function(user) {
+                    res.json(user);
+                },
+                function(error) {
+                    res.status(400).send("Unable to change the relationship");
+                }
+            );
+    }
+
+    function updateUser(req, res) {
+        var id = req.params.userId;
+        var newUser = req.body;
+        musicianModel
+            .updateUser(id, newUser)
+            .then(
+                function(user) {
+                    res.send(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to update user with ID: " + id);
                 }
             );
     }

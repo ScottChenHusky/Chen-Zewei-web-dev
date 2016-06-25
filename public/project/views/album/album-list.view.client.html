@@ -12,12 +12,11 @@
             </div>
         </form>
     </div>
-
-
-
 </nav>
 
+
 <div class="container-fluid">
+    {{model.user}}
 
     <div class="jumbotron">
         <div class="row">
@@ -69,6 +68,20 @@
         <p class="navbar-text pull-left">
             <a href="#/user/{{model.userId}}/album/new" class="navbar-link">
                       <span class="glyphicon glyphicon-plus">
+                      </span>
+            </a>
+        </p>
+
+        <p ng-if="!model.theOwner && model.isFollowed" class="navbar-text like">
+            <a ng-click="model.followUnfollow()" class="navbar-link">
+                      <span class="glyphicon glyphicon-heart" style="color: red">
+                      </span>
+            </a>
+        </p>
+
+        <p ng-if="!model.theOwner && !model.isFollowed" class="navbar-text like">
+            <a ng-click="model.followUnfollow()" class="navbar-link">
+                      <span class="glyphicon glyphicon-heart" style="color: white">
                       </span>
             </a>
         </p>

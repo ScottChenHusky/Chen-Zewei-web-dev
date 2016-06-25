@@ -12,9 +12,24 @@ module.exports = function() {
         findUserByCredentials: findUserByCredentials,
         updateUser: updateUser,
         deleteUser: deleteUser,
-        searchByUsername: searchByUsername
+        searchByUsername: searchByUsername,
+        updateFollowUnfollow: updateFollowUnfollow
     };
     return api;
+
+    function updateFollowUnfollow(id, newUser) {
+        return Musician.update(
+            {_id: id},
+            {$set :
+            {
+                followings: newUser.followings,
+                followers: newUser.followers
+            }
+
+            }
+        );
+    }
+
     function searchByUsername(keyword) {
         return Musician.find({"username": new RegExp(keyword, 'i')});
     }

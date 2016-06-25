@@ -12,9 +12,20 @@
             deleteAlbum: deleteAlbum,
             findUserById: findUserById,
             logout: logout,
-            searchByName: searchByName
+            searchByName: searchByName,
+            updateFollowUnfollow: updateFollowUnfollow
+            
         };
         return api;
+        
+        
+        
+        
+        function updateFollowUnfollow(userId, user) {
+            var url = "/papi/follow/" + userId;
+            return $http.put(url, user);
+        }
+        
         function searchByName(keyword) {
             var url = "/papi/search/album/" + keyword;
             return $http.get(url);

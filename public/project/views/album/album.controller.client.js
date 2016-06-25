@@ -8,8 +8,14 @@
     function AlbumListController($location, $rootScope, $routeParams, AlbumService) {
         var vm = this;
         vm.userId = $routeParams.userId;
+        vm.currentUser = $rootScope.currentUser;
+        vm.theOwner = false;
+        //vm.isFollowed = false;
+        vm.theUser = null;
+
         vm.logout = logout;
         vm.search = search;
+        vm.followUnfollow = followUnfollow;
 
         function init() {
             AlbumService
@@ -22,6 +28,19 @@
                             .then(
                                 function(response) {
                                     vm.user = response.data;
+                                    vm.theUser = response.data;
+                                    if (vm.currentUser._id === vm.userId) {
+                                        vm.theOwner = true;
+                                    }
+                                    if (!vm.theOwner) {
+                                        vm.isFollowed = false;
+                                        for (var i in vm.currentUser.followings) {
+                                            if(vm.currentUser.followings[i] === vm.userId) {
+                                                vm.isFollowed = true;
+                                                break;
+                                            }
+                                        }
+                                    }
                                 },
                                 function(error) {
                                     vm.error = error.data;
@@ -34,6 +53,118 @@
             );
         }
         init();
+
+        function followUnfollow() {
+            if (!vm.theOwner) {
+                if (vm.isFollowed) {
+                    for (var i in vm.currentUser.followings) {
+                        if (vm.currentUser.followings[i] === vm.user._id) {
+                            vm.currentUser.followings.splice(i, 1);
+                            break;
+                        }
+                    }
+                    for (var j in vm.user.followers) {
+                        if (vm.user.followers[i] === vm.currentUser._id) {
+                            vm.user.followers.splice(i, 1);
+                            break;
+                        }
+                    }
+                    vm.isFollowed = false;
+
+                } else {
+                    vm.user.followers.push(vm.currentUser._id);
+                    vm.currentUser.followings.push(vm.user._id);
+                    vm.isFollowed = true;
+                }
+                AlbumService
+                    .updateFollowUnfollow(vm.user._id, vm.user)
+                    .then(
+                        function (response) {
+                            vm.user = response.data;
+                            AlbumService
+                                .updateFollowUnfollow(vm.currentUser._id, vm.currentUser)
+                                .then(
+                                    function (response) {
+                                        $rootScope.currentUser = response.data;
+                                        vm.currentUser = response.data;
+                                    },
+                                    function (error) {
+                                        vm.error = error;
+                                        $rootScope.currentUser = null;
+                                    }
+                                )
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                            vm.user = null;
+                        }
+                    )
+            }
+        }   
+            
+            
+            
+            
+            
+        //     if (!vm.theOwner) {
+        //         if (vm.isFollowed) {
+        //             AlbumService
+        //                 .unfollowUser(vm.user._id)
+        //                 .then(
+        //                     function(response) {
+        //                         vm.isFollowed = false;
+        //                     },
+        //                     function(error) {
+        //                         vm.error = error;
+        //                     }
+        //                 );
+        //         } else {
+        //             AlbumService
+        //                 .followUser(vm.user._id)
+        //                 .then(
+        //                     function(response) {
+        //                         vm.isFollowed = true;
+        //                     },
+        //                     function(error) {
+        //                         vm.error = error;
+        //                     }
+        //                 );
+        //         }
+        //     }
+        // }
+
+
+        //
+        //
+        // if (!vm.theOwner) {
+        //     if (vm.isFollowed) {
+        //         for (var i in vm.currentUser.followings) {
+        //             if (vm.currentUser.followings[i] === vm.user._id) {
+        //                 vm.currentUser.followings.splice(i, 1);
+        //                 break;
+        //             }
+        //         }
+        //         for (var j in vm.user.followers) {
+        //             if (vm.user.followers[i] === vm.currentUser._id) {
+        //                 vm.user.followers.splice(i, 1);
+        //                 break;
+        //             }
+        //         }
+        //
+        //     } else {
+        //         vm.user.followers.push(vm.currentUser._id);
+        //         vm.currentUser.followings.push(vm.user._id);
+        //     }
+        // }
+
+
+
+
+
+
+
+
+
         
         function logout(req, res) {
             AlbumService
