@@ -48,7 +48,7 @@
         <div class="row">
             <div class="span4"></div>
             <div class="span4">
-                <a href="#/user/{{model.userId}}/album/{{album._id}}">
+                <a ng-if="model.theOwner" href="#/user/{{model.userId}}/album/{{album._id}}">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
                 <a href="#/user/{{model.userId}}/album/{{album._id}}/song">

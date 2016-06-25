@@ -18,6 +18,7 @@
         vm.followUnfollow = followUnfollow;
 
         function init() {
+
             AlbumService
                 .findAlbumsByUser(vm.userId)
                 .then(
@@ -30,7 +31,7 @@
                                     vm.user = response.data;
                                     vm.theUser = response.data;
                                     vm.theOwner = false;
-                                    if (vm.currentUser._id === vm.userId) {
+                                    if ($rootScope.currentUser._id === vm.userId) {
                                         vm.theOwner = true;
                                     }
                                     if (!vm.theOwner) {
@@ -97,69 +98,7 @@
                     );
             }
             init();
-        }   
-            
-            
-            
-            
-            
-        //     if (!vm.theOwner) {
-        //         if (vm.isFollowed) {
-        //             AlbumService
-        //                 .unfollowUser(vm.user._id)
-        //                 .then(
-        //                     function(response) {
-        //                         vm.isFollowed = false;
-        //                     },
-        //                     function(error) {
-        //                         vm.error = error;
-        //                     }
-        //                 );
-        //         } else {
-        //             AlbumService
-        //                 .followUser(vm.user._id)
-        //                 .then(
-        //                     function(response) {
-        //                         vm.isFollowed = true;
-        //                     },
-        //                     function(error) {
-        //                         vm.error = error;
-        //                     }
-        //                 );
-        //         }
-        //     }
-        // }
-
-
-        //
-        //
-        // if (!vm.theOwner) {
-        //     if (vm.isFollowed) {
-        //         for (var i in vm.currentUser.followings) {
-        //             if (vm.currentUser.followings[i] === vm.user._id) {
-        //                 vm.currentUser.followings.splice(i, 1);
-        //                 break;
-        //             }
-        //         }
-        //         for (var j in vm.user.followers) {
-        //             if (vm.user.followers[i] === vm.currentUser._id) {
-        //                 vm.user.followers.splice(i, 1);
-        //                 break;
-        //             }
-        //         }
-        //
-        //     } else {
-        //         vm.user.followers.push(vm.currentUser._id);
-        //         vm.currentUser.followings.push(vm.user._id);
-        //     }
-        // }
-
-
-
-
-
-
-
+        }
 
 
         
@@ -204,7 +143,7 @@
                 );
         }
 
-        function createAlbum(name, description, RockBox, JazzBox, PopBox) {
+        function createAlbum(name, description, url) {
             if(!name) {
                 vm.error = "Please Provide Album Name";
                 return;
@@ -213,9 +152,7 @@
             var album = {
                 name: name,
                 description: description,
-                rock: RockBox,
-                jazz: JazzBox,
-                pop: PopBox
+                url: url
             };
 
             AlbumService

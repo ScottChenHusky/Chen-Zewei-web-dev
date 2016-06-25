@@ -1,5 +1,8 @@
 module.exports = function(app, models) {
 
+    var multer = require('multer'); // npm install multer --save
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+
     var albumModel = models.albumModel;
 
     app.post("/papi/user/:userId/album", createAlbum);
@@ -8,7 +11,97 @@ module.exports = function(app, models) {
     app.put("/papi/album/:albumId", updateAlbum);
     app.delete("/papi/album/:albumId", deleteAlbum);
     app.get('/papi/search/album/:keyword', searchByName);
-    
+    app.post("/papi/upload", upload.single('myFile'), uploadImage);
+    app.post("/papi/upload/edit", upload.single('myFile'), editImage);
+
+    function uploadImage(req, res) {
+
+        var uid = req.body.userId;
+        var myFile = req.file;
+        var albumName = req.body.name;
+        var albumDescription = req.body.description;
+
+        var newAlbum;
+
+        if(myFile == null) {
+            newAlbum = {
+                name: albumName,
+                description: albumDescription
+            };
+        } else {
+            var originalname  = myFile.originalname; // file name on user's computer
+            var filename      = myFile.filename;     // new file name in upload folder
+            var path          = myFile.path;         // full path of uploaded file
+            var destination   = myFile.destination;  // folder where file is saved to
+            var size          = myFile.size;
+            var mimetype      = myFile.mimetype;
+
+            newAlbum = {
+                name: albumName,
+                description: albumDescription,
+                url: "/uploads/"+filename
+            };
+
+        }
+        //res.redirect("/project/index.html#/user/"+uid+"/album/"+albumId);
+        albumModel
+            .createAlbumForUser(uid, newAlbum)
+            .then(
+                function(album) {
+                    res.redirect("/project/index.html#/user/"+uid+"/album/"+album._id);
+                },
+                function(error) {
+                    res.status(404).send(error);
+                }
+            );
+    }
+
+    function editImage(req, res) {
+
+        var myFile = req.file;
+        var uid = req.body.userId;
+        var albumName = req.body.name;
+        var albumDescription = req.body.description;
+        var albumUrl = req.body.url;
+        var albumId = req.body.albumId;
+
+        var newAlbum;
+
+        
+        if(myFile == null) {
+            newAlbum = {
+                name: albumName,
+                description: albumDescription,
+                ur: albumUrl
+            };
+        } else {
+            var originalname  = myFile.originalname; // file name on user's computer
+            var filename      = myFile.filename;     // new file name in upload folder
+            var path          = myFile.path;         // full path of uploaded file
+            var destination   = myFile.destination;  // folder where file is saved to
+            var size          = myFile.size;
+            var mimetype      = myFile.mimetype;
+
+
+            newAlbum = {
+                name: albumName,
+                description: albumDescription,
+                url: "/uploads/"+filename
+            };
+
+        }
+        //res.redirect("/project/index.html#/user/"+uid+"/album/"+albumId);
+        albumModel
+            .updateAlbum(albumId, newAlbum)
+            .then(
+                function(album) {
+                    res.redirect("/project/index.html#/user/"+uid+"/album/"+albumId);
+                },
+                function(error) {
+                    res.status(404).send(error);
+                }
+            );
+    }
     
     function searchByName(req,res) {
         var keyword = req.params.keyword;
@@ -93,7 +186,7 @@ module.exports = function(app, models) {
             .deleteAlbum(id)
             .then(
                 function(status) {
-                    res.send(200);
+                    res.sendStatus(200);
                 },
                 function(error) {
                     res.status(400).send("Unable to delete this album");

@@ -17,14 +17,14 @@
         {{model.error}}
     </div>
 
-    <form name="newAlbum" id="newAlbum" novalidate>
+    <form action="/papi/upload/edit"  method="post" enctype="multipart/form-data" name="editAlbum" id="editAlbum" novalidate>
         <div class="form-group">
             <label for="albumName">Album Name</label>
             <input ng-model="model.album.name"
                    type="text"
                    class="form-control"
                    id="albumName"
-                   placeholder="Google"
+                   placeholder="1984"
                    required/>
         </div>
         <div class="form-group">
@@ -37,12 +37,29 @@
         </div>
 
         <div class="form-group">
-            <label>Image.......</label>
+            <label for="url">URL</label>
+            <input ng-model="model.album.url"
+                   type="text"
+                   class="form-control"
+                   id="url"
+                   placeholder="www.music.com"/>
         </div>
 
-        <button ng-click="model.updateAlbum(model.albumId, model.album)"
+        <div class="form-group">
+            <label>Upload Cover</label>
+            <input  name="myFile"   type="file" class="form-control"/>
+            <input  name="userId" value="{{model.userId}}"   style="display: none"/>
+            <input  name="name" ng-model="model.album.name"  style="display: none"/>
+            <input  name="description" ng-model="model.album.description"  style="display: none"/>
+            <input  name="url" ng-model="model.album.url"  style="display: none"/>
+            <input  name="albumId" value="{{model.albumId}}"  style="display: none"/>
+        </div>
+
+        <button class="btn btn-block btn-primary">Upload Image</button>
+
+        <a ng-click="model.updateAlbum(model.albumId, model.album)"
                 class="btn btn-primary btn-block"
-                type="submit">Update</button>
+                type="submit">Update</a>
         <a class="btn btn-danger btn-block"
            ng-click="model.deleteAlbum(model.albumId)">Delete</a>
     </form>

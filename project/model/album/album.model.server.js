@@ -36,7 +36,8 @@ module.exports = function() {
             {$set :
             {
                 name: album.name,
-                description: album.description
+                description: album.description,
+                url: album.url
             }
             }
         );
@@ -45,4 +46,5 @@ module.exports = function() {
     function deleteAlbum(albumId) {
         return Album.remove({_id: albumId});
     }
+    
 };
