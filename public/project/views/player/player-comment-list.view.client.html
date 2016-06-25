@@ -32,11 +32,17 @@
     <div class="jumbotron">
         <h1><span class="glyphicon glyphicon-play-circle"></span>
             {{model.song.name}}</h1>
-        <audio ng-src="{{model.songUrl}}" autoplay controls>
+        <video width="100%" poster="images/player/poster.jpg"
+               ng-src="{{model.songUrl}}" autoplay controls>
             Your browser does not support the <code>audio</code> element.
-        </audio>
-
+        </video>
+        <span ng-if="model.song.jazz">Jazz </span>
+        <span ng-if="model.song.rock">Rock </span>
+        <span ng-if="model.song.pop">Pop </span>
+        <a href="{{model.songUrl}}"
+           class="pull-right">Download this</a>
     </div>
+    <h3>Comments:</h3>
     <ul class="list-group">
     <li ng-repeat="comment in model.comments" class="list-group-item">
 
@@ -46,7 +52,8 @@
                 {{comment.title}}
             </strong>
         </a>
-        <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{model.songId}}/play/{{comment._id}}" class="pull-right">
+        <a ng-if="(comment._author === model.currentUser._id) || currentUser.isAdmin"
+           href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{model.songId}}/play/{{comment._id}}" class="pull-right">
             <span class="glyphicon glyphicon-cog"></span>
         </a>
         <p>{{comment.body}}</p>

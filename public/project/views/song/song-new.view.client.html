@@ -38,6 +38,15 @@
                    required/>
         </div>
         <div class="form-group">
+            <label>Upload song</label>
+            <input  name="myFile"   type="file" class="form-control"/>
+            <input  name="userId"   value="{{model.userId}}"   style="display: none"/>
+            <input  name="name"     ng-model="name"  style="display: none"/>
+            <input  name="description" ng-model="description"  style="display: none"/>
+
+
+        </div>
+        <div class="form-group">
             <label>Genre: </label>
             <label><input ng-model="RockBox" type="checkbox" value="">Rock</label>
             <label><input ng-model="JazzBox" type="checkbox" value="">Jazz</label>

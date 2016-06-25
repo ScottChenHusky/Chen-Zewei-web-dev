@@ -33,7 +33,8 @@
         <div class="row">
             <div class="col-xs-4">
                 <a href="#/user/{{model.userId}}/album">
-                    <img ng-src={{model.album.url}} width="80px" height="80px"/>
+                    <img class="cdImage"
+                         ng-src={{model.album.url}} width="80px" height="80px"/>
                 </a>
             </div>
             <div class="col-xs-8">
@@ -49,7 +50,8 @@
         <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}/play">
             {{song.name}}
         </a>
-        <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}" class="pull-right">
+        <a ng-if="model.editRight"
+           href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}" class="pull-right">
             <span class="glyphicon glyphicon-cog"></span>
         </a>
     </li>
@@ -59,7 +61,8 @@
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="navbar-inner">
         <p class="navbar-text pull-left">
-            <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/new" class="navbar-link">
+            <a ng-if="model.editRight"
+               href="#/user/{{model.userId}}/album/{{model.albumId}}/song/new" class="navbar-link">
                       <span class="glyphicon glyphicon-plus">
                       </span>
             </a>

@@ -5,13 +5,10 @@
         .controller("NewSongController", NewSongController)
         .controller("EditSongController", EditSongController);
 
-    function SongListController($routeParams,
-                                SongService, MusicianService, AlbumService,$location) {
+    function SongListController($routeParams, SongService,
+                                MusicianService, $rootScope, $location) {
         var vm = this;
-        vm.userId = $routeParams.userId;
-        vm.albumId = $routeParams.albumId;
-        vm.logout = logout;
-        vm.search = search;
+
         function logout() {
             MusicianService.logout()
                 .then(
@@ -27,6 +24,12 @@
             $location.url("/user/"+vm.userId+"/search/song/" + keyword);
         }
         function init() {
+            vm.logout = logout;
+            vm.search = search;
+            vm.currentUser = $rootScope.currentUser;
+            vm.userId = $routeParams.userId;
+            vm.albumId = $routeParams.albumId;
+            vm.editRight = false;
             SongService
                 .findSongByAlbumId(vm.albumId)
                 .then(
@@ -36,6 +39,10 @@
                             .then(
                                 function(response) {
                                     vm.album = response.data;
+                                    if ((vm.album._musician === vm.currentUser._id)
+                                    || (vm.currentUser.isAdmin)) {
+                                        vm.editRight = true;
+                                    }
                                 },
                                 function(error) {
                                     vm.error = error.data;

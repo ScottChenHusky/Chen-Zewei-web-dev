@@ -5,14 +5,9 @@
         .controller("PlayerNewCommentController", PlayerNewCommentController)
         .controller("PlayerEditCommentController", PlayerEditCommentController);
 
-    function PlayerCommentListController($sce, $routeParams,
+    function PlayerCommentListController($sce, $routeParams, $rootScope,
                                 MusicianService, CommentService, $location) {
         var vm = this;
-        vm.userId = $routeParams.userId;
-        vm.albumId = $routeParams.albumId;
-        vm.songId = $routeParams.songId;
-        vm.logout = logout;
-        vm.search = search;
 
         function logout() {
             MusicianService.logout()
@@ -32,6 +27,12 @@
             }
         }
         function init() {
+            vm.userId = $routeParams.userId;
+            vm.albumId = $routeParams.albumId;
+            vm.songId = $routeParams.songId;
+            vm.logout = logout;
+            vm.search = search;
+            vm.currentUser = $rootScope.currentUser;
             CommentService
                 .findCommentBySongId(vm.songId)
                 .then(

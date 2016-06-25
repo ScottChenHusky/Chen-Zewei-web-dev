@@ -75,46 +75,70 @@
             .when("/user/:userId/album/new", {
                 templateUrl: "views/album/album-new.view.client.html",
                 controller: "NewAlbumController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
             .when("/user/:userId/album/:albumId", {
                 templateUrl: "views/album/album-edit.view.client.html",
                 controller: "EditAlbumController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
 
             // song routes
             .when("/user/:userId/album/:albumId/song", {
                 templateUrl: "views/song/song-list.view.client.html",
                 controller: "SongListController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
             .when("/user/:userId/album/:albumId/song/new", {
                 templateUrl: "views/song/song-new.view.client.html",
                 controller: "NewSongController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
             .when("/user/:userId/album/:albumId/song/:songId", {
                 templateUrl: "views/song/song-edit.view.client.html",
                 controller: "EditSongController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
 
             // player and comment routes
             .when("/user/:userId/album/:albumId/song/:songId/play", {
                 templateUrl: "views/player/player-comment-list.view.client.html",
                 controller: "PlayerCommentListController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
             .when("/user/:userId/album/:albumId/song/:songId/play/new", {
                 templateUrl: "views/player/player-comment-new.view.client.html",
                 controller: "PlayerNewCommentController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
             .when("/user/:userId/album/:albumId/song/:songId/play/:commentId", {
                 templateUrl: "views/player/player-comment-edit.view.client.html",
                 controller: "PlayerEditCommentController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
 
             //
