@@ -48,7 +48,7 @@
         <div class="row">
             <div class="span4"></div>
             <div class="span4">
-                <a ng-if="model.theOwner" href="#/user/{{model.userId}}/album/{{album._id}}">
+                <a ng-if="model.theOwner || model.currentUser.isAdmin" href="#/user/{{model.userId}}/album/{{album._id}}">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
                 <a href="#/user/{{model.userId}}/album/{{album._id}}/song">
@@ -66,7 +66,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="navbar-inner">
         <p class="navbar-text pull-left">
-            <a href="#/user/{{model.userId}}/album/new" class="navbar-link">
+            <a ng-if="model.theOwner || model.currentUser.isAdmin" href="#/user/{{model.userId}}/album/new" class="navbar-link">
                       <span class="glyphicon glyphicon-plus">
                       </span>
             </a>

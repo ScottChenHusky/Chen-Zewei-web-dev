@@ -44,7 +44,11 @@
                    required/>
         </div>
 
-        <button ng-click="model.register(username, password1, password2)"
+        <div class="form-group">
+            <label>Wanna be an admin? <input ng-model="admin" type="checkbox" value=""></label>
+        </div>
+
+        <button ng-click="model.register(username, password1, password2, admin)"
                 type="submit"
                 class="btn btn-primary btn-block">Register</button>
 

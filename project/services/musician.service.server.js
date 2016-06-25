@@ -80,6 +80,9 @@ module.exports = function(app, models) {
 
 
         if(myFile == null) {
+            newUser = {
+                url: "http://www.hsyearbook.org/static/images/unknown_user_large.png"
+            }
 
         } else {
             var originalname  = myFile.originalname; // file name on user's computer

@@ -26,7 +26,8 @@ module.exports = function(app, models) {
         if(myFile == null) {
             newAlbum = {
                 name: albumName,
-                description: albumDescription
+                description: albumDescription,
+                url: "http://www.clker.com/cliparts/e/5/9/2/1352239243390755342Blank%20CD.svg.med.png"
             };
         } else {
             var originalname  = myFile.originalname; // file name on user's computer
@@ -72,7 +73,7 @@ module.exports = function(app, models) {
             newAlbum = {
                 name: albumName,
                 description: albumDescription,
-                url: albumUrl
+                url: "http://www.clker.com/cliparts/e/5/9/2/1352239243390755342Blank%20CD.svg.med.png"
             };
         } else {
             var originalname  = myFile.originalname; // file name on user's computer

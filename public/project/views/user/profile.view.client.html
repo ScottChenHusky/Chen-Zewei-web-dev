@@ -26,7 +26,7 @@
     </div>
 
     <div ng-if="model.error" class="alert alert-danger">
-        Unable to update your profile
+        {{model.error}}
     </div>
 
     <form action="/papi/upload/profile"  method="post" enctype="multipart/form-data" name="profileForm" id="profileForm" novalidate>

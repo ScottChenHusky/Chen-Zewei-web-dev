@@ -9,11 +9,12 @@
         var vm = this;
         vm.logout = logout;
         vm.search = search;
-
         vm.keyword = $routeParams.keyword;
-        //var id = $rootScope.currentUser._id;
+        vm.currentUser = $rootScope.currentUser;
         vm.userId = $routeParams.userId;
+        
         function init() {
+
             MusicianService
                 .searchByUsername(vm.keyword)
                 .then(
@@ -53,7 +54,7 @@
         var vm = this;
         vm.logout = logout;
         vm.search = search;
-
+        vm.currentUser = $rootScope.currentUser;
         vm.keyword = $routeParams.keyword;
         vm.userId = $routeParams.userId;
         function init() {
@@ -78,7 +79,7 @@
 
 
         function logout() {
-            MusicianService
+            AlbumService
                 .logout()
                 .then(
                     function(response) {
@@ -98,9 +99,10 @@
         vm.search = search;
 
         vm.keyword = $routeParams.keyword;
-        //var id = $rootScope.currentUser._id;
+        vm.currentUser = $rootScope.currentUser;
         vm.userId = $routeParams.userId;
         function init() {
+            
             SongService
                 .searchByName(vm.keyword)
                 .then(
@@ -124,7 +126,7 @@
 
 
         function logout() {
-            MusicianService
+            SongService
                 .logout()
                 .then(
                     function(response) {

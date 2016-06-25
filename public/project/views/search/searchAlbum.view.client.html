@@ -29,20 +29,16 @@
         <li><a href="#/user/{{model.userId}}/search/song/{{model.keyword}}">Song</a></li>
     </ul>
     <p>We found {{model.result.length}} albums for you.</p>
-    <div ng-repeat="album in model.result">
-        <div class="row">
-            <div class="span4"></div>
-            <div class="span4">
-                <a href="#/user/{{model.userId}}/album/{{album._id}}">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <a href="#/user/{{model.userId}}/album/{{album._id}}/song">
-                    <img class="center-block" ng-src={{album.url}} width="280px" height="280px"/>
-                </a>
-            </div>
-            <div class="span4"></div>
-        </div>
-    </div>
+    <ul class="list-group">
+        <li ng-repeat="album in model.result" class="list-group-item">
+            <a href="#/user/{{model.userId}}/album/{{album._id}}/song">
+                {{album.name}}
+            </a>
+            <a ng-if="model.currentUser.isAdmin" href="#/user/{{model.userId}}/album/{{album._id}}" class="pull-right">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+        </li>
+    </ul>
 </div>
 
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
