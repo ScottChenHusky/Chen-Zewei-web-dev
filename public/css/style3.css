@@ -52,3 +52,12 @@ p.navbar-text.pull-left {
     position: fixed;
     left: 48%;
 }
+
+.profileImage {
+    border-radius: 15%;
+}
+
+.cdImage {
+    border-radius: 50%;
+    border: solid 1px black;
+}
