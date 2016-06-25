@@ -9,6 +9,7 @@ module.exports = function() {
         rock: Boolean,
         jazz: Boolean,
         pop: Boolean,
+        coverUrl: String,
         comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
         dateCreated: {type: Date, default: Date.now}
     }, {collection: "project.song"});

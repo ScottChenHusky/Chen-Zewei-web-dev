@@ -122,7 +122,7 @@
         vm.updateComment = updateComment;
         vm.logout = logout;
         function logout() {
-            CommentService.logout()
+            MusicianService.logout()
                 .then(
                     function(response) {
                         $location.url("/login");

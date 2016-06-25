@@ -45,10 +45,10 @@
 
     </form>
     <nav class="navbar navbar-inverse navbar-fixed-bottom">
-        <div class="navbar-header">
+        <div class="navbar-inner">
             <p class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}/" class="navbar-link">
-                      <span class="glyphicon glyphicon-user">
+                <a ng-click="model.logout()" class="navbar-link">
+                      <span class="glyphicon glyphicon-log-out" style="color:white">
                       </span>
                 </a>
             </p>

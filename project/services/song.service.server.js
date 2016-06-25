@@ -6,6 +6,7 @@ module.exports = function(app, models) {
     var upload = multer({ dest: __dirname+'/../../public/uploads/song' });
 
     var songModel = models.songModel;
+    var albumModel = models.albumModel;
 
     app.post("/papi/user/:userId/album/:albumId/song", createSong);
     app.get("/papi/album/:albumId/song", findAllSongsForAlbum);
@@ -55,17 +56,28 @@ module.exports = function(app, models) {
 
         }
         //res.redirect("/project/index.html#/user/"+uid+"/album/"+albumId);
-        songModel
-            .createSong(userId, albumId, newSong)
+        albumModel
+            .findAlbumById(albumId)
             .then(
-                function(song) {
-                    res.redirect("/project/index.html#/user/"
-                        +userId+"/album/"+albumId + "/song/"+song._id);
+                function(album) {
+                    newSong.coverUrl = album.url;
+                    songModel
+                        .createSong(userId, albumId, newSong)
+                        .then(
+                            function(song) {
+                                res.redirect("/project/index.html#/user/"
+                                    +userId+"/album/"+albumId + "/song/"+song._id);
+                            },
+                            function(error) {
+                                res.status(404).send(error);
+                            }
+                        );
+
                 },
-                function(error) {
-                    res.status(404).send(error);
+                function (err) {
+                    res.status(404).send(err);
                 }
-            );
+        )
     }
 
     function editMusicUpload(req, res) {
