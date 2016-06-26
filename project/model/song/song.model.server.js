@@ -15,7 +15,7 @@ module.exports = function() {
     };
     return api;
     function findNewSongs(limit) {
-        return Song.find().sort({$natural:1}).limit(parseInt(limit));
+        return Song.find().sort({$natural:-1}).limit(parseInt(limit));
     }
     function searchByName(keyword) {
         return Song.find({"name": new RegExp(keyword, 'i')});
