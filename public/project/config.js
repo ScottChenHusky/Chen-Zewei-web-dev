@@ -19,19 +19,28 @@
             .when("/user/:userId/search/song/:keyword", {
                 templateUrl: "views/search/searchSong.view.client.html",
                 controller: "SearchSongController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
 
             .when("/user/:userId/search/album/:keyword", {
                 templateUrl: "views/search/searchAlbum.view.client.html",
                 controller: "SearchAlbumController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
 
             .when("/user/:userId/search/user/:keyword", {
                 templateUrl: "views/search/searchUser.view.client.html",
                 controller: "SearchUserController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
 
             //user routes
