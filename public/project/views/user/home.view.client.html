@@ -13,9 +13,13 @@
 </nav>
 
 <div class="container-fluid">
+    <div ng-if="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
     <h3>
         <strong>Top Songs of this Week:</strong>
     </h3>
+    {{model.newSongs}}
 </div>
 
 

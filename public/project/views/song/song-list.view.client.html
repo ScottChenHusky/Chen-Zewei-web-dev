@@ -47,7 +47,6 @@
     </div>
     <ul class="list-group">
     <li ng-repeat="song in model.songs" class="list-group-item">
-        {{song.coverUrl}}
         <a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}/play">
             {{song.name}}
         </a>

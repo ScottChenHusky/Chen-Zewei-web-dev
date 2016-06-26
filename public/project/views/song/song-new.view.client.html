@@ -57,9 +57,9 @@
 
         </div>
         <button class="btn btn-block btn-primary">Upload music</button>
-        <button ng-click="model.createSong(name, url, RockBox, JazzBox, PopBox)"
+        <a ng-click="model.createSong(name, url, RockBox, JazzBox, PopBox)"
                 class="btn btn-primary btn-block"
-                type="submit">Create</button>
+                type="submit">Create</a>
         <a class="btn btn-danger btn-block"
            href="#/user/{{model.userId}}/album/{{model.albumId}}/song">Cancel</a>
 

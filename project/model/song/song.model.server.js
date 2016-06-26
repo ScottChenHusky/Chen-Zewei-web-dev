@@ -10,10 +10,13 @@ module.exports = function() {
         findSongById: findSongById,
         updateSong: updateSong,
         deleteSong: deleteSong,
-        searchByName: searchByName
+        searchByName: searchByName,
+        findNewSongs: findNewSongs
     };
     return api;
-
+    function findNewSongs(limit) {
+        return Song.find().sort({$natural:1}).limit(parseInt(limit));
+    }
     function searchByName(keyword) {
         return Song.find({"name": new RegExp(keyword, 'i')});
     }

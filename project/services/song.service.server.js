@@ -16,6 +16,25 @@ module.exports = function(app, models) {
     app.get('/papi/search/song/:keyword', searchByName);
     app.post("/papi/upload/song", upload.single('myFile'), uploadMusic);
     app.post("/papi/upload/song/edit", upload.single('myFile'), editMusicUpload);
+    app.get("/papi/song/top/:limit", findNewSongs);
+    function findNewSongs(req, res) {
+        songModel
+            .findNewSongs(req.params.limit)
+            .then(
+                function (songs) {
+                    if (songs) {
+                        res.json(songs);
+                    }
+                    else {
+                        res.status(404);
+                    }
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+
+    }
     function uploadMusic(req, res) {
         var myFile = req.file;
 

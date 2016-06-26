@@ -12,9 +12,15 @@
             deleteSong: deleteSong,
             findAlbumById: findAlbumById,
             searchByName: searchByName,
-            logout: logout
+            logout: logout,
+            findNewSongs: findNewSongs
         };
         return api;
+
+        function findNewSongs(limit) {
+            var url = "/papi/song/top/" + limit;
+            return $http.get(url);
+        }
 
         function logout() {
             return $http.post("/papi/logout");

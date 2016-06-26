@@ -38,9 +38,9 @@
                     rows="5"></textarea>
         </div>
 
-        <button ng-click="model.createComment(title, body)"
+        <a ng-click="model.createComment(title, body)"
                 class="btn btn-primary btn-block"
-                type="submit">Create</button>
+                type="submit">Create</a>
         <a class="btn btn-danger btn-block"
            href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{model.songId}}/play">Cancel</a>
 

@@ -147,7 +147,21 @@
         }
     }
 
-    function HomeController(){
+    function HomeController(SongService){
+        var vm = this;
+        function init() {
+            SongService
+                .findNewSongs(10)
+                .then(
+                    function(response) {
+                        vm.newSongs = response.data;
+                    },
+                    function(err) {
+                        vm.err = err.data;
+                    }
+                )
+        }
+        init();
         
     }
 })();
