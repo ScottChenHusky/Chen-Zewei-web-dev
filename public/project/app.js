@@ -1,3 +1,3 @@
 (function(){
-    angular.module("WeMusicians", ["ngRoute", "textAngular"]);
+    angular.module("WeMusicians", ["ngRoute"]);
 })();

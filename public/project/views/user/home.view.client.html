@@ -20,33 +20,20 @@
         <strong>Top Songs of this Week:</strong>
     </h3>
 
-    <div ng-repeat="song in model.newSongs" class="list-group-item">
-
-        <img class="center-block" ng-src={{song.coverUrl}} width="280px" height="280px"/>
-
-
-        <!--<div class="row">-->
-            <!--<div class="span4"></div>-->
-            <!--<div class="span4">-->
-                <!--<a href="#/user/{{model.userId}}/album/{{album._id}}">-->
-                    <!--{{song.coverUrl}}-->
-                <!--</a>-->
-                <!--<a href="#/user/{{model.userId}}/album/{{album._id}}/song">-->
-                    <!--<img class="center-block" ng-src={{song.coverUrl}} width="280px" height="280px"/>-->
-                <!--</a>-->
-            <!--</div>-->
-            <!--<div class="span4"></div>-->
-        <!--</div>-->
+    <div ng-repeat="song in model.newSongs">
+        <a href="#/login">
+        <center>
+            <img class="cdImage"
+                 ng-src={{song.coverUrl}} width="280px" height="280px"/>
+            <br />
+        </center>
+            <strong>{{song.name}}</strong>
+        </a>
+        <br />
     </div>
 </div>
 
-<!--<a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}/play">-->
-    <!--{{song.name}}-->
-<!--</a>-->
 
-<!--<a href="#/user/{{model.userId}}/album/{{model.albumId}}/song/{{song._id}}" class="pull-right">-->
-    <!--<img class="center-block cdImage" ng-src={{song.coverUrl}} width="280px" height="280px"/>-->
-<!--</a>-->
 
 
 <nav class="navbar navbar-inverse navbar-fixed-bottom">

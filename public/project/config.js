@@ -149,33 +149,9 @@
                     loggedIn: checkLoggedIn
                 }
             })
-
-            //
-            // // widget routes
-            // .when("/user/:userId/website/:websiteId/page/:pageId/widget", {
-            //     templateUrl: "views/widget/widget-list.view.client.html",
-            //     controller: "WidgetListController",
-            //     controllerAs: "model"
-            // })
-            // .when("/user/:userId/website/:websiteId/page/:pageId/widget/new", {
-            //     templateUrl: "views/widget/widget-chooser.view.client.html",
-            //     controller: "NewWidgetController",
-            //     controllerAs: "model"
-            // })
-            // .when("/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId", {
-            //     templateUrl: "views/widget/widget-edit.view.client.html",
-            //     controller: "EditWidgetController",
-            //     controllerAs: "model"
-            // })
-            // .when("/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId/flickr", {
-            //     templateUrl: "views/widget/widget-flickr-search.view.client.html",
-            //     controller: "FlickrImageSearchController",
-            //     controllerAs: "model"
-            //
-            // })
-            // .otherwise({
-            //     redirectTo: "/home"
-            // });
+            .otherwise({
+                redirectTo: "/home"
+            });
 
         function checkLoggedIn(MusicianService, $location, $q, $rootScope) {
 
