@@ -78,8 +78,8 @@ module.exports = function(app, models) {
         albumModel
             .findAlbumById(albumId)
             .then(
-                function(album) {
-                    newSong.coverUrl = album.url;
+                function(reponse) {
+                    newSong.coverUrl = reponse.data.url;
                     songModel
                         .createSong(userId, albumId, newSong)
                         .then(
