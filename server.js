@@ -24,7 +24,7 @@ mongoose.connect('mongodb://localhost/cs4550summer1');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(cookieParser());
+// app.use(cookieParser());
 // app.use(session({
 //     secret: process.env.SESSION_SECRET,
 //     resave: true,

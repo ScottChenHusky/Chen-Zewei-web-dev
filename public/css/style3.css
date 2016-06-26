@@ -61,3 +61,7 @@ p.navbar-text.pull-left {
     border-radius: 50%;
     border: solid 1px black;
 }
+
+.homePage {
+    background-size: 100%;
+}
