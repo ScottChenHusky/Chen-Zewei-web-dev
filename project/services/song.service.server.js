@@ -78,8 +78,8 @@ module.exports = function(app, models) {
         albumModel
             .findAlbumById(albumId)
             .then(
-                function(reponse) {
-                    newSong.coverUrl = reponse.data.url;
+                function(album) {
+                    newSong.coverUrl = album.url;
                     songModel
                         .createSong(userId, albumId, newSong)
                         .then(
@@ -181,14 +181,25 @@ module.exports = function(app, models) {
         var albumId = req.params.albumId;
         newSong._musican = userId;
         newSong._album = albumId;
-        songModel
-            .createSong(userId, albumId, newSong)
+        albumModel
+            .findAlbumById(albumId)
             .then(
-                function(song) {
-                    res.json(song);
+                function(album) {
+                    newSong.coverUrl = album.url;
+
+                    songModel
+                        .createSong(userId, albumId, newSong)
+                        .then(
+                            function(song) {
+                                res.json(song);
+                            },
+                            function(error) {
+                                res.status(404).send(error);
+                            }
+                        );
                 },
-                function(error) {
-                    res.status(400).send(error);
+                function (err) {
+                    res.status(400).send(err);
                 }
             );
     }
