@@ -28,7 +28,7 @@
                         }
                     );
             } else {
-                $location.url("/user/"+userId+"/album")
+                $location.url("/user/"+currentId+"/album")
             }
         }
         init();
