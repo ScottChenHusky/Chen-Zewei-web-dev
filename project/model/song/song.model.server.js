@@ -35,16 +35,21 @@ module.exports = function() {
     }
 
     function updateSong(songId, song) {
-        return Song.findOneAndUpdate({_id: songId}, song);
-        // return Song.update(
-        //     {_id: songId},
-        //     {$set :
-        //     {
-        //         name: website.name,
-        //         description: website.description
-        //     }
-        //     }
-        // );
+        //return Song.findOneAndUpdate({_id: songId}, song);
+
+        return Song.update(
+            {_id: songId},
+            {$set :
+            {
+                name: song.name,
+                url: song.url,
+                rock: song.rock,
+                jazz: song.jazz,
+                pop: song.pop,
+                coverUrl: song.coverUrl
+            }
+            }
+        );
     }
 
     function deleteSong(songId) {
